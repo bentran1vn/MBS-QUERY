@@ -1,0 +1,6 @@
+@MBS_QUERY.Contract_HostAddress = http://localhost:5123
+
+GET {{MBS_QUERY.Contract_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
