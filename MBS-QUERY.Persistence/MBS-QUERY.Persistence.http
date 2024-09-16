@@ -1,6 +1,0 @@
-@MBS_QUERY.Persistence_HostAddress = http://localhost:5253
-
-GET {{MBS_QUERY.Persistence_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

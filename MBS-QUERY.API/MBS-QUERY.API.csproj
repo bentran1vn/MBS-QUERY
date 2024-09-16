@@ -5,10 +5,26 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <RootNamespace>MBS_QUERY.API</RootNamespace>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\MBS_QUERY.Application\MBS_QUERY.Application.csproj" />
+      <ProjectReference Include="..\MBS_QUERY.Contract\MBS_QUERY.Contract.csproj" />
+      <ProjectReference Include="..\MBS_QUERY.Domain\MBS_QUERY.Domain.csproj" />
+      <ProjectReference Include="..\MBS_QUERY.Infrastructure\MBS_QUERY.Infrastructure.csproj" />
+      <ProjectReference Include="..\MBS_QUERY.Persistence\MBS_QUERY.Persistence.csproj" />
+      <ProjectReference Include="..\MBS_QUERY.Presentation\MBS_QUERY.Presentation.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="..\.dockerignore">
+        <Link>.dockerignore</Link>
+      </Content>
     </ItemGroup>
 
 </Project>

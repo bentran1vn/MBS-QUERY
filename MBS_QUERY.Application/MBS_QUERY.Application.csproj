@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\MBS_QUERY.Contract\MBS_QUERY.Contract.csproj" />
+      <ProjectReference Include="..\MBS_QUERY.Domain\MBS_QUERY.Domain.csproj" />
+      <ProjectReference Include="..\MBS_QUERY.Persistence\MBS_QUERY.Persistence.csproj" />
+    </ItemGroup>
+
+</Project>
