@@ -24,7 +24,7 @@ public class TestApi: ApiEndpoint, ICarterModule
 
     public static async Task<IResult> Test()
     {
-        var result = Result.Success();
+        var result = Result.Success("Xin chào Tôi là Query");
         
         if (result.IsFailure)
             return HandlerFailure(result);
