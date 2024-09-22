@@ -10,4 +10,13 @@
       <ProjectReference Include="..\MBS_QUERY.Contract\MBS_QUERY.Contract.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Abstractions\Messages\" />
+      <Folder Include="Entities\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="MongoDB.Driver" Version="2.29.0" />
+    </ItemGroup>
+
 </Project>

@@ -11,4 +11,8 @@
       <ProjectReference Include="..\MBS_QUERY.Domain\MBS_QUERY.Domain.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="DependencyInjection\Extensions\" />
+    </ItemGroup>
+
 </Project>
