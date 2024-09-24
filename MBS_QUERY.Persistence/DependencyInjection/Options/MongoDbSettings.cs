@@ -1,4 +1,4 @@
-namespace MBS_QUERY.Persistence.DependencyInjection.Options;
+﻿namespace MBS_QUERY.Persistence.DependencyInjection.Options;
 
 public interface IMongoDbSettings
 {
