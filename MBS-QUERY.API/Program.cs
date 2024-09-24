@@ -1,6 +1,10 @@
 using Carter;
 using MBS_QUERY.API.DependencyInjection.Extensions;
 using MBS_QUERY.API.Middlewares;
+using MBS_QUERY.Application.DependencyInjection.Extensions;
+using MBS_QUERY.Infrastructure.DependencyInjection.Extensions;
+using MBS_QUERY.Persistence.DependencyInjection.Extensions;
+using MBS_QUERY.Persistence.DependencyInjection.Options;
 using MicroElements.Swashbuckle.FluentValidation.AspNetCore;
 using Serilog;
 
@@ -34,6 +38,21 @@ builder.Services
     });
 
 builder.Services.ConfigureCors();
+
+// Application Layer
+builder.Services.AddMediatRApplication();
+builder.Services.AddAutoMapperApplication();
+
+// Persistence Layer
+builder.Services.ConfigureSqlServerRetryOptionsPersistence(builder.Configuration.GetSection(nameof(SqlServerRetryOptions)));
+builder.Services.AddSqlServerPersistence();
+builder.Services.AddRepositoryPersistence();
+builder.Services.ConfigureServicesInfrastructure(builder.Configuration);
+
+// Infrastructure Layer
+builder.Services.AddServicesInfrastructure();
+builder.Services.AddRedisInfrastructure(builder.Configuration);
+builder.Services.AddMasstransitRabbitMQInfrastructure(builder.Configuration);
 
 builder.Services.AddJwtAuthenticationAPI(builder.Configuration);
 
