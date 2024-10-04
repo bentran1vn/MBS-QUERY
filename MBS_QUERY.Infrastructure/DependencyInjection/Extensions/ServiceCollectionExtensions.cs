@@ -86,4 +86,9 @@ public static class ServiceCollectionExtensions
     
         return services;
     }
+    
+    public static void AddMediatRInfrastructure(this IServiceCollection services)
+    {
+        services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Application.AssemblyReference.Assembly));
+    }
 }

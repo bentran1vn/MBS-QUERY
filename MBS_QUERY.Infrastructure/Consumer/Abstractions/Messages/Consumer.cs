@@ -3,6 +3,7 @@ using MBS_QUERY.Contract.Abstractions.Messages;
 using MBS_QUERY.Domain.Abstractions.Repositories;
 using MBS_QUERY.Domain.Documents;
 using MediatR;
+using Serilog;
 
 namespace MBS_QUERY.Infrastructure.Consumer.Abstractions.Messages;
 
@@ -27,6 +28,9 @@ public abstract class Consumer<TMessage> : IConsumer<TMessage>
         if (eventProjection is null)
         {
             await _sender.Send(context.Message);
+
+            Console.WriteLine("Kakaka");
+            Console.WriteLine(context.Message.ToString());
             
             eventProjection = new EventProjection()
             {

@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Routing;
 
 namespace MBS_QUERY.Presentation.APIs.Test;
 
-
 public class TestApi: ApiEndpoint, ICarterModule
 {
     private const string BaseUrl = "/api/v{version:apiVersion}/tests";
