@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace MBS_COMMAND.Infrastucture.DependencyInjection.Options;
+namespace MBS_QUERY.Infrastructure.DependencyInjection.Options;
 
 public class MessageBusOptions
 {

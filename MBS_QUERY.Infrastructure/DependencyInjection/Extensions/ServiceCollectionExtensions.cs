@@ -9,6 +9,7 @@ using MBS_QUERY.Persistence.Repositories;
 using Microsoft.Extensions.Configuration;
 using MassTransit;
 using MBS_QUERY.Contract.JsonConverters;
+using MBS_QUERY.Infrastructure.Consumer.MessageBus.Consumers.Events;
 using MBS_QUERY.Infrastructure.PipeObservers;
 using Newtonsoft.Json;
 
@@ -30,11 +31,14 @@ public static class ServiceCollectionExtensions
     }
     
     // Configure for masstransit with rabbitMQ
-    public static IServiceCollection AddMasstransitRabbitMQInfrastructure(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddMasstransitRabbitMqInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
         var masstransitConfiguration = new MasstransitConfiguration();
         configuration.GetSection(nameof(MasstransitConfiguration)).Bind(masstransitConfiguration);
-        
+    
+        var messageBusOption = new MessageBusOptions();
+        configuration.GetSection(nameof(MessageBusOptions)).Bind(messageBusOption);
+    
         services.AddMassTransit(cfg =>
         {
             // ===================== Setup for Consumer =====================
@@ -43,13 +47,19 @@ public static class ServiceCollectionExtensions
             // ?? => Configure endpoint formatter. Not configure for producer Root Exchange
             cfg.SetKebabCaseEndpointNameFormatter(); // ??
     
-            cfg.UsingRabbitMq((context, bus) =>
+            cfg.UsingRabbitMq( (context, bus) =>
             {
                 bus.Host(masstransitConfiguration.Host, masstransitConfiguration.Port, masstransitConfiguration.VHost, h =>
                 {
                     h.Username(masstransitConfiguration.UserName);
                     h.Password(masstransitConfiguration.Password);
                 });
+    
+                bus.UseMessageRetry(retry
+                => retry.Incremental(
+                           retryLimit: messageBusOption.RetryLimit,
+                           initialInterval: messageBusOption.InitialInterval,
+                           intervalIncrement: messageBusOption.IntervalIncrement));
     
                 bus.UseNewtonsoftJsonSerializer();
     
@@ -89,6 +99,7 @@ public static class ServiceCollectionExtensions
     
     public static void AddMediatRInfrastructure(this IServiceCollection services)
     {
-        services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Application.AssemblyReference.Assembly));
+        services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(AssemblyReference.Assembly));
+        // services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Application.AssemblyReference.Assembly));
     }
 }
