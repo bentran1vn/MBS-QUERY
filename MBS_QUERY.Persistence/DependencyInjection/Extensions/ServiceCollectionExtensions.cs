@@ -53,8 +53,7 @@ public static class ServiceCollectionExtensions
     }
     public static void ConfigureServicesInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
-        services.Configure<MongoDbSettings>(_ =>
-            configuration.GetSection(nameof(MongoDbSettings)));
+        services.Configure<MongoDbSettings>(configuration.GetSection(nameof(MongoDbSettings)));
 
         services.AddSingleton<IMongoDbSettings>(serviceProvider =>
             serviceProvider.GetRequiredService<IOptions<MongoDbSettings>>().Value);

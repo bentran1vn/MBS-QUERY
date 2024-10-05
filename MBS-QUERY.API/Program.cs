@@ -53,7 +53,7 @@ builder.Services.ConfigureServicesInfrastructure(builder.Configuration);
 builder.Services.AddServicesInfrastructure();
 builder.Services.AddRedisInfrastructure(builder.Configuration);
 builder.Services.AddMediatRInfrastructure();
-builder.Services.AddMasstransitRabbitMQInfrastructure(builder.Configuration);
+builder.Services.AddMasstransitRabbitMqInfrastructure(builder.Configuration);
 
 builder.Services.AddJwtAuthenticationAPI(builder.Configuration);
 

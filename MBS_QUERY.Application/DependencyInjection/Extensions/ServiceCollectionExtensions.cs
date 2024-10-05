@@ -18,7 +18,7 @@ public static class ServiceCollectionExtensions
             .AddTransient(typeof(IPipelineBehavior<,>), typeof(PerformancePipelineBehavior<,>))
             .AddTransient(typeof(IPipelineBehavior<,>),typeof(CachingPipelineBehaviorCachingBehavior<,>))
             .AddTransient(typeof(IPipelineBehavior<,>), typeof(TracingPipelineBehavior<,>))
-            .AddValidatorsFromAssembly(MBS_QUERY.Contract.AssemblyReference.Assembly, includeInternalTypes: true);
+            .AddValidatorsFromAssembly(Contract.AssemblyReference.Assembly, includeInternalTypes: true);
 
     public static IServiceCollection AddAutoMapperApplication(this IServiceCollection services)
         => services.AddAutoMapper(typeof(ServiceProfile));
