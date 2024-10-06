@@ -26,7 +26,8 @@ public class MentorCreatedEventHandler : MBS_CONTRACT.SHARE.Abstractions.Message
             Role = request.Role,
             Status = request.Status,
             IsDeleted = request.IsDeleted,
-            MentorSkills = new List<SkillProjection>()
+            CreatedOnUtc = request.CreatedOnUtc.DateTime,
+            MentorSkills = new List<SkillProjection>(),
         };
         
         await _mentorRepository.InsertOneAsync(mentor);

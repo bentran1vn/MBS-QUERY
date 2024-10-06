@@ -30,15 +30,16 @@ public class MentorSkillsCreatedHandler : MBS_CONTRACT.SHARE.Abstractions.Messag
                 DocumentId = request.Id,
                 SkillCetificates = request.Certificates.Select(x => new CertificateProjection()
                 {
+                    DocumentId = Guid.NewGuid(),
                     Description = x.Description,
                     Name = x.Name,
-                    ImageUrl = x.ImageUrl
+                    ImageUrl = x.ImageUrl,
+                    CreatedOnUtc = request.skill.CreatedOnUtc
                 }).ToList(),
                 Name = request.skill.Name,
                 Description = request.skill.Description,
                 CateogoryType = request.skill.CateogoryType,
-                CreatedOnUtc = request.skill.CreatedOnUtc,
-                ModifiedOnUtc = request.skill.ModifiedOnUtc
+                CreatedOnUtc = request.skill.CreatedOnUtc
             };
 
             List<SkillProjection> skillList;
