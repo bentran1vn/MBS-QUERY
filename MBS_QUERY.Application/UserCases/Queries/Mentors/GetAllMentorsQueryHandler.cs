@@ -26,8 +26,25 @@ public class GetAllMentorsQueryHandler : IQueryHandler<Query.GetAllMentorsQuery,
         {
             result.Add(new Response.GetAllMentorsResponse()
             {
-                Name = item.FullName,
-                Id = item.DocumentId
+                Id = item.DocumentId,
+                FullName = item.FullName,
+                Email = item.Email,
+                Point = item.Points,
+                CreatedOnUtc = item.CreatedOnUtc,
+                Skills = item.MentorSkills.Select(skill => new Response.Skill()
+                {
+                    SkillName = skill.Name,
+                    SkillDesciption = skill.Description,
+                    SkillCategoryType = skill.CateogoryType,
+                    CreatedOnUtc = skill.CreatedOnUtc,
+                    Cetificates = skill.SkillCetificates.Select(cer => new Response.Cetificate()
+                    {
+                        CetificateName = cer.Name,
+                        CetificateDesciption = cer.Description,
+                        CreatedOnUtc = cer.CreatedOnUtc,
+                        CetificateImageUrl = cer.ImageUrl
+                    }).ToList()
+                }).ToList()
             });
         }
         return Result.Success(result);
