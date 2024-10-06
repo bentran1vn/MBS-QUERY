@@ -5,9 +5,9 @@ namespace MBS_QUERY.Domain.Abstractions.Entities;
 
 public interface IDocument
 {
-    [BsonId ]
+    [BsonId]
     [BsonRepresentation(BsonType.String)]
     ObjectId Id { get; set; }
-    DateTimeOffset CreatedOnUtc { get; }
-    DateTimeOffset? ModifiedOnUtc { get; }
+    DateTime CreatedOnUtc { get; set;}
+    DateTime? ModifiedOnUtc { get; }
 }  

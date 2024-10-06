@@ -1,6 +1,7 @@
 using MBS_QUERY.Contract.Attributes;
 using MBS_QUERY.Domain.Abstractions.Entities;
 using MBS_QUERY.Domain.Constrants;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace MBS_QUERY.Domain.Documents;
 
@@ -13,28 +14,10 @@ public class MentorProjection : Document
     public int Points { get; set; }
     public int Status { get; set; }
     public bool IsDeleted { get; set; }
-    
     public List<SkillProjection> MentorSkills { get; set; }
 }
 
-public class SkillProjection
-{
-    public Guid DocumentId { get; set; }
-    
-    public string Name { get; set; }
-
-    public string Description { get; set; }
-
-    public string CateogoryType { get; set; }
-
-    public DateTimeOffset CreatedOnUtc { get; set; }
-
-    public DateTimeOffset? ModifiedOnUtc { get; set; }
-    
-    public List<CertificateProjection> SkillCetificates { get; set; }
-}
-
-public class CertificateProjection
+public class SkillProjection : Document
 {
     // public Guid DocumentId { get; set; }
     
@@ -42,5 +25,16 @@ public class CertificateProjection
 
     public string Description { get; set; }
 
+    public string CateogoryType { get; set; }
+    public DateTimeOffset CreatedOnUtc { get; set; }
+    public List<CertificateProjection> SkillCetificates { get; set; }
+}
+
+public class CertificateProjection : Document
+{
+    public string Name { get; set; }
+    public string Description { get; set; }
     public string ImageUrl { get; set; }
+    
+    public DateTimeOffset CreatedOnUtc { get; set; }
 }
