@@ -34,12 +34,12 @@ public class MentorSkillsCreatedHandler : MBS_CONTRACT.SHARE.Abstractions.Messag
                     Description = x.Description,
                     Name = x.Name,
                     ImageUrl = x.ImageUrl,
-                    CreatedOnUtc = request.skill.CreatedOnUtc
+                    CreatedOnUtc = request.skill.CreatedOnUtc.DateTime
                 }).ToList(),
                 Name = request.skill.Name,
                 Description = request.skill.Description,
                 CateogoryType = request.skill.CateogoryType,
-                CreatedOnUtc = request.skill.CreatedOnUtc
+                CreatedOnUtc = request.skill.CreatedOnUtc.DateTime
             };
 
             List<SkillProjection> skillList;
