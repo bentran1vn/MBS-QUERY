@@ -26,7 +26,6 @@ public class SkillProjection : Document
     public string Description { get; set; }
 
     public string CateogoryType { get; set; }
-    public DateTimeOffset CreatedOnUtc { get; set; }
     public List<CertificateProjection> SkillCetificates { get; set; }
 }
 
@@ -36,5 +35,4 @@ public class CertificateProjection : Document
     public string Description { get; set; }
     public string ImageUrl { get; set; }
     
-    public DateTimeOffset CreatedOnUtc { get; set; }
 }
