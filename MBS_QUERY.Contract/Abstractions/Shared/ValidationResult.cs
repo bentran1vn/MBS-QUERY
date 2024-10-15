@@ -1,4 +1,4 @@
-namespace MBS_COMMAND.Contract.Abstractions.Shared;
+namespace MBS_QUERY.Contract.Abstractions.Shared;
 
 public class ValidationResult : Result, IValidationResult
 {
@@ -9,5 +9,5 @@ public class ValidationResult : Result, IValidationResult
 
     public Error[] Errors { get; }
 
-    public static ValidationResult WithErrors(Error[] errors) => new (errors);
+    public static ValidationResult WithErrors(Error[] errors) => new(errors);
 }

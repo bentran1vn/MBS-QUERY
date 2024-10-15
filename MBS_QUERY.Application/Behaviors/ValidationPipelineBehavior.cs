@@ -1,8 +1,8 @@
 ﻿using FluentValidation;
-using MBS_COMMAND.Contract.Abstractions.Shared;
+using MBS_QUERY.Contract.Abstractions.Shared;
 using MediatR;
 
-namespace MBS_COMMAND.Application.Behaviors;
+namespace MBS_QUERY.Application.Behaviors;
 
 public class ValidationPipelineBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     where TRequest : IRequest<TResponse>
@@ -52,8 +52,8 @@ public class ValidationPipelineBehavior<TRequest, TResponse> : IPipelineBehavior
         object validationResult = typeof(ValidationResult<>)
             .GetGenericTypeDefinition()
             .MakeGenericType(typeof(TResult).GenericTypeArguments[0])
-            .GetMethod(nameof(ValidationResult.WithErrors)) !
-            .Invoke(null, new object?[] { errors }) !;
+            .GetMethod(nameof(ValidationResult.WithErrors))!
+            .Invoke(null, new object?[] { errors })!;
 
         return (TResult)validationResult;
     }

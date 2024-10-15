@@ -19,7 +19,6 @@ public class MentorCreatedEventHandler(IMongoRepository<MentorProjection> mentor
             Role = request.Role,
             Status = request.Status,
             IsDeleted = request.IsDeleted,
-            CreatedOnUtc = request.CreatedOnUtc.DateTime,
             MentorSkills = [],
             MentorSlots = []
         };

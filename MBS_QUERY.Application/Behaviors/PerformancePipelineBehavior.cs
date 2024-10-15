@@ -2,7 +2,7 @@
 using MediatR;
 using Microsoft.Extensions.Logging;
 
-namespace MBS_COMMAND.Application.Behaviors;
+namespace MBS_QUERY.Application.Behaviors;
 
 public class PerformancePipelineBehavior<TRequest, TResponse> :
     IPipelineBehavior<TRequest, TResponse>

@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using MediatR;
 
-namespace MBS_COMMAND.Application.Behaviors;
+namespace MBS_QUERY.Application.Behaviors;
 
 public sealed class ValidationDefaultBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     where TRequest : notnull

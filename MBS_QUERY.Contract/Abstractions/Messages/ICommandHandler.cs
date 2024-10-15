@@ -1,4 +1,4 @@
-using MBS_COMMAND.Contract.Abstractions.Shared;
+using MBS_QUERY.Contract.Abstractions.Shared;
 using MediatR;
 
 namespace MBS_QUERY.Contract.Abstractions.Messages;

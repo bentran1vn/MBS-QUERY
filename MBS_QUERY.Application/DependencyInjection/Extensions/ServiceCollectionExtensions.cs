@@ -1,5 +1,4 @@
 using FluentValidation;
-using MBS_COMMAND.Application.Behaviors;
 using MBS_QUERY.Application.Behaviors;
 using MBS_QUERY.Application.Mapper;
 using MediatR;

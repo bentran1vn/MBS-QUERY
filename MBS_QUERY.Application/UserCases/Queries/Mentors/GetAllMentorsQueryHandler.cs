@@ -1,5 +1,5 @@
-using MBS_COMMAND.Contract.Abstractions.Shared;
 using MBS_QUERY.Contract.Abstractions.Messages;
+using MBS_QUERY.Contract.Abstractions.Shared;
 using MBS_QUERY.Contract.Services.Mentors;
 using MBS_QUERY.Domain.Abstractions.Repositories;
 using MBS_QUERY.Domain.Documents;

@@ -1,5 +1,5 @@
 using Carter;
-using MBS_COMMAND.Contract.Abstractions.Shared;
+
 using MBS_QUERY.Contract.Services.Mentors;
 using MBS_QUERY.Presentation.Abstractions;
 using MediatR;
