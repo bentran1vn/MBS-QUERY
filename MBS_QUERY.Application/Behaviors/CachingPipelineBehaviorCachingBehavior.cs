@@ -1,5 +1,6 @@
 using MBS_COMMAND.Contract.Abstractions.Shared;
 using MBS_QUERY.Application.Abstractions;
+using MBS_QUERY.Contract.Abstractions.Shared;
 using MediatR;
 using Microsoft.Extensions.Caching.Distributed;
 

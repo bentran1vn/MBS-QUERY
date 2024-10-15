@@ -1,4 +1,4 @@
-namespace MBS_COMMAND.Contract.Abstractions.Shared;
+namespace MBS_QUERY.Contract.Abstractions.Shared;
 
 public  interface ICacheable
 {

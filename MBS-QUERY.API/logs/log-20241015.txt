@@ -1,0 +1,944 @@
+2024-10-15 15:57:43.368 +07:00 [WRN] Connection Failed: "rabbitmq://103.162.14.116/myHost"
+RabbitMQ.Client.Exceptions.BrokerUnreachableException: None of the specified endpoints were reachable
+ ---> System.AggregateException: One or more errors occurred. (Connection failed)
+ ---> RabbitMQ.Client.Exceptions.ConnectFailureException: Connection failed
+ ---> System.Net.Sockets.SocketException (51): Network is unreachable
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.CreateException(SocketError error, Boolean forAsyncThrow)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ConnectAsync(Socket socket)
+   at System.Net.Sockets.Socket.ConnectAsync(EndPoint remoteEP, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.ConnectAsync(EndPoint remoteEP)
+   at RabbitMQ.Client.TcpClientAdapter.ConnectAsync(String host, Int32 port)
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at RabbitMQ.Client.TcpClientAdapter.ConnectAsync(String host, Int32 port)
+   at RabbitMQ.Client.Impl.SocketFrameHandler.ConnectOrFail(ITcpClient socket, AmqpTcpEndpoint endpoint, TimeSpan timeout)
+   at RabbitMQ.Client.Impl.SocketFrameHandler.ConnectUsingAddressFamily(AmqpTcpEndpoint endpoint, Func`2 socketFactory, TimeSpan timeout, AddressFamily family)
+   at RabbitMQ.Client.Impl.SocketFrameHandler.ConnectUsingIPv4(AmqpTcpEndpoint endpoint, Func`2 socketFactory, TimeSpan timeout)
+   at RabbitMQ.Client.Impl.SocketFrameHandler..ctor(AmqpTcpEndpoint endpoint, Func`2 socketFactory, TimeSpan connectionTimeout, TimeSpan readTimeout, TimeSpan writeTimeout)
+   at RabbitMQ.Client.Framing.Impl.IProtocolExtensions.CreateFrameHandler(IProtocol protocol, AmqpTcpEndpoint endpoint, ArrayPool`1 pool, Func`2 socketFactory, TimeSpan connectionTimeout, TimeSpan readTimeout, TimeSpan writeTimeout)
+   at RabbitMQ.Client.ConnectionFactory.CreateFrameHandler(AmqpTcpEndpoint endpoint)
+   at RabbitMQ.Client.EndpointResolverExtensions.SelectOne[T](IEndpointResolver resolver, Func`2 selector)
+   at RabbitMQ.Client.ConnectionFactory.CreateConnection(IEndpointResolver endpointResolver, String clientProvidedName)
+   at RabbitMQ.Client.ConnectionFactory.CreateConnection(IList`1 hostnames, String clientProvidedName)
+   at MassTransit.RabbitMqTransport.ConnectionContextFactory.CreateConnection(ISupervisor supervisor) in /_/src/Transports/MassTransit.RabbitMqTransport/RabbitMqTransport/ConnectionContextFactory.cs:line 85
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at MassTransit.RabbitMqTransport.ConnectionContextFactory.CreateConnection(ISupervisor supervisor)
+   at MassTransit.RabbitMqTransport.ConnectionContextFactory.<>c__DisplayClass3_0.<MassTransit.Agents.IPipeContextFactory<MassTransit.RabbitMqTransport.ConnectionContext>.CreateContext>b__0() in /_/src/Transports/MassTransit.RabbitMqTransport/RabbitMqTransport/ConnectionContextFactory.cs:line 30
+   at System.Threading.Tasks.Task`1.InnerInvoke()
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+   at System.Threading.ThreadPoolWorkQueue.Dispatch()
+   at System.Threading.PortableThreadPool.WorkerThread.WorkerThreadStart()
+   at System.Threading.Thread.StartCallback()
+--- End of stack trace from previous location ---
+   at RabbitMQ.Client.TcpClientAdapter.ConnectAsync(String host, Int32 port)
+   at RabbitMQ.Client.Impl.TaskExtensions.TimeoutAfter(Task task, TimeSpan timeout)
+   at RabbitMQ.Client.Impl.SocketFrameHandler.ConnectOrFail(ITcpClient socket, AmqpTcpEndpoint endpoint, TimeSpan timeout)
+   --- End of inner exception stack trace ---
+   at RabbitMQ.Client.Impl.SocketFrameHandler.ConnectOrFail(ITcpClient socket, AmqpTcpEndpoint endpoint, TimeSpan timeout)
+   at RabbitMQ.Client.Impl.SocketFrameHandler.ConnectUsingAddressFamily(AmqpTcpEndpoint endpoint, Func`2 socketFactory, TimeSpan timeout, AddressFamily family)
+   at RabbitMQ.Client.Impl.SocketFrameHandler.ConnectUsingIPv4(AmqpTcpEndpoint endpoint, Func`2 socketFactory, TimeSpan timeout)
+   at RabbitMQ.Client.Impl.SocketFrameHandler..ctor(AmqpTcpEndpoint endpoint, Func`2 socketFactory, TimeSpan connectionTimeout, TimeSpan readTimeout, TimeSpan writeTimeout)
+   at RabbitMQ.Client.Framing.Impl.IProtocolExtensions.CreateFrameHandler(IProtocol protocol, AmqpTcpEndpoint endpoint, ArrayPool`1 pool, Func`2 socketFactory, TimeSpan connectionTimeout, TimeSpan readTimeout, TimeSpan writeTimeout)
+   at RabbitMQ.Client.ConnectionFactory.CreateFrameHandler(AmqpTcpEndpoint endpoint)
+   at RabbitMQ.Client.EndpointResolverExtensions.SelectOne[T](IEndpointResolver resolver, Func`2 selector)
+   --- End of inner exception stack trace ---
+   at RabbitMQ.Client.EndpointResolverExtensions.SelectOne[T](IEndpointResolver resolver, Func`2 selector)
+   at RabbitMQ.Client.ConnectionFactory.CreateConnection(IEndpointResolver endpointResolver, String clientProvidedName)
+   --- End of inner exception stack trace ---
+   at RabbitMQ.Client.ConnectionFactory.CreateConnection(IEndpointResolver endpointResolver, String clientProvidedName)
+   at RabbitMQ.Client.ConnectionFactory.CreateConnection(IList`1 hostnames, String clientProvidedName)
+   at MassTransit.RabbitMqTransport.ConnectionContextFactory.CreateConnection(ISupervisor supervisor) in /_/src/Transports/MassTransit.RabbitMqTransport/RabbitMqTransport/ConnectionContextFactory.cs:line 85
+2024-10-15 15:57:54.568 +07:00 [ERR] The provider for the source 'IQueryable' doesn't implement 'IAsyncQueryProvider'. Only providers that implement 'IAsyncQueryProvider' can be used for Entity Framework asynchronous operations.
+System.InvalidOperationException: The provider for the source 'IQueryable' doesn't implement 'IAsyncQueryProvider'. Only providers that implement 'IAsyncQueryProvider' can be used for Entity Framework asynchronous operations.
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ExecuteAsync[TSource,TResult](MethodInfo operatorMethodInfo, IQueryable`1 source, Expression expression, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ExecuteAsync[TSource,TResult](MethodInfo operatorMethodInfo, IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.CountAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1.CreateAsync(IQueryable`1 query, Int32 pageIndex, Int32 pageSize)
+   at MBS_QUERY.Application.UserCases.Queries.Mentors.GetAllMentorsQueryHandler.Handle(GetAllMentorsQuery request, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/UserCases/Queries/Mentors/GetAllMentorsQueryHandler.cs:line 28
+   at MBS_COMMAND.Application.Behaviors.TracingPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/TracingPipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.PerformancePipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/PerformancePipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.ValidationPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/ValidationPipelineBehavior.cs:line 24
+   at MBS_QUERY.Presentation.APIs.Metors.MentorApi.GetAllMentors(ISender sender) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Presentation/APIs/Metors/MentorApi.cs:line 26
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at MBS_QUERY.API.Middlewares.ExceptionHandlingMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS-QUERY.API/Middlewares/ExceptionHandlingMiddleware.cs:line 17
+2024-10-15 16:00:11.325 +07:00 [ERR] The provider for the source 'IQueryable' doesn't implement 'IAsyncQueryProvider'. Only providers that implement 'IAsyncQueryProvider' can be used for Entity Framework asynchronous operations.
+System.InvalidOperationException: The provider for the source 'IQueryable' doesn't implement 'IAsyncQueryProvider'. Only providers that implement 'IAsyncQueryProvider' can be used for Entity Framework asynchronous operations.
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ExecuteAsync[TSource,TResult](MethodInfo operatorMethodInfo, IQueryable`1 source, Expression expression, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ExecuteAsync[TSource,TResult](MethodInfo operatorMethodInfo, IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.CountAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1.CreateAsync(IQueryable`1 query, Int32 pageIndex, Int32 pageSize)
+   at MBS_QUERY.Application.UserCases.Queries.Mentors.GetAllMentorsQueryHandler.Handle(GetAllMentorsQuery request, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/UserCases/Queries/Mentors/GetAllMentorsQueryHandler.cs:line 28
+   at MBS_COMMAND.Application.Behaviors.TracingPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/TracingPipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.PerformancePipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/PerformancePipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.ValidationPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/ValidationPipelineBehavior.cs:line 24
+   at MBS_QUERY.Presentation.APIs.Metors.MentorApi.GetAllMentors(ISender sender) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Presentation/APIs/Metors/MentorApi.cs:line 26
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at MBS_QUERY.API.Middlewares.ExceptionHandlingMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS-QUERY.API/Middlewares/ExceptionHandlingMiddleware.cs:line 17
+2024-10-15 16:00:23.148 +07:00 [ERR] The provider for the source 'IQueryable' doesn't implement 'IAsyncQueryProvider'. Only providers that implement 'IAsyncQueryProvider' can be used for Entity Framework asynchronous operations.
+System.InvalidOperationException: The provider for the source 'IQueryable' doesn't implement 'IAsyncQueryProvider'. Only providers that implement 'IAsyncQueryProvider' can be used for Entity Framework asynchronous operations.
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ExecuteAsync[TSource,TResult](MethodInfo operatorMethodInfo, IQueryable`1 source, Expression expression, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ExecuteAsync[TSource,TResult](MethodInfo operatorMethodInfo, IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.CountAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1.CreateAsync(IQueryable`1 query, Int32 pageIndex, Int32 pageSize)
+   at MBS_QUERY.Application.UserCases.Queries.Mentors.GetAllMentorsQueryHandler.Handle(GetAllMentorsQuery request, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/UserCases/Queries/Mentors/GetAllMentorsQueryHandler.cs:line 28
+   at MBS_COMMAND.Application.Behaviors.TracingPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/TracingPipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.PerformancePipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/PerformancePipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.ValidationPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/ValidationPipelineBehavior.cs:line 24
+   at MBS_QUERY.Presentation.APIs.Metors.MentorApi.GetAllMentors(ISender sender) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Presentation/APIs/Metors/MentorApi.cs:line 26
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at MBS_QUERY.API.Middlewares.ExceptionHandlingMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS-QUERY.API/Middlewares/ExceptionHandlingMiddleware.cs:line 17
+2024-10-15 16:06:55.736 +07:00 [ERR] Error mapping types.
+
+Mapping types:
+PagedResult`1 -> PagedResult`1
+MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+
+Type Map configuration:
+PagedResult`1 -> PagedResult`1
+MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+
+Destination Member:
+Void .ctor(System.Collections.Generic.List`1[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse], Int32, Int32, Int32), parameter items
+
+AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+PagedResult`1 -> PagedResult`1
+MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+
+Type Map configuration:
+PagedResult`1 -> PagedResult`1
+MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+
+Destination Member:
+Void .ctor(System.Collections.Generic.List`1[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse], Int32, Int32, Int32), parameter items
+
+ ---> AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+MentorProjection -> GetAllMentorsResponse
+MBS_QUERY.Domain.Documents.MentorProjection -> MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse
+
+Type Map configuration:
+MentorProjection -> GetAllMentorsResponse
+MBS_QUERY.Domain.Documents.MentorProjection -> MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse
+
+Destination Member:
+Id
+
+ ---> AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+ObjectId -> Guid
+MongoDB.Bson.ObjectId -> System.Guid
+
+Destination Member:
+Id
+
+   at lambda_method36(Closure, ObjectId, Guid, ResolutionContext)
+   at lambda_method35(Closure, Object, PagedResult`1, ResolutionContext)
+   --- End of inner exception stack trace ---
+   at lambda_method35(Closure, Object, PagedResult`1, ResolutionContext)
+   --- End of inner exception stack trace ---
+   at lambda_method35(Closure, Object, PagedResult`1, ResolutionContext)
+   at MBS_QUERY.Application.UserCases.Queries.Mentors.GetAllMentorsQueryHandler.Handle(GetAllMentorsQuery request, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/UserCases/Queries/Mentors/GetAllMentorsQueryHandler.cs:line 32
+   at MBS_COMMAND.Application.Behaviors.TracingPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/TracingPipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.PerformancePipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/PerformancePipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.ValidationPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/ValidationPipelineBehavior.cs:line 24
+   at MBS_QUERY.Presentation.APIs.Metors.MentorApi.GetAllMentors(ISender sender) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Presentation/APIs/Metors/MentorApi.cs:line 26
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at MBS_QUERY.API.Middlewares.ExceptionHandlingMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS-QUERY.API/Middlewares/ExceptionHandlingMiddleware.cs:line 17
+2024-10-15 16:07:29.106 +07:00 [ERR] Error mapping types.
+
+Mapping types:
+PagedResult`1 -> PagedResult`1
+MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+
+Type Map configuration:
+PagedResult`1 -> PagedResult`1
+MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+
+Destination Member:
+Void .ctor(System.Collections.Generic.List`1[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse], Int32, Int32, Int32), parameter items
+
+AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+PagedResult`1 -> PagedResult`1
+MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+
+Type Map configuration:
+PagedResult`1 -> PagedResult`1
+MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+
+Destination Member:
+Void .ctor(System.Collections.Generic.List`1[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse], Int32, Int32, Int32), parameter items
+
+ ---> AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+MentorProjection -> GetAllMentorsResponse
+MBS_QUERY.Domain.Documents.MentorProjection -> MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse
+
+Type Map configuration:
+MentorProjection -> GetAllMentorsResponse
+MBS_QUERY.Domain.Documents.MentorProjection -> MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse
+
+Destination Member:
+Id
+
+ ---> AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+ObjectId -> Guid
+MongoDB.Bson.ObjectId -> System.Guid
+
+Destination Member:
+Id
+
+   at lambda_method36(Closure, ObjectId, Guid, ResolutionContext)
+   at lambda_method35(Closure, Object, PagedResult`1, ResolutionContext)
+   --- End of inner exception stack trace ---
+   at lambda_method35(Closure, Object, PagedResult`1, ResolutionContext)
+   --- End of inner exception stack trace ---
+   at lambda_method35(Closure, Object, PagedResult`1, ResolutionContext)
+   at MBS_QUERY.Application.UserCases.Queries.Mentors.GetAllMentorsQueryHandler.Handle(GetAllMentorsQuery request, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/UserCases/Queries/Mentors/GetAllMentorsQueryHandler.cs:line 32
+   at MBS_COMMAND.Application.Behaviors.TracingPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/TracingPipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.PerformancePipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/PerformancePipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.ValidationPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/ValidationPipelineBehavior.cs:line 24
+   at MBS_QUERY.Presentation.APIs.Metors.MentorApi.GetAllMentors(ISender sender) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Presentation/APIs/Metors/MentorApi.cs:line 26
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at MBS_QUERY.API.Middlewares.ExceptionHandlingMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS-QUERY.API/Middlewares/ExceptionHandlingMiddleware.cs:line 17
+2024-10-15 16:08:47.938 +07:00 [ERR] Error mapping types.
+
+Mapping types:
+PagedResult`1 -> PagedResult`1
+MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+
+Type Map configuration:
+PagedResult`1 -> PagedResult`1
+MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+
+Destination Member:
+Void .ctor(System.Collections.Generic.List`1[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse], Int32, Int32, Int32), parameter items
+
+AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+PagedResult`1 -> PagedResult`1
+MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+
+Type Map configuration:
+PagedResult`1 -> PagedResult`1
+MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+
+Destination Member:
+Void .ctor(System.Collections.Generic.List`1[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse], Int32, Int32, Int32), parameter items
+
+ ---> AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+MentorProjection -> GetAllMentorsResponse
+MBS_QUERY.Domain.Documents.MentorProjection -> MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse
+
+Type Map configuration:
+MentorProjection -> GetAllMentorsResponse
+MBS_QUERY.Domain.Documents.MentorProjection -> MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse
+
+Destination Member:
+Id
+
+ ---> AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+ObjectId -> Guid
+MongoDB.Bson.ObjectId -> System.Guid
+
+Destination Member:
+Id
+
+   at lambda_method36(Closure, ObjectId, Guid, ResolutionContext)
+   at lambda_method35(Closure, Object, PagedResult`1, ResolutionContext)
+   --- End of inner exception stack trace ---
+   at lambda_method35(Closure, Object, PagedResult`1, ResolutionContext)
+   --- End of inner exception stack trace ---
+   at lambda_method35(Closure, Object, PagedResult`1, ResolutionContext)
+   at MBS_QUERY.Application.UserCases.Queries.Mentors.GetAllMentorsQueryHandler.Handle(GetAllMentorsQuery request, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/UserCases/Queries/Mentors/GetAllMentorsQueryHandler.cs:line 32
+   at MBS_COMMAND.Application.Behaviors.TracingPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/TracingPipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.PerformancePipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/PerformancePipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.ValidationPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/ValidationPipelineBehavior.cs:line 24
+   at MBS_QUERY.Presentation.APIs.Metors.MentorApi.GetAllMentors(ISender sender) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Presentation/APIs/Metors/MentorApi.cs:line 26
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at MBS_QUERY.API.Middlewares.ExceptionHandlingMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS-QUERY.API/Middlewares/ExceptionHandlingMiddleware.cs:line 17
+2024-10-15 16:11:38.546 +07:00 [ERR] Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+ ---> AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+MentorProjection -> GetAllMentorsResponse
+MBS_QUERY.Domain.Documents.MentorProjection -> MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse
+
+Type Map configuration:
+MentorProjection -> GetAllMentorsResponse
+MBS_QUERY.Domain.Documents.MentorProjection -> MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse
+
+Destination Member:
+Id
+
+ ---> AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+ObjectId -> Guid
+MongoDB.Bson.ObjectId -> System.Guid
+
+Destination Member:
+Id
+
+   at lambda_method37(Closure, ObjectId, Guid, ResolutionContext)
+   at lambda_method36(Closure, Object, List`1, ResolutionContext)
+   --- End of inner exception stack trace ---
+   at lambda_method36(Closure, Object, List`1, ResolutionContext)
+   --- End of inner exception stack trace ---
+   at lambda_method36(Closure, Object, List`1, ResolutionContext)
+   at MBS_QUERY.Application.Mapper.ServiceProfile.<>c.<.ctor>b__0_16(PagedResult`1 src, ResolutionContext ctx) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Mapper/ServiceProfile.cs:line 31
+   at lambda_method35(Closure, Object, PagedResult`1, ResolutionContext)
+   at MBS_QUERY.Application.UserCases.Queries.Mentors.GetAllMentorsQueryHandler.Handle(GetAllMentorsQuery request, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/UserCases/Queries/Mentors/GetAllMentorsQueryHandler.cs:line 32
+   at MBS_COMMAND.Application.Behaviors.TracingPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/TracingPipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.PerformancePipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/PerformancePipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.ValidationPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/ValidationPipelineBehavior.cs:line 24
+   at MBS_QUERY.Presentation.APIs.Metors.MentorApi.GetAllMentors(ISender sender) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Presentation/APIs/Metors/MentorApi.cs:line 26
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at MBS_QUERY.API.Middlewares.ExceptionHandlingMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS-QUERY.API/Middlewares/ExceptionHandlingMiddleware.cs:line 17
+2024-10-15 16:11:53.001 +07:00 [ERR] Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+ ---> AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+MentorProjection -> GetAllMentorsResponse
+MBS_QUERY.Domain.Documents.MentorProjection -> MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse
+
+Type Map configuration:
+MentorProjection -> GetAllMentorsResponse
+MBS_QUERY.Domain.Documents.MentorProjection -> MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse
+
+Destination Member:
+Id
+
+ ---> AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+ObjectId -> Guid
+MongoDB.Bson.ObjectId -> System.Guid
+
+Destination Member:
+Id
+
+   at lambda_method37(Closure, ObjectId, Guid, ResolutionContext)
+   at lambda_method36(Closure, Object, List`1, ResolutionContext)
+   --- End of inner exception stack trace ---
+   at lambda_method36(Closure, Object, List`1, ResolutionContext)
+   --- End of inner exception stack trace ---
+   at lambda_method36(Closure, Object, List`1, ResolutionContext)
+   at MBS_QUERY.Application.Mapper.ServiceProfile.<>c.<.ctor>b__0_16(PagedResult`1 src, ResolutionContext ctx) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Mapper/ServiceProfile.cs:line 31
+   at lambda_method35(Closure, Object, PagedResult`1, ResolutionContext)
+   at MBS_QUERY.Application.UserCases.Queries.Mentors.GetAllMentorsQueryHandler.Handle(GetAllMentorsQuery request, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/UserCases/Queries/Mentors/GetAllMentorsQueryHandler.cs:line 32
+   at MBS_COMMAND.Application.Behaviors.TracingPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/TracingPipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.PerformancePipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/PerformancePipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.ValidationPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/ValidationPipelineBehavior.cs:line 24
+   at MBS_QUERY.Presentation.APIs.Metors.MentorApi.GetAllMentors(ISender sender) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Presentation/APIs/Metors/MentorApi.cs:line 26
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at MBS_QUERY.API.Middlewares.ExceptionHandlingMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS-QUERY.API/Middlewares/ExceptionHandlingMiddleware.cs:line 17
+2024-10-15 16:14:08.728 +07:00 [ERR] Error mapping types.
+
+Mapping types:
+PagedResult`1 -> PagedResult`1
+MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+
+Type Map configuration:
+PagedResult`1 -> PagedResult`1
+MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+
+Destination Member:
+Void .ctor(System.Collections.Generic.List`1[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse], Int32, Int32, Int32), parameter items
+
+AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+PagedResult`1 -> PagedResult`1
+MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+
+Type Map configuration:
+PagedResult`1 -> PagedResult`1
+MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+
+Destination Member:
+Void .ctor(System.Collections.Generic.List`1[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse], Int32, Int32, Int32), parameter items
+
+ ---> AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+MentorProjection -> GetAllMentorsResponse
+MBS_QUERY.Domain.Documents.MentorProjection -> MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse
+
+Type Map configuration:
+MentorProjection -> GetAllMentorsResponse
+MBS_QUERY.Domain.Documents.MentorProjection -> MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse
+
+Destination Member:
+Id
+
+ ---> AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+ObjectId -> Guid
+MongoDB.Bson.ObjectId -> System.Guid
+
+Destination Member:
+Id
+
+   at lambda_method36(Closure, ObjectId, Guid, ResolutionContext)
+   at lambda_method35(Closure, Object, PagedResult`1, ResolutionContext)
+   --- End of inner exception stack trace ---
+   at lambda_method35(Closure, Object, PagedResult`1, ResolutionContext)
+   --- End of inner exception stack trace ---
+   at lambda_method35(Closure, Object, PagedResult`1, ResolutionContext)
+   at MBS_QUERY.Application.UserCases.Queries.Mentors.GetAllMentorsQueryHandler.Handle(GetAllMentorsQuery request, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/UserCases/Queries/Mentors/GetAllMentorsQueryHandler.cs:line 32
+   at MBS_COMMAND.Application.Behaviors.TracingPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/TracingPipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.PerformancePipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/PerformancePipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.ValidationPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/ValidationPipelineBehavior.cs:line 24
+   at MBS_QUERY.Presentation.APIs.Metors.MentorApi.GetAllMentors(ISender sender) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Presentation/APIs/Metors/MentorApi.cs:line 26
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at MBS_QUERY.API.Middlewares.ExceptionHandlingMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS-QUERY.API/Middlewares/ExceptionHandlingMiddleware.cs:line 17
+2024-10-15 16:17:06.722 +07:00 [ERR] Error mapping types.
+
+Mapping types:
+PagedResult`1 -> PagedResult`1
+MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+
+Type Map configuration:
+PagedResult`1 -> PagedResult`1
+MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+
+Destination Member:
+Void .ctor(System.Collections.Generic.List`1[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse], Int32, Int32, Int32), parameter items
+
+AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+PagedResult`1 -> PagedResult`1
+MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+
+Type Map configuration:
+PagedResult`1 -> PagedResult`1
+MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+
+Destination Member:
+Void .ctor(System.Collections.Generic.List`1[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse], Int32, Int32, Int32), parameter items
+
+ ---> AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+MentorProjection -> GetAllMentorsResponse
+MBS_QUERY.Domain.Documents.MentorProjection -> MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse
+
+Type Map configuration:
+MentorProjection -> GetAllMentorsResponse
+MBS_QUERY.Domain.Documents.MentorProjection -> MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse
+
+Destination Member:
+Id
+
+ ---> AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+ObjectId -> Guid
+MongoDB.Bson.ObjectId -> System.Guid
+
+Destination Member:
+Id
+
+   at lambda_method36(Closure, ObjectId, Guid, ResolutionContext)
+   at lambda_method35(Closure, Object, PagedResult`1, ResolutionContext)
+   --- End of inner exception stack trace ---
+   at lambda_method35(Closure, Object, PagedResult`1, ResolutionContext)
+   --- End of inner exception stack trace ---
+   at lambda_method35(Closure, Object, PagedResult`1, ResolutionContext)
+   at MBS_QUERY.Application.UserCases.Queries.Mentors.GetAllMentorsQueryHandler.Handle(GetAllMentorsQuery request, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/UserCases/Queries/Mentors/GetAllMentorsQueryHandler.cs:line 32
+   at MBS_COMMAND.Application.Behaviors.TracingPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/TracingPipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.PerformancePipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/PerformancePipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.ValidationPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/ValidationPipelineBehavior.cs:line 24
+   at MBS_QUERY.Presentation.APIs.Metors.MentorApi.GetAllMentors(ISender sender) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Presentation/APIs/Metors/MentorApi.cs:line 26
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at MBS_QUERY.API.Middlewares.ExceptionHandlingMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS-QUERY.API/Middlewares/ExceptionHandlingMiddleware.cs:line 17
+2024-10-15 16:20:53.518 +07:00 [ERR] Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+ ---> AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+MentorProjection -> GetAllMentorsResponse
+MBS_QUERY.Domain.Documents.MentorProjection -> MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse
+
+Type Map configuration:
+MentorProjection -> GetAllMentorsResponse
+MBS_QUERY.Domain.Documents.MentorProjection -> MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse
+
+Destination Member:
+Id
+
+ ---> AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+ObjectId -> Guid
+MongoDB.Bson.ObjectId -> System.Guid
+
+Destination Member:
+Id
+
+   at lambda_method37(Closure, ObjectId, Guid, ResolutionContext)
+   at lambda_method36(Closure, Object, List`1, ResolutionContext)
+   --- End of inner exception stack trace ---
+   at lambda_method36(Closure, Object, List`1, ResolutionContext)
+   --- End of inner exception stack trace ---
+   at lambda_method36(Closure, Object, List`1, ResolutionContext)
+   at MBS_QUERY.Application.Mapper.ServiceProfile.<>c.<.ctor>b__0_16(PagedResult`1 src, PagedResult`1 dest, ResolutionContext context) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Mapper/ServiceProfile.cs:line 45
+   at MBS_QUERY.Application.UserCases.Queries.Mentors.GetAllMentorsQueryHandler.Handle(GetAllMentorsQuery request, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/UserCases/Queries/Mentors/GetAllMentorsQueryHandler.cs:line 32
+   at MBS_COMMAND.Application.Behaviors.TracingPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/TracingPipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.PerformancePipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/PerformancePipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.ValidationPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/ValidationPipelineBehavior.cs:line 24
+   at MBS_QUERY.Presentation.APIs.Metors.MentorApi.GetAllMentors(ISender sender) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Presentation/APIs/Metors/MentorApi.cs:line 26
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at MBS_QUERY.API.Middlewares.ExceptionHandlingMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS-QUERY.API/Middlewares/ExceptionHandlingMiddleware.cs:line 17
+2024-10-15 16:22:00.792 +07:00 [ERR] Incorrect number of arguments supplied for call to method 'GetAllMentorsResponse get_Item(Int32)' (Parameter 'property')
+System.ArgumentException: Incorrect number of arguments supplied for call to method 'GetAllMentorsResponse get_Item(Int32)' (Parameter 'property')
+   at System.Linq.Expressions.Expression.Property(Expression expression, PropertyInfo property)
+   at AutoMapper.Execution.TypeMapPlanBuilder.CreatePropertyMapFunc(MemberMap memberMap, Expression destination, MemberInfo destinationMember)
+   at AutoMapper.Execution.TypeMapPlanBuilder.AddPropertyMaps(List`1 actions)
+   at AutoMapper.Execution.TypeMapPlanBuilder.CreateAssignmentFunc(Expression createDestination)
+   at AutoMapper.Execution.TypeMapPlanBuilder.CreateMapperLambda()
+   at AutoMapper.TypeMap.CreateMapperLambda(IGlobalConfiguration configuration)
+   at AutoMapper.TypeMap.Seal(IGlobalConfiguration configuration)
+   at AutoMapper.MapperConfiguration.<.ctor>g__Seal|20_0()
+   at AutoMapper.MapperConfiguration..ctor(MapperConfigurationExpression configurationExpression)
+   at Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.<>c.<AddAutoMapperClasses>b__12_2(IServiceProvider sp)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitFactory(FactoryCallSite factoryCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitRootCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.Resolve(ServiceCallSite callSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.CreateServiceAccessor(ServiceIdentifier serviceIdentifier)
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.GetService(ServiceIdentifier serviceIdentifier, ServiceProviderEngineScope serviceProviderEngineScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService[T](IServiceProvider provider)
+   at Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.<>c.<AddAutoMapperClasses>b__12_3(IServiceProvider sp)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitFactory(FactoryCallSite factoryCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitDisposeCache(ServiceCallSite transientCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitDisposeCache(ServiceCallSite transientCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.Resolve(ServiceCallSite callSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.DynamicServiceProviderEngine.<>c__DisplayClass2_0.<RealizeService>b__0(ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.GetService(ServiceIdentifier serviceIdentifier, ServiceProviderEngineScope serviceProviderEngineScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService[T](IServiceProvider provider)
+   at MediatR.Wrappers.RequestHandlerWrapperImpl`2.<>c__DisplayClass1_0.<Handle>g__Handler|0()
+   at MBS_COMMAND.Application.Behaviors.TracingPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/TracingPipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.PerformancePipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/PerformancePipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.ValidationPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/ValidationPipelineBehavior.cs:line 24
+   at MBS_QUERY.Presentation.APIs.Metors.MentorApi.GetAllMentors(ISender sender) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Presentation/APIs/Metors/MentorApi.cs:line 26
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at MBS_QUERY.API.Middlewares.ExceptionHandlingMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS-QUERY.API/Middlewares/ExceptionHandlingMiddleware.cs:line 17
+2024-10-15 16:22:06.435 +07:00 [ERR] Incorrect number of arguments supplied for call to method 'GetAllMentorsResponse get_Item(Int32)' (Parameter 'property')
+System.ArgumentException: Incorrect number of arguments supplied for call to method 'GetAllMentorsResponse get_Item(Int32)' (Parameter 'property')
+   at System.Linq.Expressions.Expression.Property(Expression expression, PropertyInfo property)
+   at AutoMapper.Execution.TypeMapPlanBuilder.CreatePropertyMapFunc(MemberMap memberMap, Expression destination, MemberInfo destinationMember)
+   at AutoMapper.Execution.TypeMapPlanBuilder.AddPropertyMaps(List`1 actions)
+   at AutoMapper.Execution.TypeMapPlanBuilder.CreateAssignmentFunc(Expression createDestination)
+   at AutoMapper.Execution.TypeMapPlanBuilder.CreateMapperLambda()
+   at AutoMapper.TypeMap.CreateMapperLambda(IGlobalConfiguration configuration)
+   at AutoMapper.TypeMap.Seal(IGlobalConfiguration configuration)
+   at AutoMapper.MapperConfiguration.<.ctor>g__Seal|20_0()
+   at AutoMapper.MapperConfiguration..ctor(MapperConfigurationExpression configurationExpression)
+   at Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.<>c.<AddAutoMapperClasses>b__12_2(IServiceProvider sp)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitRootCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.Resolve(ServiceCallSite callSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.CreateServiceAccessor(ServiceIdentifier serviceIdentifier)
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.GetService(ServiceIdentifier serviceIdentifier, ServiceProviderEngineScope serviceProviderEngineScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService[T](IServiceProvider provider)
+   at Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.<>c.<AddAutoMapperClasses>b__12_3(IServiceProvider sp)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.Resolve(ServiceCallSite callSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.DynamicServiceProviderEngine.<>c__DisplayClass2_0.<RealizeService>b__0(ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.GetService(ServiceIdentifier serviceIdentifier, ServiceProviderEngineScope serviceProviderEngineScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService[T](IServiceProvider provider)
+   at MediatR.Wrappers.RequestHandlerWrapperImpl`2.<>c__DisplayClass1_0.<Handle>g__Handler|0()
+   at MBS_COMMAND.Application.Behaviors.TracingPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/TracingPipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.PerformancePipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/PerformancePipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.ValidationPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/ValidationPipelineBehavior.cs:line 24
+   at MBS_QUERY.Presentation.APIs.Metors.MentorApi.GetAllMentors(ISender sender) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Presentation/APIs/Metors/MentorApi.cs:line 26
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at MBS_QUERY.API.Middlewares.ExceptionHandlingMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS-QUERY.API/Middlewares/ExceptionHandlingMiddleware.cs:line 17
+2024-10-15 16:22:10.838 +07:00 [ERR] Incorrect number of arguments supplied for call to method 'GetAllMentorsResponse get_Item(Int32)' (Parameter 'property')
+System.ArgumentException: Incorrect number of arguments supplied for call to method 'GetAllMentorsResponse get_Item(Int32)' (Parameter 'property')
+   at System.Linq.Expressions.Expression.Property(Expression expression, PropertyInfo property)
+   at AutoMapper.Execution.TypeMapPlanBuilder.CreatePropertyMapFunc(MemberMap memberMap, Expression destination, MemberInfo destinationMember)
+   at AutoMapper.Execution.TypeMapPlanBuilder.AddPropertyMaps(List`1 actions)
+   at AutoMapper.Execution.TypeMapPlanBuilder.CreateAssignmentFunc(Expression createDestination)
+   at AutoMapper.Execution.TypeMapPlanBuilder.CreateMapperLambda()
+   at AutoMapper.TypeMap.CreateMapperLambda(IGlobalConfiguration configuration)
+   at AutoMapper.TypeMap.Seal(IGlobalConfiguration configuration)
+   at AutoMapper.MapperConfiguration.<.ctor>g__Seal|20_0()
+   at AutoMapper.MapperConfiguration..ctor(MapperConfigurationExpression configurationExpression)
+   at Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.<>c.<AddAutoMapperClasses>b__12_2(IServiceProvider sp)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitRootCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.Resolve(ServiceCallSite callSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.CreateServiceAccessor(ServiceIdentifier serviceIdentifier)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService[T](IServiceProvider provider)
+   at Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.<>c.<AddAutoMapperClasses>b__12_3(IServiceProvider sp)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.Resolve(ServiceCallSite callSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.DynamicServiceProviderEngine.<>c__DisplayClass2_0.<RealizeService>b__0(ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService[T](IServiceProvider provider)
+   at MediatR.Wrappers.RequestHandlerWrapperImpl`2.<>c__DisplayClass1_0.<Handle>g__Handler|0()
+   at MBS_COMMAND.Application.Behaviors.TracingPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/TracingPipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.PerformancePipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/PerformancePipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.ValidationPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/ValidationPipelineBehavior.cs:line 24
+   at MBS_QUERY.Presentation.APIs.Metors.MentorApi.GetAllMentors(ISender sender) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Presentation/APIs/Metors/MentorApi.cs:line 26
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at MBS_QUERY.API.Middlewares.ExceptionHandlingMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS-QUERY.API/Middlewares/ExceptionHandlingMiddleware.cs:line 17
+2024-10-15 16:23:39.782 +07:00 [ERR] Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+ ---> AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+MentorProjection -> GetAllMentorsResponse
+MBS_QUERY.Domain.Documents.MentorProjection -> MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse
+
+Type Map configuration:
+MentorProjection -> GetAllMentorsResponse
+MBS_QUERY.Domain.Documents.MentorProjection -> MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse
+
+Destination Member:
+Id
+
+ ---> AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+ObjectId -> Guid
+MongoDB.Bson.ObjectId -> System.Guid
+
+Destination Member:
+Id
+
+   at lambda_method38(Closure, ObjectId, Guid, ResolutionContext)
+   at lambda_method36(Closure, Object, List`1, ResolutionContext)
+   --- End of inner exception stack trace ---
+   at lambda_method36(Closure, Object, List`1, ResolutionContext)
+   --- End of inner exception stack trace ---
+   at lambda_method36(Closure, Object, List`1, ResolutionContext)
+   at MBS_QUERY.Application.Mapper.ServiceProfile.<>c.<.ctor>b__0_17(PagedResult`1 src, PagedResult`1 dest, ResolutionContext context) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Mapper/ServiceProfile.cs:line 56
+   at MBS_QUERY.Application.UserCases.Queries.Mentors.GetAllMentorsQueryHandler.Handle(GetAllMentorsQuery request, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/UserCases/Queries/Mentors/GetAllMentorsQueryHandler.cs:line 32
+   at MBS_COMMAND.Application.Behaviors.TracingPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/TracingPipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.PerformancePipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/PerformancePipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.ValidationPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/ValidationPipelineBehavior.cs:line 24
+   at MBS_QUERY.Presentation.APIs.Metors.MentorApi.GetAllMentors(ISender sender) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Presentation/APIs/Metors/MentorApi.cs:line 26
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at MBS_QUERY.API.Middlewares.ExceptionHandlingMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS-QUERY.API/Middlewares/ExceptionHandlingMiddleware.cs:line 17
+2024-10-15 16:33:00.440 +07:00 [ERR] Error mapping types.
+
+Mapping types:
+PagedResult`1 -> PagedResult`1
+MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+
+Type Map configuration:
+PagedResult`1 -> PagedResult`1
+MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+
+Destination Member:
+Void .ctor(System.Collections.Generic.List`1[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse], Int32, Int32, Int32), parameter items
+
+AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+PagedResult`1 -> PagedResult`1
+MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+
+Type Map configuration:
+PagedResult`1 -> PagedResult`1
+MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+
+Destination Member:
+Void .ctor(System.Collections.Generic.List`1[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse], Int32, Int32, Int32), parameter items
+
+ ---> AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+MentorProjection -> GetAllMentorsResponse
+MBS_QUERY.Domain.Documents.MentorProjection -> MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse
+
+Type Map configuration:
+MentorProjection -> GetAllMentorsResponse
+MBS_QUERY.Domain.Documents.MentorProjection -> MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse
+
+Destination Member:
+Id
+
+ ---> AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+ObjectId -> Guid
+MongoDB.Bson.ObjectId -> System.Guid
+
+Destination Member:
+Id
+
+   at lambda_method40(Closure, ObjectId, Guid, ResolutionContext)
+   at lambda_method35(Closure, Object, PagedResult`1, ResolutionContext)
+   --- End of inner exception stack trace ---
+   at lambda_method35(Closure, Object, PagedResult`1, ResolutionContext)
+   --- End of inner exception stack trace ---
+   at lambda_method35(Closure, Object, PagedResult`1, ResolutionContext)
+   at MBS_QUERY.Application.UserCases.Queries.Mentors.GetAllMentorsQueryHandler.Handle(GetAllMentorsQuery request, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/UserCases/Queries/Mentors/GetAllMentorsQueryHandler.cs:line 32
+   at MBS_COMMAND.Application.Behaviors.TracingPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/TracingPipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.PerformancePipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/PerformancePipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.ValidationPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/ValidationPipelineBehavior.cs:line 24
+   at MBS_QUERY.Presentation.APIs.Metors.MentorApi.GetAllMentors(ISender sender) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Presentation/APIs/Metors/MentorApi.cs:line 26
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at MBS_QUERY.API.Middlewares.ExceptionHandlingMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS-QUERY.API/Middlewares/ExceptionHandlingMiddleware.cs:line 17
+2024-10-15 16:35:36.483 +07:00 [ERR] Error mapping types.
+
+Mapping types:
+PagedResult`1 -> PagedResult`1
+MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+
+Type Map configuration:
+PagedResult`1 -> PagedResult`1
+MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+
+Destination Member:
+Void .ctor(System.Collections.Generic.List`1[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse], Int32, Int32, Int32), parameter items
+
+AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+PagedResult`1 -> PagedResult`1
+MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+
+Type Map configuration:
+PagedResult`1 -> PagedResult`1
+MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+
+Destination Member:
+Void .ctor(System.Collections.Generic.List`1[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse], Int32, Int32, Int32), parameter items
+
+ ---> AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+MentorProjection -> GetAllMentorsResponse
+MBS_QUERY.Domain.Documents.MentorProjection -> MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse
+
+Type Map configuration:
+MentorProjection -> GetAllMentorsResponse
+MBS_QUERY.Domain.Documents.MentorProjection -> MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse
+
+Destination Member:
+Id
+
+ ---> AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+ObjectId -> Guid
+MongoDB.Bson.ObjectId -> System.Guid
+
+Destination Member:
+Id
+
+   at lambda_method40(Closure, ObjectId, Guid, ResolutionContext)
+   at lambda_method35(Closure, Object, PagedResult`1, ResolutionContext)
+   --- End of inner exception stack trace ---
+   at lambda_method35(Closure, Object, PagedResult`1, ResolutionContext)
+   --- End of inner exception stack trace ---
+   at lambda_method35(Closure, Object, PagedResult`1, ResolutionContext)
+   at MBS_QUERY.Application.UserCases.Queries.Mentors.GetAllMentorsQueryHandler.Handle(GetAllMentorsQuery request, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/UserCases/Queries/Mentors/GetAllMentorsQueryHandler.cs:line 32
+   at MBS_COMMAND.Application.Behaviors.TracingPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/TracingPipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.PerformancePipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/PerformancePipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.ValidationPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/ValidationPipelineBehavior.cs:line 24
+   at MBS_QUERY.Presentation.APIs.Metors.MentorApi.GetAllMentors(ISender sender) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Presentation/APIs/Metors/MentorApi.cs:line 26
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at MBS_QUERY.API.Middlewares.ExceptionHandlingMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS-QUERY.API/Middlewares/ExceptionHandlingMiddleware.cs:line 17
+2024-10-15 16:37:29.218 +07:00 [ERR] Error mapping types.
+
+Mapping types:
+MentorProjection -> GetAllMentorsResponse
+MBS_QUERY.Domain.Documents.MentorProjection -> MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse
+
+Type Map configuration:
+MentorProjection -> GetAllMentorsResponse
+MBS_QUERY.Domain.Documents.MentorProjection -> MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse
+
+Destination Member:
+Id
+
+AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+MentorProjection -> GetAllMentorsResponse
+MBS_QUERY.Domain.Documents.MentorProjection -> MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse
+
+Type Map configuration:
+MentorProjection -> GetAllMentorsResponse
+MBS_QUERY.Domain.Documents.MentorProjection -> MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse
+
+Destination Member:
+Id
+
+ ---> AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+ObjectId -> Guid
+MongoDB.Bson.ObjectId -> System.Guid
+
+Destination Member:
+Id
+
+   at lambda_method37(Closure, ObjectId, Guid, ResolutionContext)
+   at lambda_method36(Closure, Object, GetAllMentorsResponse, ResolutionContext)
+   --- End of inner exception stack trace ---
+   at lambda_method36(Closure, Object, GetAllMentorsResponse, ResolutionContext)
+   at MBS_QUERY.Application.Mapper.ServiceProfile.<>c__DisplayClass0_0.<.ctor>b__4(MentorProjection item) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Mapper/ServiceProfile.cs:line 39
+   at System.Linq.Enumerable.SelectListIterator`2.Fill(ReadOnlySpan`1 source, Span`1 destination, Func`2 func)
+   at System.Linq.Enumerable.SelectListIterator`2.ToList()
+   at MBS_QUERY.Application.Mapper.ServiceProfile.<>c.<.ctor>b__0_1(PagedResult`1 src, ResolutionContext context) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Mapper/ServiceProfile.cs:line 39
+   at lambda_method35(Closure, Object, PagedResult`1, ResolutionContext)
+   at MBS_QUERY.Application.UserCases.Queries.Mentors.GetAllMentorsQueryHandler.Handle(GetAllMentorsQuery request, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/UserCases/Queries/Mentors/GetAllMentorsQueryHandler.cs:line 32
+   at MBS_COMMAND.Application.Behaviors.TracingPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/TracingPipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.PerformancePipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/PerformancePipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.ValidationPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/ValidationPipelineBehavior.cs:line 24
+   at MBS_QUERY.Presentation.APIs.Metors.MentorApi.GetAllMentors(ISender sender) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Presentation/APIs/Metors/MentorApi.cs:line 26
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at MBS_QUERY.API.Middlewares.ExceptionHandlingMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS-QUERY.API/Middlewares/ExceptionHandlingMiddleware.cs:line 17

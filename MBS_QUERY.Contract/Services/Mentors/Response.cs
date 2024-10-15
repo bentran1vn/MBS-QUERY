@@ -9,7 +9,7 @@ public static class Response
         public string Email { set; get; }
         public int Point { set; get; }
         public DateTime CreatedOnUtc { set; get; }
-        public IReadOnlyCollection<Skill> Skills { set; get; }
+        public List<Skill> Skills { set; get; }
     };
 
     public class Skill
@@ -18,7 +18,7 @@ public static class Response
         public string SkillDesciption { set; get; }
         public string SkillCategoryType { set; get; }
         public DateTime CreatedOnUtc { set; get; }
-        public IReadOnlyCollection<Cetificate> Cetificates { set; get; }
+        public List<Cetificate> Cetificates { set; get; }
     }
     
     public class Cetificate
