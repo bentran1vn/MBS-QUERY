@@ -10,7 +10,6 @@ public static class Response
         public int Point { set; get; }
         public DateTime CreatedOnUtc { set; get; }
         public IReadOnlyCollection<Skill> Skills { set; get; }
-        public IReadOnlyCollection<Slot> Slots { set; get; }
     };
     public class Slot
     {
