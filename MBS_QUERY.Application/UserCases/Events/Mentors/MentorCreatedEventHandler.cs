@@ -6,18 +6,11 @@ using AbsrationShared = MBS_CONTRACT.SHARE.Abstractions.Shared;
 
 namespace MBS_QUERY.Application.UserCases.Events.Mentors;
 
-public class MentorCreatedEventHandler : MBS_CONTRACT.SHARE.Abstractions.Messages.ICommandHandler<DomainEventShared.MentorCreated>
+public class MentorCreatedEventHandler(IMongoRepository<MentorProjection> mentorRepository) : MBS_CONTRACT.SHARE.Abstractions.Messages.ICommandHandler<DomainEventShared.MentorCreated>
 {
-    private readonly IMongoRepository<MentorProjection> _mentorRepository;
-
-    public MentorCreatedEventHandler(IMongoRepository<MentorProjection> mentorRepository)
-    {
-        _mentorRepository = mentorRepository;
-    }
-
     public async Task<AbsrationShared.Result> Handle(DomainEventShared.MentorCreated request, CancellationToken cancellationToken)
     {
-        var mentor = new MentorProjection()
+        var mentor = new MentorProjection
         {
             DocumentId = request.Id,
             Email = request.Email,
@@ -27,11 +20,12 @@ public class MentorCreatedEventHandler : MBS_CONTRACT.SHARE.Abstractions.Message
             Status = request.Status,
             IsDeleted = request.IsDeleted,
             CreatedOnUtc = request.CreatedOnUtc.DateTime,
-            MentorSkills = new List<SkillProjection>(),
+            MentorSkills = [],
+            MentorSlots = []
         };
-        
-        await _mentorRepository.InsertOneAsync(mentor);
-        
+
+        await mentorRepository.InsertOneAsync(mentor);
+
         return AbsrationShared.Result.Success();
     }
 }

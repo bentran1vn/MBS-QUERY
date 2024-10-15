@@ -15,12 +15,26 @@ public class MentorProjection : Document
     public int Status { get; set; }
     public bool IsDeleted { get; set; }
     public List<SkillProjection> MentorSkills { get; set; }
+    public List<SlotProjection> MentorSlots { get; set; }
+
+}
+
+public class SlotProjection : Document
+{
+    public string MentorId { get; set; }
+    public TimeOnly StartTime { get; set; }
+    public TimeOnly EndTime { get; set; }
+    public bool IsOnline { get; set; }
+    public string Note { get; set; }
+    public DateOnly Date { get; set; }
+    public int Week { get; set; }
+    public int Status { get; set; }
 }
 
 public class SkillProjection : Document
 {
     // public Guid DocumentId { get; set; }
-    
+
     public string Name { get; set; }
 
     public string Description { get; set; }
@@ -34,5 +48,5 @@ public class CertificateProjection : Document
     public string Name { get; set; }
     public string Description { get; set; }
     public string ImageUrl { get; set; }
-    
+
 }

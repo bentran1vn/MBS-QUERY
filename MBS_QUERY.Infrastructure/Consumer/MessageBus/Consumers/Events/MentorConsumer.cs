@@ -1,4 +1,3 @@
-using MBS_QUERY.Contract.Services.Mentors;
 using MBS_QUERY.Domain.Abstractions.Repositories;
 using MBS_QUERY.Domain.Documents;
 using MBS_QUERY.Infrastructure.Consumer.Abstractions.Messages;
