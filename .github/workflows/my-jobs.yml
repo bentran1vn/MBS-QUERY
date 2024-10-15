@@ -3,13 +3,7 @@ name: CI/CD Pipeline
 on:
   push:
     branches:
-      - '*'         # Matches every branch
-      - '!main'     # Excludes main branch
-  pull_request:
-    types:
-      - closed
-    branches:
-      - main
+      - main  
 jobs:
   build:
     runs-on: [ self-hosted ]

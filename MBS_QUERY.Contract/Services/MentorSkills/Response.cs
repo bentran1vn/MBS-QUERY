@@ -1,6 +1,6 @@
-namespace MBS_COMMAND.Contract.Services.MentorSkills;
+namespace MBS_QUERY.Contract.Services.MentorSkills;
 
 public class Response
 {
-    
+
 }

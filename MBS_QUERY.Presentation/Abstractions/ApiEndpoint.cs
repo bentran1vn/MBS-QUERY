@@ -1,4 +1,3 @@
-using MBS_COMMAND.Contract.Abstractions.Shared;
 using MBS_QUERY.Contract.Abstractions.Shared;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

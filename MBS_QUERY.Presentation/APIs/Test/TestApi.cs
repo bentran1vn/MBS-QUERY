@@ -1,5 +1,5 @@
 using Carter;
-using MBS_COMMAND.Contract.Abstractions.Shared;
+using MBS_QUERY.Contract.Abstractions.Shared;
 using MBS_QUERY.Presentation.Abstractions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
