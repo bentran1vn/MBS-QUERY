@@ -1,16 +1,44 @@
 using AutoMapper;
+using MBS_QUERY.Contract.Abstractions.Shared;
+using MBS_QUERY.Domain.Documents;
 
+using Response = MBS_QUERY.Contract.Services.Mentors.Response;
 namespace MBS_QUERY.Application.Mapper;
 
 public class ServiceProfile : Profile
 {
     public ServiceProfile()
     {
-        // V1
-        // CreateMap<Product, Response.ProductResponse>().ReverseMap();
-        // CreateMap<PagedResult<Product>, PagedResult<Response.ProductResponse>>().ReverseMap();
+        CreateMap<MentorProjection, Response.GetAllMentorsResponse>()
+            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.DocumentId))
+            .ConstructUsing((src, context) => new Response.GetAllMentorsResponse()
+            {
+                Email = src.Email,
+                Point = src.Points,
+                FullName = src.FullName,
+                CreatedOnUtc = src.CreatedOnUtc,
+                Skills = src.MentorSkills.Select(s => new Response.Skill()
+                {
+                    SkillName = s.Name,
+                    SkillDesciption = s.Description,
+                    CreatedOnUtc = s.CreatedOnUtc,
+                    SkillCategoryType = s.CateogoryType,
+                    Cetificates = s.SkillCetificates.Select(c => new Response.Cetificate()
+                    {
+                        CetificateName = c.Name,
+                        CetificateImageUrl = c.ImageUrl,
+                        CetificateDesciption = c.Description,
+                        CreatedOnUtc = c.CreatedOnUtc
+                    }).ToList()
+                }).ToList()
+            });
 
-        //// V2
-        //CreateMap<Product, Contract.Services.V2.Product.Response.ProductResponse>().ReverseMap();
+        CreateMap<PagedResult<MentorProjection>, PagedResult<Response.GetAllMentorsResponse>>()
+            .ConstructUsing((src, context) =>
+            {
+                var mappedItems = src.Items.Select(item => context.Mapper.Map<Response.GetAllMentorsResponse>(item)).ToList();
+                return new PagedResult<Response.GetAllMentorsResponse>(mappedItems, src.PageIndex, src.PageSize, src.TotalCount);
+            });
     }
+    
 }

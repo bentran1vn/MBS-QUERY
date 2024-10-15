@@ -21,9 +21,15 @@ public class MentorApi: ApiEndpoint, ICarterModule
         group1.MapGet(string.Empty, GetAllMentors);
     }
     
-    public static async Task<IResult> GetAllMentors(ISender sender)
+    public static async Task<IResult> GetAllMentors(ISender sender,
+        string? serchTerm = null,
+        string? sortColumn = null,
+        string? sortOrder = null,
+        int pageIndex = 1,
+        int pageSize = 10)
     {
-        var result = await sender.Send(new Query.GetAllMentorsQuery());
+        var result = await sender.Send(new Query.GetAllMentorsQuery(serchTerm,
+            pageIndex, pageSize));
         return Results.Ok(result);
     }
 }
