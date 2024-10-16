@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 
-namespace MBS_QUERY.Presentation.APIs.Metors;
+namespace MBS_QUERY.Presentation.APIs.Mentors;
 
 public class MentorApi: ApiEndpoint, ICarterModule
 {
