@@ -26,6 +26,10 @@ public class MentorApi: ApiEndpoint, ICarterModule
         Guid mentorId)
     {
         var result = await sender.Send(new Query.GetMentorQuery(mentorId));
+        
+        if (result.IsFailure)
+            return HandlerFailure(result);
+        
         return Results.Ok(result);
     }
     
@@ -39,6 +43,10 @@ public class MentorApi: ApiEndpoint, ICarterModule
         var result = await sender.Send(new Query.GetMentorsQuery(serchTerm,
             sortColumn, SortOrderExtension.ConvertStringToSortOrder(sortOrder),
             pageIndex, pageSize));
+        
+        if (result.IsFailure)
+            return HandlerFailure(result);
+        
         return Results.Ok(result);
     }
 }

@@ -19,7 +19,7 @@ public interface IMongoRepository<TDocument>
 
     TDocument FindOne(Expression<Func<TDocument, bool>> filterExpression);
 
-    Task<TDocument> FindOneAsync(Expression<Func<TDocument, bool>> filterExpression);
+    Task<TDocument?> FindOneAsync(Expression<Func<TDocument, bool>> filterExpression);
 
     TDocument FindById(string id);
 
