@@ -1,3 +1,5 @@
+using MBS_QUERY.Application.Abstractions;
+using MBS_QUERY.Contract.Services.Mentors;
 using MBS_QUERY.Domain.Abstractions.Repositories;
 using MBS_QUERY.Domain.Documents;
 
@@ -9,10 +11,12 @@ using AbsrationShared = MBS_CONTRACT.SHARE.Abstractions.Shared;
 public class MentorSkillsCreatedHandler : MBS_CONTRACT.SHARE.Abstractions.Messages.ICommandHandler<DomainEventShared.MentorSkillsCreated>
 {
     private readonly IMongoRepository<MentorProjection> _mentorRepository;
+    private readonly ICacheService _cacheService;
 
-    public MentorSkillsCreatedHandler(IMongoRepository<MentorProjection> mentorRepository)
+    public MentorSkillsCreatedHandler(IMongoRepository<MentorProjection> mentorRepository, ICacheService cacheService)
     {
         _mentorRepository = mentorRepository;
+        _cacheService = cacheService;
     }
 
     public async Task<AbsrationShared.Result> Handle(DomainEventShared.MentorSkillsCreated request, CancellationToken cancellationToken)
@@ -70,6 +74,8 @@ public class MentorSkillsCreatedHandler : MBS_CONTRACT.SHARE.Abstractions.Messag
             
             await _mentorRepository.ReplaceOneAsync(mentor);
         }
+        
+        await _cacheService.RemoveByPrefixAsync($"{nameof(Query.GetMentorsQuery)}", cancellationToken);
         
         return AbsrationShared.Result.Success();
     }
