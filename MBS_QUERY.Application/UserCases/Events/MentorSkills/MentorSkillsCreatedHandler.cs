@@ -44,13 +44,13 @@ public class MentorSkillsCreatedHandler : MBS_CONTRACT.SHARE.Abstractions.Messag
 
             List<SkillProjection> skillList;
             
-            if (existMentor.MentorSkills.Count == 0)
+            if (!existMentor.MentorSkills.Any())
             {
                 skillList = new List<SkillProjection>();
             }
             else
             {
-                skillList = existMentor.MentorSkills;
+                skillList = existMentor.MentorSkills.ToList();
             }
             
             skillList.Add(skills);
