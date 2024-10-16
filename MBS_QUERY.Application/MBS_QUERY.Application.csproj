@@ -24,6 +24,7 @@
 
     <ItemGroup>
       <Folder Include="UserCases\Commands\" />
+      <Folder Include="UserCases\Queries\Skills\" />
       <Folder Include="UserCases\Queries\Slots\" />
     </ItemGroup>
 
