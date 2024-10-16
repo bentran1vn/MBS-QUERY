@@ -1,0 +1,619 @@
+2024-10-15 14:39:44.644 +07:00 [WRN] Connection Failed: "rabbitmq://localhost/phucnghi"
+RabbitMQ.Client.Exceptions.BrokerUnreachableException: None of the specified endpoints were reachable
+ ---> System.IO.IOException: connection.start was never received, likely due to a network timeout
+ ---> System.IO.EndOfStreamException: Reached the end of the stream. Possible authentication failure.
+   at RabbitMQ.Client.Impl.InboundFrame.ReadFrom(Stream reader, Byte[] frameHeaderBuffer, ArrayPool`1 pool, UInt32 maxMessageSize)
+   at RabbitMQ.Client.Impl.SocketFrameHandler.ReadFrame()
+   at RabbitMQ.Client.Framing.Impl.Connection.MainLoopIteration()
+   at RabbitMQ.Client.Framing.Impl.Connection.MainLoop()
+   --- End of inner exception stack trace ---
+   at RabbitMQ.Client.Framing.Impl.Connection.StartAndTune()
+   at RabbitMQ.Client.Framing.Impl.Connection.Open(Boolean insist)
+   at RabbitMQ.Client.Framing.Impl.Connection..ctor(IConnectionFactory factory, Boolean insist, IFrameHandler frameHandler, String clientProvidedName)
+   at RabbitMQ.Client.Framing.Impl.Connection..ctor(IConnectionFactory factory, Boolean insist, IFrameHandler frameHandler, ArrayPool`1 memoryPool, String clientProvidedName)
+   at RabbitMQ.Client.Framing.Impl.ProtocolBase.CreateConnection(IConnectionFactory factory, Boolean insist, IFrameHandler frameHandler, ArrayPool`1 memoryPool, String clientProvidedName)
+   at RabbitMQ.Client.ConnectionFactory.CreateConnection(IEndpointResolver endpointResolver, String clientProvidedName)
+   --- End of inner exception stack trace ---
+   at RabbitMQ.Client.ConnectionFactory.CreateConnection(IEndpointResolver endpointResolver, String clientProvidedName)
+   at RabbitMQ.Client.ConnectionFactory.CreateConnection(IList`1 hostnames, String clientProvidedName)
+   at MassTransit.RabbitMqTransport.ConnectionContextFactory.CreateConnection(ISupervisor supervisor) in /_/src/Transports/MassTransit.RabbitMqTransport/RabbitMqTransport/ConnectionContextFactory.cs:line 85
+2024-10-15 14:39:55.313 +07:00 [WRN] Connection Failed: "rabbitmq://localhost/phucnghi"
+RabbitMQ.Client.Exceptions.BrokerUnreachableException: None of the specified endpoints were reachable
+ ---> System.IO.IOException: connection.start was never received, likely due to a network timeout
+ ---> System.IO.IOException: Unable to read data from the transport connection: An established connection was aborted by the software in your host machine..
+ ---> System.Net.Sockets.SocketException (10053): An established connection was aborted by the software in your host machine.
+   at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 count)
+   --- End of inner exception stack trace ---
+   at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 count)
+   at System.IO.BufferedStream.ReadByteSlow()
+   at RabbitMQ.Client.Impl.InboundFrame.ReadFrom(Stream reader, Byte[] frameHeaderBuffer, ArrayPool`1 pool, UInt32 maxMessageSize)
+   at RabbitMQ.Client.Impl.SocketFrameHandler.ReadFrame()
+   at RabbitMQ.Client.Framing.Impl.Connection.MainLoopIteration()
+   at RabbitMQ.Client.Framing.Impl.Connection.MainLoop()
+   --- End of inner exception stack trace ---
+   at RabbitMQ.Client.Framing.Impl.Connection.StartAndTune()
+   at RabbitMQ.Client.Framing.Impl.Connection.Open(Boolean insist)
+   at RabbitMQ.Client.Framing.Impl.Connection..ctor(IConnectionFactory factory, Boolean insist, IFrameHandler frameHandler, String clientProvidedName)
+   at RabbitMQ.Client.Framing.Impl.Connection..ctor(IConnectionFactory factory, Boolean insist, IFrameHandler frameHandler, ArrayPool`1 memoryPool, String clientProvidedName)
+   at RabbitMQ.Client.Framing.Impl.ProtocolBase.CreateConnection(IConnectionFactory factory, Boolean insist, IFrameHandler frameHandler, ArrayPool`1 memoryPool, String clientProvidedName)
+   at RabbitMQ.Client.ConnectionFactory.CreateConnection(IEndpointResolver endpointResolver, String clientProvidedName)
+   --- End of inner exception stack trace ---
+   at RabbitMQ.Client.ConnectionFactory.CreateConnection(IEndpointResolver endpointResolver, String clientProvidedName)
+   at RabbitMQ.Client.ConnectionFactory.CreateConnection(IList`1 hostnames, String clientProvidedName)
+   at MassTransit.RabbitMqTransport.ConnectionContextFactory.CreateConnection(ISupervisor supervisor) in /_/src/Transports/MassTransit.RabbitMqTransport/RabbitMqTransport/ConnectionContextFactory.cs:line 85
+2024-10-15 14:40:08.646 +07:00 [WRN] R-RETRY "rabbitmq://localhost/phucnghi/mentor-created" "b0610000-f64e-50eb-a612-08dcece6ef27" MassTransit.RetryPolicies.RetryConsumeContext<MBS_CONTRACT.SHARE.Services.Mentors.DomainEvent+MentorCreated>
+MongoDB.Bson.BsonSerializationException: An error occurred while serializing the MentorSlots property of class MBS_QUERY.Domain.Documents.MentorProjection: The property 'CreatedOnUtc' of type 'MBS_QUERY.Domain.Documents.SlotProjection' cannot use element name 'CreatedOnUtc' because it is already being used by property 'CreatedOnUtc' of type 'MBS_QUERY.Domain.Abstractions.Entities.Document'.
+ ---> MongoDB.Bson.BsonSerializationException: The property 'CreatedOnUtc' of type 'MBS_QUERY.Domain.Documents.SlotProjection' cannot use element name 'CreatedOnUtc' because it is already being used by property 'CreatedOnUtc' of type 'MBS_QUERY.Domain.Abstractions.Entities.Document'.
+   at MongoDB.Bson.Serialization.BsonClassMap.Freeze()
+   at MongoDB.Bson.Serialization.BsonClassMap.LookupClassMap(Type classType)
+   at MongoDB.Bson.Serialization.BsonClassMapSerializationProvider.GetSerializer(Type type, IBsonSerializerRegistry serializerRegistry)
+   at MongoDB.Bson.Serialization.BsonSerializerRegistry.CreateSerializer(Type type)
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at MongoDB.Bson.Serialization.BsonSerializerRegistry.GetSerializer(Type type)
+   at MongoDB.Bson.Serialization.BsonSerializerRegistry.GetSerializer[T]()
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)
+   at System.Lazy`1.ExecutionAndPublication(LazyHelper executionAndPublication, Boolean useDefaultConstructor)
+   at System.Lazy`1.CreateValue()
+   at MongoDB.Bson.Serialization.Serializers.IEnumerableDeserializingAsCollectionSerializer`3.Serialize(BsonSerializationContext context, BsonSerializationArgs args, TIEnumerable value)
+   at MongoDB.Bson.Serialization.Serializers.SerializerBase`1.MongoDB.Bson.Serialization.IBsonSerializer.Serialize(BsonSerializationContext context, BsonSerializationArgs args, Object value)
+   at MongoDB.Bson.Serialization.IBsonSerializerExtensions.Serialize(IBsonSerializer serializer, BsonSerializationContext context, Object value)
+   at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.SerializeNormalMember(BsonSerializationContext context, Object obj, BsonMemberMap memberMap)
+   at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.SerializeMember(BsonSerializationContext context, Object obj, BsonMemberMap memberMap)
+   --- End of inner exception stack trace ---
+   at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.SerializeMember(BsonSerializationContext context, Object obj, BsonMemberMap memberMap)
+   at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.SerializeClass(BsonSerializationContext context, BsonSerializationArgs args, TClass document)
+   at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.Serialize(BsonSerializationContext context, BsonSerializationArgs args, TClass value)
+   at MongoDB.Bson.Serialization.Serializers.SerializerBase`1.MongoDB.Bson.Serialization.IBsonSerializer.Serialize(BsonSerializationContext context, BsonSerializationArgs args, Object value)
+   at MongoDB.Bson.Serialization.IBsonSerializerExtensions.Serialize(IBsonSerializer serializer, BsonSerializationContext context, Object value)
+   at MongoDB.Bson.Serialization.Serializers.BsonDocumentWrapperSerializer.SerializeValue(BsonSerializationContext context, BsonSerializationArgs args, BsonDocumentWrapper value)
+   at MongoDB.Bson.Serialization.Serializers.BsonValueSerializerBase`1.Serialize(BsonSerializationContext context, BsonSerializationArgs args, TBsonValue value)
+   at MongoDB.Bson.Serialization.Serializers.SerializerBase`1.MongoDB.Bson.Serialization.IBsonSerializer.Serialize(BsonSerializationContext context, BsonSerializationArgs args, Object value)
+   at MongoDB.Bson.Serialization.IBsonSerializerExtensions.Serialize(IBsonSerializer serializer, BsonSerializationContext context, Object value)
+   at MongoDB.Bson.Serialization.Serializers.BsonValueSerializerBase`1.Serialize(BsonSerializationContext context, BsonSerializationArgs args, TBsonValue value)
+   at MongoDB.Driver.Core.Operations.BulkInsertOperation.InsertRequestSerializer.SerializeValue(BsonSerializationContext context, BsonSerializationArgs args, InsertRequest value)
+   at MongoDB.Bson.Serialization.Serializers.SealedClassSerializerBase`1.Serialize(BsonSerializationContext context, BsonSerializationArgs args, TValue value)
+   at MongoDB.Bson.Serialization.Serializers.SerializerBase`1.MongoDB.Bson.Serialization.IBsonSerializer.Serialize(BsonSerializationContext context, BsonSerializationArgs args, Object value)
+   at MongoDB.Bson.Serialization.IBsonSerializerExtensions.Serialize(IBsonSerializer serializer, BsonSerializationContext context, Object value)
+   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandMessageBinaryEncoder.WriteType1Section(BsonBinaryWriter writer, Type1CommandMessageSection section, Int64 messageStartPosition)
+   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandMessageBinaryEncoder.WriteSection(BsonBinaryWriter writer, CommandMessageSection section, Int64 messageStartPosition)
+   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandMessageBinaryEncoder.WriteSections(BsonBinaryWriter writer, IEnumerable`1 sections, Int64 messageStartPosition)
+   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandMessageBinaryEncoder.WriteMessage(CommandMessage message)
+   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandRequestMessageBinaryEncoder.WriteMessage(CommandRequestMessage message)
+   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandRequestMessageBinaryEncoder.MongoDB.Driver.Core.WireProtocol.Messages.Encoders.IMessageEncoder.WriteMessage(MongoDBMessage message)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.SendMessagesHelper.EncodeMessages(CancellationToken cancellationToken, List`1& sentMessages)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.SendMessagesAsync(IEnumerable`1 messages, MessageEncoderSettings messageEncoderSettings, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.ConnectionPools.ExclusiveConnectionPool.PooledConnection.SendMessagesAsync(IEnumerable`1 messages, MessageEncoderSettings messageEncoderSettings, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.WireProtocol.CommandUsingCommandMessageWireProtocol`1.SendMessageAndProcessResponseAsync(CommandRequestMessage message, Int32 responseTo, IConnection connection, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.WireProtocol.CommandUsingCommandMessageWireProtocol`1.ExecuteAsync(IConnection connection, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Servers.Server.ServerChannel.ExecuteProtocolAsync[TResult](IWireProtocol`1 protocol, ICoreSession session, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.RetryableWriteOperationExecutor.ExecuteAsync[TResult](IRetryableWriteOperation`1 operation, RetryableWriteContext context, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.BulkUnmixedWriteOperationBase`1.ExecuteBatchAsync(RetryableWriteContext context, Batch batch, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.BulkUnmixedWriteOperationBase`1.ExecuteBatchesAsync(RetryableWriteContext context, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.BulkMixedWriteOperation.ExecuteBatchAsync(RetryableWriteContext context, Batch batch, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.BulkMixedWriteOperation.ExecuteAsync(IWriteBinding binding, CancellationToken cancellationToken)
+   at MongoDB.Driver.OperationExecutor.ExecuteWriteOperationAsync[TResult](IWriteBinding binding, IWriteOperation`1 operation, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.ExecuteWriteOperationAsync[TResult](IClientSessionHandle session, IWriteOperation`1 operation, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.BulkWriteAsync(IClientSessionHandle session, IEnumerable`1 requests, BulkWriteOptions options, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.UsingImplicitSessionAsync[TResult](Func`2 funcAsync, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionBase`1.InsertOneAsync(TDocument document, InsertOneOptions options, Func`3 bulkWriteAsync)
+   at MBS_QUERY.Application.UserCases.Events.Mentors.MentorCreatedEventHandler.Handle(MentorCreated request, CancellationToken cancellationToken) in C:\Users\ADMIN\Desktop\PRN231\MBS\MBS-QUERY\MBS_QUERY.Application\UserCases\Events\Mentors\MentorCreatedEventHandler.cs:line 27
+   at MBS_QUERY.Application.Behaviors.TracingPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\ADMIN\Desktop\PRN231\MBS\MBS-QUERY\MBS_QUERY.Application\Behaviors\TracingPipelineBehavior.cs:line 23
+   at MBS_QUERY.Application.Behaviors.PerformancePipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\ADMIN\Desktop\PRN231\MBS\MBS-QUERY\MBS_QUERY.Application\Behaviors\PerformancePipelineBehavior.cs:line 23
+   at MediatR.Wrappers.RequestHandlerWrapperImpl`2.Handle(Object request, IServiceProvider serviceProvider, CancellationToken cancellationToken)
+   at MBS_QUERY.Infrastructure.Consumer.Abstractions.Messages.Consumer`1.Consume(ConsumeContext`1 context) in C:\Users\ADMIN\Desktop\PRN231\MBS\MBS-QUERY\MBS_QUERY.Infrastructure\Consumer\Abstractions\Messages\Consumer.cs:line 21
+   at MassTransit.DependencyInjection.ScopeConsumerFactory`1.Send[TMessage](ConsumeContext`1 context, IPipe`1 next) in /_/src/MassTransit/DependencyInjection/DependencyInjection/ScopeConsumerFactory.cs:line 22
+   at MassTransit.DependencyInjection.ScopeConsumerFactory`1.Send[TMessage](ConsumeContext`1 context, IPipe`1 next) in /_/src/MassTransit/DependencyInjection/DependencyInjection/ScopeConsumerFactory.cs:line 22
+   at MassTransit.Middleware.ConsumerMessageFilter`2.MassTransit.IFilter<MassTransit.ConsumeContext<TMessage>>.Send(ConsumeContext`1 context, IPipe`1 next) in /_/src/MassTransit/Middleware/ConsumerMessageFilter.cs:line 48
+   at MassTransit.Middleware.ConsumerMessageFilter`2.MassTransit.IFilter<MassTransit.ConsumeContext<TMessage>>.Send(ConsumeContext`1 context, IPipe`1 next) in /_/src/MassTransit/Middleware/ConsumerMessageFilter.cs:line 73
+   at MassTransit.Middleware.RetryFilter`1.MassTransit.IFilter<TContext>.Send(TContext context, IPipe`1 next) in /_/src/MassTransit/Middleware/RetryFilter.cs:line 47
+2024-10-15 14:40:55.266 +07:00 [ERR] R-FAULT "rabbitmq://localhost/phucnghi/mentor-created" "b0610000-f64e-50eb-a612-08dcece6ef27" MBS_CONTRACT.SHARE.Services.Mentors.DomainEvent+MentorCreated MBS_QUERY.Infrastructure.Consumer.MessageBus.Consumers.Events.MentorConsumer+MentorCreatedConsumer("00:00:00.3929689")
+MongoDB.Bson.BsonSerializationException: An error occurred while serializing the MentorSlots property of class MBS_QUERY.Domain.Documents.MentorProjection: The property 'CreatedOnUtc' of type 'MBS_QUERY.Domain.Documents.SlotProjection' cannot use element name 'CreatedOnUtc' because it is already being used by property 'CreatedOnUtc' of type 'MBS_QUERY.Domain.Abstractions.Entities.Document'.
+ ---> MongoDB.Bson.BsonSerializationException: The property 'CreatedOnUtc' of type 'MBS_QUERY.Domain.Documents.SlotProjection' cannot use element name 'CreatedOnUtc' because it is already being used by property 'CreatedOnUtc' of type 'MBS_QUERY.Domain.Abstractions.Entities.Document'.
+   at MongoDB.Bson.Serialization.BsonClassMap.Freeze()
+   at MongoDB.Bson.Serialization.BsonClassMap.LookupClassMap(Type classType)
+   at MongoDB.Bson.Serialization.BsonClassMapSerializationProvider.GetSerializer(Type type, IBsonSerializerRegistry serializerRegistry)
+   at MongoDB.Bson.Serialization.BsonSerializerRegistry.CreateSerializer(Type type)
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at MongoDB.Bson.Serialization.BsonSerializerRegistry.GetSerializer(Type type)
+   at MongoDB.Bson.Serialization.BsonSerializerRegistry.GetSerializer[T]()
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)
+--- End of stack trace from previous location ---
+   at System.Lazy`1.CreateValue()
+   at MongoDB.Bson.Serialization.Serializers.IEnumerableDeserializingAsCollectionSerializer`3.Serialize(BsonSerializationContext context, BsonSerializationArgs args, TIEnumerable value)
+   at MongoDB.Bson.Serialization.Serializers.SerializerBase`1.MongoDB.Bson.Serialization.IBsonSerializer.Serialize(BsonSerializationContext context, BsonSerializationArgs args, Object value)
+   at MongoDB.Bson.Serialization.IBsonSerializerExtensions.Serialize(IBsonSerializer serializer, BsonSerializationContext context, Object value)
+   at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.SerializeNormalMember(BsonSerializationContext context, Object obj, BsonMemberMap memberMap)
+   at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.SerializeMember(BsonSerializationContext context, Object obj, BsonMemberMap memberMap)
+   --- End of inner exception stack trace ---
+   at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.SerializeMember(BsonSerializationContext context, Object obj, BsonMemberMap memberMap)
+   at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.SerializeClass(BsonSerializationContext context, BsonSerializationArgs args, TClass document)
+   at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.Serialize(BsonSerializationContext context, BsonSerializationArgs args, TClass value)
+   at MongoDB.Bson.Serialization.Serializers.SerializerBase`1.MongoDB.Bson.Serialization.IBsonSerializer.Serialize(BsonSerializationContext context, BsonSerializationArgs args, Object value)
+   at MongoDB.Bson.Serialization.IBsonSerializerExtensions.Serialize(IBsonSerializer serializer, BsonSerializationContext context, Object value)
+   at MongoDB.Bson.Serialization.Serializers.BsonDocumentWrapperSerializer.SerializeValue(BsonSerializationContext context, BsonSerializationArgs args, BsonDocumentWrapper value)
+   at MongoDB.Bson.Serialization.Serializers.BsonValueSerializerBase`1.Serialize(BsonSerializationContext context, BsonSerializationArgs args, TBsonValue value)
+   at MongoDB.Bson.Serialization.Serializers.SerializerBase`1.MongoDB.Bson.Serialization.IBsonSerializer.Serialize(BsonSerializationContext context, BsonSerializationArgs args, Object value)
+   at MongoDB.Bson.Serialization.Serializers.BsonValueSerializerBase`1.Serialize(BsonSerializationContext context, BsonSerializationArgs args, TBsonValue value)
+   at MongoDB.Driver.Core.Operations.BulkInsertOperation.InsertRequestSerializer.SerializeValue(BsonSerializationContext context, BsonSerializationArgs args, InsertRequest value)
+   at MongoDB.Bson.Serialization.Serializers.SealedClassSerializerBase`1.Serialize(BsonSerializationContext context, BsonSerializationArgs args, TValue value)
+   at MongoDB.Bson.Serialization.Serializers.SerializerBase`1.MongoDB.Bson.Serialization.IBsonSerializer.Serialize(BsonSerializationContext context, BsonSerializationArgs args, Object value)
+   at MongoDB.Bson.Serialization.IBsonSerializerExtensions.Serialize(IBsonSerializer serializer, BsonSerializationContext context, Object value)
+   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandMessageBinaryEncoder.WriteType1Section(BsonBinaryWriter writer, Type1CommandMessageSection section, Int64 messageStartPosition)
+   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandMessageBinaryEncoder.WriteSection(BsonBinaryWriter writer, CommandMessageSection section, Int64 messageStartPosition)
+   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandMessageBinaryEncoder.WriteSections(BsonBinaryWriter writer, IEnumerable`1 sections, Int64 messageStartPosition)
+   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandMessageBinaryEncoder.WriteMessage(CommandMessage message)
+   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandRequestMessageBinaryEncoder.WriteMessage(CommandRequestMessage message)
+   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandRequestMessageBinaryEncoder.MongoDB.Driver.Core.WireProtocol.Messages.Encoders.IMessageEncoder.WriteMessage(MongoDBMessage message)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.SendMessagesHelper.EncodeMessages(CancellationToken cancellationToken, List`1& sentMessages)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.SendMessagesAsync(IEnumerable`1 messages, MessageEncoderSettings messageEncoderSettings, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.ConnectionPools.ExclusiveConnectionPool.PooledConnection.SendMessagesAsync(IEnumerable`1 messages, MessageEncoderSettings messageEncoderSettings, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.WireProtocol.CommandUsingCommandMessageWireProtocol`1.SendMessageAndProcessResponseAsync(CommandRequestMessage message, Int32 responseTo, IConnection connection, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.WireProtocol.CommandUsingCommandMessageWireProtocol`1.ExecuteAsync(IConnection connection, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Servers.Server.ServerChannel.ExecuteProtocolAsync[TResult](IWireProtocol`1 protocol, ICoreSession session, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.RetryableWriteOperationExecutor.ExecuteAsync[TResult](IRetryableWriteOperation`1 operation, RetryableWriteContext context, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.BulkUnmixedWriteOperationBase`1.ExecuteBatchAsync(RetryableWriteContext context, Batch batch, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.BulkUnmixedWriteOperationBase`1.ExecuteBatchesAsync(RetryableWriteContext context, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.BulkMixedWriteOperation.ExecuteBatchAsync(RetryableWriteContext context, Batch batch, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.BulkMixedWriteOperation.ExecuteAsync(IWriteBinding binding, CancellationToken cancellationToken)
+   at MongoDB.Driver.OperationExecutor.ExecuteWriteOperationAsync[TResult](IWriteBinding binding, IWriteOperation`1 operation, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.ExecuteWriteOperationAsync[TResult](IClientSessionHandle session, IWriteOperation`1 operation, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.BulkWriteAsync(IClientSessionHandle session, IEnumerable`1 requests, BulkWriteOptions options, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.UsingImplicitSessionAsync[TResult](Func`2 funcAsync, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionBase`1.InsertOneAsync(TDocument document, InsertOneOptions options, Func`3 bulkWriteAsync)
+   at MBS_QUERY.Application.UserCases.Events.Mentors.MentorCreatedEventHandler.Handle(MentorCreated request, CancellationToken cancellationToken) in C:\Users\ADMIN\Desktop\PRN231\MBS\MBS-QUERY\MBS_QUERY.Application\UserCases\Events\Mentors\MentorCreatedEventHandler.cs:line 27
+   at MBS_QUERY.Application.Behaviors.TracingPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\ADMIN\Desktop\PRN231\MBS\MBS-QUERY\MBS_QUERY.Application\Behaviors\TracingPipelineBehavior.cs:line 23
+   at MBS_QUERY.Application.Behaviors.PerformancePipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\ADMIN\Desktop\PRN231\MBS\MBS-QUERY\MBS_QUERY.Application\Behaviors\PerformancePipelineBehavior.cs:line 23
+   at MediatR.Wrappers.RequestHandlerWrapperImpl`2.Handle(Object request, IServiceProvider serviceProvider, CancellationToken cancellationToken)
+   at MBS_QUERY.Infrastructure.Consumer.Abstractions.Messages.Consumer`1.Consume(ConsumeContext`1 context) in C:\Users\ADMIN\Desktop\PRN231\MBS\MBS-QUERY\MBS_QUERY.Infrastructure\Consumer\Abstractions\Messages\Consumer.cs:line 21
+   at MassTransit.DependencyInjection.ScopeConsumerFactory`1.Send[TMessage](ConsumeContext`1 context, IPipe`1 next) in /_/src/MassTransit/DependencyInjection/DependencyInjection/ScopeConsumerFactory.cs:line 22
+   at MassTransit.DependencyInjection.ScopeConsumerFactory`1.Send[TMessage](ConsumeContext`1 context, IPipe`1 next) in /_/src/MassTransit/DependencyInjection/DependencyInjection/ScopeConsumerFactory.cs:line 22
+   at MassTransit.Middleware.ConsumerMessageFilter`2.MassTransit.IFilter<MassTransit.ConsumeContext<TMessage>>.Send(ConsumeContext`1 context, IPipe`1 next) in /_/src/MassTransit/Middleware/ConsumerMessageFilter.cs:line 48
+   at MassTransit.Middleware.ConsumerMessageFilter`2.MassTransit.IFilter<MassTransit.ConsumeContext<TMessage>>.Send(ConsumeContext`1 context, IPipe`1 next) in /_/src/MassTransit/Middleware/ConsumerMessageFilter.cs:line 73
+   at MassTransit.Middleware.RetryFilter`1.Attempt(TContext context, RetryContext`1 retryContext, IPipe`1 next) in /_/src/MassTransit/Middleware/RetryFilter.cs:line 158
+2024-10-15 14:40:55.283 +07:00 [ERR] Fault on consuming message MentorCreated from MBS_CONTRACT.SHARE.Services.Mentors by MBS_QUERY.Infrastructure.Consumer.MessageBus.Consumers.Events.MentorConsumer+MentorCreatedConsumer, Duration: 0.3929689s, Error: An error occurred while serializing the MentorSlots property of class MBS_QUERY.Domain.Documents.MentorProjection: The property 'CreatedOnUtc' of type 'MBS_QUERY.Domain.Documents.SlotProjection' cannot use element name 'CreatedOnUtc' because it is already being used by property 'CreatedOnUtc' of type 'MBS_QUERY.Domain.Abstractions.Entities.Document'., CorrelationId: null
+2024-10-15 15:35:54.519 +07:00 [WRN] R-RETRY "rabbitmq://localhost/phucnghi/mentor-created" "f4510000-f64e-50eb-0d1d-08dcecf461de" MassTransit.RetryPolicies.RetryConsumeContext<MBS_CONTRACT.SHARE.Services.Mentors.DomainEvent+MentorCreated>
+MongoDB.Bson.BsonSerializationException: An error occurred while serializing the MentorSlots property of class MBS_QUERY.Domain.Documents.MentorProjection: The property 'CreatedOnUtc' of type 'MBS_QUERY.Domain.Documents.SlotProjection' cannot use element name 'CreatedOnUtc' because it is already being used by property 'CreatedOnUtc' of type 'MBS_QUERY.Domain.Abstractions.Entities.Document'.
+ ---> MongoDB.Bson.BsonSerializationException: The property 'CreatedOnUtc' of type 'MBS_QUERY.Domain.Documents.SlotProjection' cannot use element name 'CreatedOnUtc' because it is already being used by property 'CreatedOnUtc' of type 'MBS_QUERY.Domain.Abstractions.Entities.Document'.
+   at MongoDB.Bson.Serialization.BsonClassMap.Freeze()
+   at MongoDB.Bson.Serialization.BsonClassMap.LookupClassMap(Type classType)
+   at MongoDB.Bson.Serialization.BsonClassMapSerializationProvider.GetSerializer(Type type, IBsonSerializerRegistry serializerRegistry)
+   at MongoDB.Bson.Serialization.BsonSerializerRegistry.CreateSerializer(Type type)
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at MongoDB.Bson.Serialization.BsonSerializerRegistry.GetSerializer(Type type)
+   at MongoDB.Bson.Serialization.BsonSerializerRegistry.GetSerializer[T]()
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)
+   at System.Lazy`1.ExecutionAndPublication(LazyHelper executionAndPublication, Boolean useDefaultConstructor)
+   at System.Lazy`1.CreateValue()
+   at MongoDB.Bson.Serialization.Serializers.IEnumerableDeserializingAsCollectionSerializer`3.Serialize(BsonSerializationContext context, BsonSerializationArgs args, TIEnumerable value)
+   at MongoDB.Bson.Serialization.Serializers.SerializerBase`1.MongoDB.Bson.Serialization.IBsonSerializer.Serialize(BsonSerializationContext context, BsonSerializationArgs args, Object value)
+   at MongoDB.Bson.Serialization.IBsonSerializerExtensions.Serialize(IBsonSerializer serializer, BsonSerializationContext context, Object value)
+   at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.SerializeNormalMember(BsonSerializationContext context, Object obj, BsonMemberMap memberMap)
+   at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.SerializeMember(BsonSerializationContext context, Object obj, BsonMemberMap memberMap)
+   --- End of inner exception stack trace ---
+   at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.SerializeMember(BsonSerializationContext context, Object obj, BsonMemberMap memberMap)
+   at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.SerializeClass(BsonSerializationContext context, BsonSerializationArgs args, TClass document)
+   at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.Serialize(BsonSerializationContext context, BsonSerializationArgs args, TClass value)
+   at MongoDB.Bson.Serialization.Serializers.SerializerBase`1.MongoDB.Bson.Serialization.IBsonSerializer.Serialize(BsonSerializationContext context, BsonSerializationArgs args, Object value)
+   at MongoDB.Bson.Serialization.IBsonSerializerExtensions.Serialize(IBsonSerializer serializer, BsonSerializationContext context, Object value)
+   at MongoDB.Bson.Serialization.Serializers.BsonDocumentWrapperSerializer.SerializeValue(BsonSerializationContext context, BsonSerializationArgs args, BsonDocumentWrapper value)
+   at MongoDB.Bson.Serialization.Serializers.BsonValueSerializerBase`1.Serialize(BsonSerializationContext context, BsonSerializationArgs args, TBsonValue value)
+   at MongoDB.Bson.Serialization.Serializers.SerializerBase`1.MongoDB.Bson.Serialization.IBsonSerializer.Serialize(BsonSerializationContext context, BsonSerializationArgs args, Object value)
+   at MongoDB.Bson.Serialization.IBsonSerializerExtensions.Serialize(IBsonSerializer serializer, BsonSerializationContext context, Object value)
+   at MongoDB.Bson.Serialization.Serializers.BsonValueSerializerBase`1.Serialize(BsonSerializationContext context, BsonSerializationArgs args, TBsonValue value)
+   at MongoDB.Driver.Core.Operations.BulkInsertOperation.InsertRequestSerializer.SerializeValue(BsonSerializationContext context, BsonSerializationArgs args, InsertRequest value)
+   at MongoDB.Bson.Serialization.Serializers.SealedClassSerializerBase`1.Serialize(BsonSerializationContext context, BsonSerializationArgs args, TValue value)
+   at MongoDB.Bson.Serialization.Serializers.SerializerBase`1.MongoDB.Bson.Serialization.IBsonSerializer.Serialize(BsonSerializationContext context, BsonSerializationArgs args, Object value)
+   at MongoDB.Bson.Serialization.IBsonSerializerExtensions.Serialize(IBsonSerializer serializer, BsonSerializationContext context, Object value)
+   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandMessageBinaryEncoder.WriteType1Section(BsonBinaryWriter writer, Type1CommandMessageSection section, Int64 messageStartPosition)
+   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandMessageBinaryEncoder.WriteSection(BsonBinaryWriter writer, CommandMessageSection section, Int64 messageStartPosition)
+   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandMessageBinaryEncoder.WriteSections(BsonBinaryWriter writer, IEnumerable`1 sections, Int64 messageStartPosition)
+   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandMessageBinaryEncoder.WriteMessage(CommandMessage message)
+   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandRequestMessageBinaryEncoder.WriteMessage(CommandRequestMessage message)
+   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandRequestMessageBinaryEncoder.MongoDB.Driver.Core.WireProtocol.Messages.Encoders.IMessageEncoder.WriteMessage(MongoDBMessage message)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.SendMessagesHelper.EncodeMessages(CancellationToken cancellationToken, List`1& sentMessages)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.SendMessagesAsync(IEnumerable`1 messages, MessageEncoderSettings messageEncoderSettings, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.ConnectionPools.ExclusiveConnectionPool.PooledConnection.SendMessagesAsync(IEnumerable`1 messages, MessageEncoderSettings messageEncoderSettings, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.WireProtocol.CommandUsingCommandMessageWireProtocol`1.SendMessageAndProcessResponseAsync(CommandRequestMessage message, Int32 responseTo, IConnection connection, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.WireProtocol.CommandUsingCommandMessageWireProtocol`1.ExecuteAsync(IConnection connection, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Servers.Server.ServerChannel.ExecuteProtocolAsync[TResult](IWireProtocol`1 protocol, ICoreSession session, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.RetryableWriteOperationExecutor.ExecuteAsync[TResult](IRetryableWriteOperation`1 operation, RetryableWriteContext context, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.BulkUnmixedWriteOperationBase`1.ExecuteBatchAsync(RetryableWriteContext context, Batch batch, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.BulkUnmixedWriteOperationBase`1.ExecuteBatchesAsync(RetryableWriteContext context, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.BulkMixedWriteOperation.ExecuteBatchAsync(RetryableWriteContext context, Batch batch, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.BulkMixedWriteOperation.ExecuteAsync(IWriteBinding binding, CancellationToken cancellationToken)
+   at MongoDB.Driver.OperationExecutor.ExecuteWriteOperationAsync[TResult](IWriteBinding binding, IWriteOperation`1 operation, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.ExecuteWriteOperationAsync[TResult](IClientSessionHandle session, IWriteOperation`1 operation, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.BulkWriteAsync(IClientSessionHandle session, IEnumerable`1 requests, BulkWriteOptions options, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.UsingImplicitSessionAsync[TResult](Func`2 funcAsync, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionBase`1.InsertOneAsync(TDocument document, InsertOneOptions options, Func`3 bulkWriteAsync)
+   at MBS_QUERY.Application.UserCases.Events.Mentors.MentorCreatedEventHandler.Handle(MentorCreated request, CancellationToken cancellationToken) in C:\Users\ADMIN\Desktop\PRN231\MBS\MBS-QUERY\MBS_QUERY.Application\UserCases\Events\Mentors\MentorCreatedEventHandler.cs:line 27
+   at MBS_QUERY.Application.Behaviors.TracingPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\ADMIN\Desktop\PRN231\MBS\MBS-QUERY\MBS_QUERY.Application\Behaviors\TracingPipelineBehavior.cs:line 23
+   at MBS_QUERY.Application.Behaviors.PerformancePipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\ADMIN\Desktop\PRN231\MBS\MBS-QUERY\MBS_QUERY.Application\Behaviors\PerformancePipelineBehavior.cs:line 23
+   at MediatR.Wrappers.RequestHandlerWrapperImpl`2.Handle(Object request, IServiceProvider serviceProvider, CancellationToken cancellationToken)
+   at MBS_QUERY.Infrastructure.Consumer.Abstractions.Messages.Consumer`1.Consume(ConsumeContext`1 context) in C:\Users\ADMIN\Desktop\PRN231\MBS\MBS-QUERY\MBS_QUERY.Infrastructure\Consumer\Abstractions\Messages\Consumer.cs:line 21
+   at MassTransit.DependencyInjection.ScopeConsumerFactory`1.Send[TMessage](ConsumeContext`1 context, IPipe`1 next) in /_/src/MassTransit/DependencyInjection/DependencyInjection/ScopeConsumerFactory.cs:line 22
+   at MassTransit.DependencyInjection.ScopeConsumerFactory`1.Send[TMessage](ConsumeContext`1 context, IPipe`1 next) in /_/src/MassTransit/DependencyInjection/DependencyInjection/ScopeConsumerFactory.cs:line 22
+   at MassTransit.Middleware.ConsumerMessageFilter`2.MassTransit.IFilter<MassTransit.ConsumeContext<TMessage>>.Send(ConsumeContext`1 context, IPipe`1 next) in /_/src/MassTransit/Middleware/ConsumerMessageFilter.cs:line 48
+   at MassTransit.Middleware.ConsumerMessageFilter`2.MassTransit.IFilter<MassTransit.ConsumeContext<TMessage>>.Send(ConsumeContext`1 context, IPipe`1 next) in /_/src/MassTransit/Middleware/ConsumerMessageFilter.cs:line 73
+   at MassTransit.Middleware.RetryFilter`1.MassTransit.IFilter<TContext>.Send(TContext context, IPipe`1 next) in /_/src/MassTransit/Middleware/RetryFilter.cs:line 47
+2024-10-15 15:36:25.939 +07:00 [WRN] R-RETRY "rabbitmq://localhost/phucnghi/mentor-created" "f4510000-f64e-50eb-0d1d-08dcecf461de" MassTransit.RetryPolicies.RetryConsumeContext<MBS_CONTRACT.SHARE.Services.Mentors.DomainEvent+MentorCreated>
+MongoDB.Bson.BsonSerializationException: An error occurred while serializing the MentorSlots property of class MBS_QUERY.Domain.Documents.MentorProjection: The property 'CreatedOnUtc' of type 'MBS_QUERY.Domain.Documents.SlotProjection' cannot use element name 'CreatedOnUtc' because it is already being used by property 'CreatedOnUtc' of type 'MBS_QUERY.Domain.Abstractions.Entities.Document'.
+ ---> MongoDB.Bson.BsonSerializationException: The property 'CreatedOnUtc' of type 'MBS_QUERY.Domain.Documents.SlotProjection' cannot use element name 'CreatedOnUtc' because it is already being used by property 'CreatedOnUtc' of type 'MBS_QUERY.Domain.Abstractions.Entities.Document'.
+   at MongoDB.Bson.Serialization.BsonClassMap.Freeze()
+   at MongoDB.Bson.Serialization.BsonClassMap.LookupClassMap(Type classType)
+   at MongoDB.Bson.Serialization.BsonClassMapSerializationProvider.GetSerializer(Type type, IBsonSerializerRegistry serializerRegistry)
+   at MongoDB.Bson.Serialization.BsonSerializerRegistry.CreateSerializer(Type type)
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at MongoDB.Bson.Serialization.BsonSerializerRegistry.GetSerializer(Type type)
+   at MongoDB.Bson.Serialization.BsonSerializerRegistry.GetSerializer[T]()
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)
+   at System.Lazy`1.ExecutionAndPublication(LazyHelper executionAndPublication, Boolean useDefaultConstructor)
+   at System.Lazy`1.CreateValue()
+   at MongoDB.Bson.Serialization.Serializers.IEnumerableDeserializingAsCollectionSerializer`3.Serialize(BsonSerializationContext context, BsonSerializationArgs args, TIEnumerable value)
+   at MongoDB.Bson.Serialization.Serializers.SerializerBase`1.MongoDB.Bson.Serialization.IBsonSerializer.Serialize(BsonSerializationContext context, BsonSerializationArgs args, Object value)
+   at MongoDB.Bson.Serialization.IBsonSerializerExtensions.Serialize(IBsonSerializer serializer, BsonSerializationContext context, Object value)
+   at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.SerializeNormalMember(BsonSerializationContext context, Object obj, BsonMemberMap memberMap)
+   at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.SerializeMember(BsonSerializationContext context, Object obj, BsonMemberMap memberMap)
+   --- End of inner exception stack trace ---
+   at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.SerializeMember(BsonSerializationContext context, Object obj, BsonMemberMap memberMap)
+   at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.SerializeClass(BsonSerializationContext context, BsonSerializationArgs args, TClass document)
+   at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.Serialize(BsonSerializationContext context, BsonSerializationArgs args, TClass value)
+   at MongoDB.Bson.Serialization.Serializers.SerializerBase`1.MongoDB.Bson.Serialization.IBsonSerializer.Serialize(BsonSerializationContext context, BsonSerializationArgs args, Object value)
+   at MongoDB.Bson.Serialization.IBsonSerializerExtensions.Serialize(IBsonSerializer serializer, BsonSerializationContext context, Object value)
+   at MongoDB.Bson.Serialization.Serializers.BsonDocumentWrapperSerializer.SerializeValue(BsonSerializationContext context, BsonSerializationArgs args, BsonDocumentWrapper value)
+   at MongoDB.Bson.Serialization.Serializers.BsonValueSerializerBase`1.Serialize(BsonSerializationContext context, BsonSerializationArgs args, TBsonValue value)
+   at MongoDB.Bson.Serialization.Serializers.SerializerBase`1.MongoDB.Bson.Serialization.IBsonSerializer.Serialize(BsonSerializationContext context, BsonSerializationArgs args, Object value)
+   at MongoDB.Bson.Serialization.IBsonSerializerExtensions.Serialize(IBsonSerializer serializer, BsonSerializationContext context, Object value)
+   at MongoDB.Bson.Serialization.Serializers.BsonValueSerializerBase`1.Serialize(BsonSerializationContext context, BsonSerializationArgs args, TBsonValue value)
+   at MongoDB.Driver.Core.Operations.BulkInsertOperation.InsertRequestSerializer.SerializeValue(BsonSerializationContext context, BsonSerializationArgs args, InsertRequest value)
+   at MongoDB.Bson.Serialization.Serializers.SealedClassSerializerBase`1.Serialize(BsonSerializationContext context, BsonSerializationArgs args, TValue value)
+   at MongoDB.Bson.Serialization.Serializers.SerializerBase`1.MongoDB.Bson.Serialization.IBsonSerializer.Serialize(BsonSerializationContext context, BsonSerializationArgs args, Object value)
+   at MongoDB.Bson.Serialization.IBsonSerializerExtensions.Serialize(IBsonSerializer serializer, BsonSerializationContext context, Object value)
+   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandMessageBinaryEncoder.WriteType1Section(BsonBinaryWriter writer, Type1CommandMessageSection section, Int64 messageStartPosition)
+   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandMessageBinaryEncoder.WriteSection(BsonBinaryWriter writer, CommandMessageSection section, Int64 messageStartPosition)
+   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandMessageBinaryEncoder.WriteSections(BsonBinaryWriter writer, IEnumerable`1 sections, Int64 messageStartPosition)
+   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandMessageBinaryEncoder.WriteMessage(CommandMessage message)
+   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandRequestMessageBinaryEncoder.WriteMessage(CommandRequestMessage message)
+   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandRequestMessageBinaryEncoder.MongoDB.Driver.Core.WireProtocol.Messages.Encoders.IMessageEncoder.WriteMessage(MongoDBMessage message)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.SendMessagesHelper.EncodeMessages(CancellationToken cancellationToken, List`1& sentMessages)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.SendMessagesAsync(IEnumerable`1 messages, MessageEncoderSettings messageEncoderSettings, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.ConnectionPools.ExclusiveConnectionPool.PooledConnection.SendMessagesAsync(IEnumerable`1 messages, MessageEncoderSettings messageEncoderSettings, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.WireProtocol.CommandUsingCommandMessageWireProtocol`1.SendMessageAndProcessResponseAsync(CommandRequestMessage message, Int32 responseTo, IConnection connection, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.WireProtocol.CommandUsingCommandMessageWireProtocol`1.ExecuteAsync(IConnection connection, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Servers.Server.ServerChannel.ExecuteProtocolAsync[TResult](IWireProtocol`1 protocol, ICoreSession session, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.RetryableWriteOperationExecutor.ExecuteAsync[TResult](IRetryableWriteOperation`1 operation, RetryableWriteContext context, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.BulkUnmixedWriteOperationBase`1.ExecuteBatchAsync(RetryableWriteContext context, Batch batch, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.BulkUnmixedWriteOperationBase`1.ExecuteBatchesAsync(RetryableWriteContext context, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.BulkMixedWriteOperation.ExecuteBatchAsync(RetryableWriteContext context, Batch batch, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.BulkMixedWriteOperation.ExecuteAsync(IWriteBinding binding, CancellationToken cancellationToken)
+   at MongoDB.Driver.OperationExecutor.ExecuteWriteOperationAsync[TResult](IWriteBinding binding, IWriteOperation`1 operation, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.ExecuteWriteOperationAsync[TResult](IClientSessionHandle session, IWriteOperation`1 operation, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.BulkWriteAsync(IClientSessionHandle session, IEnumerable`1 requests, BulkWriteOptions options, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.UsingImplicitSessionAsync[TResult](Func`2 funcAsync, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionBase`1.InsertOneAsync(TDocument document, InsertOneOptions options, Func`3 bulkWriteAsync)
+   at MBS_QUERY.Application.UserCases.Events.Mentors.MentorCreatedEventHandler.Handle(MentorCreated request, CancellationToken cancellationToken) in C:\Users\ADMIN\Desktop\PRN231\MBS\MBS-QUERY\MBS_QUERY.Application\UserCases\Events\Mentors\MentorCreatedEventHandler.cs:line 27
+   at MBS_QUERY.Application.Behaviors.TracingPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\ADMIN\Desktop\PRN231\MBS\MBS-QUERY\MBS_QUERY.Application\Behaviors\TracingPipelineBehavior.cs:line 23
+   at MBS_QUERY.Application.Behaviors.PerformancePipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\ADMIN\Desktop\PRN231\MBS\MBS-QUERY\MBS_QUERY.Application\Behaviors\PerformancePipelineBehavior.cs:line 23
+   at MediatR.Wrappers.RequestHandlerWrapperImpl`2.Handle(Object request, IServiceProvider serviceProvider, CancellationToken cancellationToken)
+   at MBS_QUERY.Infrastructure.Consumer.Abstractions.Messages.Consumer`1.Consume(ConsumeContext`1 context) in C:\Users\ADMIN\Desktop\PRN231\MBS\MBS-QUERY\MBS_QUERY.Infrastructure\Consumer\Abstractions\Messages\Consumer.cs:line 21
+   at MassTransit.DependencyInjection.ScopeConsumerFactory`1.Send[TMessage](ConsumeContext`1 context, IPipe`1 next) in /_/src/MassTransit/DependencyInjection/DependencyInjection/ScopeConsumerFactory.cs:line 22
+   at MassTransit.DependencyInjection.ScopeConsumerFactory`1.Send[TMessage](ConsumeContext`1 context, IPipe`1 next) in /_/src/MassTransit/DependencyInjection/DependencyInjection/ScopeConsumerFactory.cs:line 22
+   at MassTransit.Middleware.ConsumerMessageFilter`2.MassTransit.IFilter<MassTransit.ConsumeContext<TMessage>>.Send(ConsumeContext`1 context, IPipe`1 next) in /_/src/MassTransit/Middleware/ConsumerMessageFilter.cs:line 48
+   at MassTransit.Middleware.ConsumerMessageFilter`2.MassTransit.IFilter<MassTransit.ConsumeContext<TMessage>>.Send(ConsumeContext`1 context, IPipe`1 next) in /_/src/MassTransit/Middleware/ConsumerMessageFilter.cs:line 73
+   at MassTransit.Middleware.RetryFilter`1.MassTransit.IFilter<TContext>.Send(TContext context, IPipe`1 next) in /_/src/MassTransit/Middleware/RetryFilter.cs:line 47
+2024-10-15 15:36:42.886 +07:00 [WRN] R-RETRY "rabbitmq://localhost/phucnghi/mentor-created" "f4510000-f64e-50eb-0d1d-08dcecf461de" MassTransit.RetryPolicies.RetryConsumeContext<MBS_CONTRACT.SHARE.Services.Mentors.DomainEvent+MentorCreated>
+MongoDB.Bson.BsonSerializationException: An error occurred while serializing the MentorSlots property of class MBS_QUERY.Domain.Documents.MentorProjection: The property 'CreatedOnUtc' of type 'MBS_QUERY.Domain.Documents.SlotProjection' cannot use element name 'CreatedOnUtc' because it is already being used by property 'CreatedOnUtc' of type 'MBS_QUERY.Domain.Abstractions.Entities.Document'.
+ ---> MongoDB.Bson.BsonSerializationException: The property 'CreatedOnUtc' of type 'MBS_QUERY.Domain.Documents.SlotProjection' cannot use element name 'CreatedOnUtc' because it is already being used by property 'CreatedOnUtc' of type 'MBS_QUERY.Domain.Abstractions.Entities.Document'.
+   at MongoDB.Bson.Serialization.BsonClassMap.Freeze()
+   at MongoDB.Bson.Serialization.BsonClassMap.LookupClassMap(Type classType)
+   at MongoDB.Bson.Serialization.BsonClassMapSerializationProvider.GetSerializer(Type type, IBsonSerializerRegistry serializerRegistry)
+   at MongoDB.Bson.Serialization.BsonSerializerRegistry.CreateSerializer(Type type)
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at MongoDB.Bson.Serialization.BsonSerializerRegistry.GetSerializer(Type type)
+   at MongoDB.Bson.Serialization.BsonSerializerRegistry.GetSerializer[T]()
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)
+   at System.Lazy`1.ExecutionAndPublication(LazyHelper executionAndPublication, Boolean useDefaultConstructor)
+   at System.Lazy`1.CreateValue()
+   at MongoDB.Bson.Serialization.Serializers.IEnumerableDeserializingAsCollectionSerializer`3.Serialize(BsonSerializationContext context, BsonSerializationArgs args, TIEnumerable value)
+   at MongoDB.Bson.Serialization.Serializers.SerializerBase`1.MongoDB.Bson.Serialization.IBsonSerializer.Serialize(BsonSerializationContext context, BsonSerializationArgs args, Object value)
+   at MongoDB.Bson.Serialization.IBsonSerializerExtensions.Serialize(IBsonSerializer serializer, BsonSerializationContext context, Object value)
+   at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.SerializeNormalMember(BsonSerializationContext context, Object obj, BsonMemberMap memberMap)
+   at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.SerializeMember(BsonSerializationContext context, Object obj, BsonMemberMap memberMap)
+   --- End of inner exception stack trace ---
+   at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.SerializeMember(BsonSerializationContext context, Object obj, BsonMemberMap memberMap)
+   at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.SerializeClass(BsonSerializationContext context, BsonSerializationArgs args, TClass document)
+   at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.Serialize(BsonSerializationContext context, BsonSerializationArgs args, TClass value)
+   at MongoDB.Bson.Serialization.Serializers.SerializerBase`1.MongoDB.Bson.Serialization.IBsonSerializer.Serialize(BsonSerializationContext context, BsonSerializationArgs args, Object value)
+   at MongoDB.Bson.Serialization.IBsonSerializerExtensions.Serialize(IBsonSerializer serializer, BsonSerializationContext context, Object value)
+   at MongoDB.Bson.Serialization.Serializers.BsonDocumentWrapperSerializer.SerializeValue(BsonSerializationContext context, BsonSerializationArgs args, BsonDocumentWrapper value)
+   at MongoDB.Bson.Serialization.Serializers.BsonValueSerializerBase`1.Serialize(BsonSerializationContext context, BsonSerializationArgs args, TBsonValue value)
+   at MongoDB.Bson.Serialization.Serializers.SerializerBase`1.MongoDB.Bson.Serialization.IBsonSerializer.Serialize(BsonSerializationContext context, BsonSerializationArgs args, Object value)
+   at MongoDB.Bson.Serialization.IBsonSerializerExtensions.Serialize(IBsonSerializer serializer, BsonSerializationContext context, Object value)
+   at MongoDB.Bson.Serialization.Serializers.BsonValueSerializerBase`1.Serialize(BsonSerializationContext context, BsonSerializationArgs args, TBsonValue value)
+   at MongoDB.Driver.Core.Operations.BulkInsertOperation.InsertRequestSerializer.SerializeValue(BsonSerializationContext context, BsonSerializationArgs args, InsertRequest value)
+   at MongoDB.Bson.Serialization.Serializers.SealedClassSerializerBase`1.Serialize(BsonSerializationContext context, BsonSerializationArgs args, TValue value)
+   at MongoDB.Bson.Serialization.Serializers.SerializerBase`1.MongoDB.Bson.Serialization.IBsonSerializer.Serialize(BsonSerializationContext context, BsonSerializationArgs args, Object value)
+   at MongoDB.Bson.Serialization.IBsonSerializerExtensions.Serialize(IBsonSerializer serializer, BsonSerializationContext context, Object value)
+   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandMessageBinaryEncoder.WriteType1Section(BsonBinaryWriter writer, Type1CommandMessageSection section, Int64 messageStartPosition)
+   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandMessageBinaryEncoder.WriteSection(BsonBinaryWriter writer, CommandMessageSection section, Int64 messageStartPosition)
+   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandMessageBinaryEncoder.WriteSections(BsonBinaryWriter writer, IEnumerable`1 sections, Int64 messageStartPosition)
+   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandMessageBinaryEncoder.WriteMessage(CommandMessage message)
+   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandRequestMessageBinaryEncoder.WriteMessage(CommandRequestMessage message)
+   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandRequestMessageBinaryEncoder.MongoDB.Driver.Core.WireProtocol.Messages.Encoders.IMessageEncoder.WriteMessage(MongoDBMessage message)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.SendMessagesHelper.EncodeMessages(CancellationToken cancellationToken, List`1& sentMessages)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.SendMessagesAsync(IEnumerable`1 messages, MessageEncoderSettings messageEncoderSettings, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.ConnectionPools.ExclusiveConnectionPool.PooledConnection.SendMessagesAsync(IEnumerable`1 messages, MessageEncoderSettings messageEncoderSettings, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.WireProtocol.CommandUsingCommandMessageWireProtocol`1.SendMessageAndProcessResponseAsync(CommandRequestMessage message, Int32 responseTo, IConnection connection, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.WireProtocol.CommandUsingCommandMessageWireProtocol`1.ExecuteAsync(IConnection connection, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Servers.Server.ServerChannel.ExecuteProtocolAsync[TResult](IWireProtocol`1 protocol, ICoreSession session, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.RetryableWriteOperationExecutor.ExecuteAsync[TResult](IRetryableWriteOperation`1 operation, RetryableWriteContext context, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.BulkUnmixedWriteOperationBase`1.ExecuteBatchAsync(RetryableWriteContext context, Batch batch, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.BulkUnmixedWriteOperationBase`1.ExecuteBatchesAsync(RetryableWriteContext context, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.BulkMixedWriteOperation.ExecuteBatchAsync(RetryableWriteContext context, Batch batch, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.BulkMixedWriteOperation.ExecuteAsync(IWriteBinding binding, CancellationToken cancellationToken)
+   at MongoDB.Driver.OperationExecutor.ExecuteWriteOperationAsync[TResult](IWriteBinding binding, IWriteOperation`1 operation, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.ExecuteWriteOperationAsync[TResult](IClientSessionHandle session, IWriteOperation`1 operation, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.BulkWriteAsync(IClientSessionHandle session, IEnumerable`1 requests, BulkWriteOptions options, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.UsingImplicitSessionAsync[TResult](Func`2 funcAsync, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionBase`1.InsertOneAsync(TDocument document, InsertOneOptions options, Func`3 bulkWriteAsync)
+   at MBS_QUERY.Application.UserCases.Events.Mentors.MentorCreatedEventHandler.Handle(MentorCreated request, CancellationToken cancellationToken) in C:\Users\ADMIN\Desktop\PRN231\MBS\MBS-QUERY\MBS_QUERY.Application\UserCases\Events\Mentors\MentorCreatedEventHandler.cs:line 26
+   at MBS_QUERY.Application.Behaviors.TracingPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\ADMIN\Desktop\PRN231\MBS\MBS-QUERY\MBS_QUERY.Application\Behaviors\TracingPipelineBehavior.cs:line 23
+   at MBS_QUERY.Application.Behaviors.PerformancePipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\ADMIN\Desktop\PRN231\MBS\MBS-QUERY\MBS_QUERY.Application\Behaviors\PerformancePipelineBehavior.cs:line 23
+   at MediatR.Wrappers.RequestHandlerWrapperImpl`2.Handle(Object request, IServiceProvider serviceProvider, CancellationToken cancellationToken)
+   at MBS_QUERY.Infrastructure.Consumer.Abstractions.Messages.Consumer`1.Consume(ConsumeContext`1 context) in C:\Users\ADMIN\Desktop\PRN231\MBS\MBS-QUERY\MBS_QUERY.Infrastructure\Consumer\Abstractions\Messages\Consumer.cs:line 21
+   at MassTransit.DependencyInjection.ScopeConsumerFactory`1.Send[TMessage](ConsumeContext`1 context, IPipe`1 next) in /_/src/MassTransit/DependencyInjection/DependencyInjection/ScopeConsumerFactory.cs:line 22
+   at MassTransit.DependencyInjection.ScopeConsumerFactory`1.Send[TMessage](ConsumeContext`1 context, IPipe`1 next) in /_/src/MassTransit/DependencyInjection/DependencyInjection/ScopeConsumerFactory.cs:line 22
+   at MassTransit.Middleware.ConsumerMessageFilter`2.MassTransit.IFilter<MassTransit.ConsumeContext<TMessage>>.Send(ConsumeContext`1 context, IPipe`1 next) in /_/src/MassTransit/Middleware/ConsumerMessageFilter.cs:line 48
+   at MassTransit.Middleware.ConsumerMessageFilter`2.MassTransit.IFilter<MassTransit.ConsumeContext<TMessage>>.Send(ConsumeContext`1 context, IPipe`1 next) in /_/src/MassTransit/Middleware/ConsumerMessageFilter.cs:line 73
+   at MassTransit.Middleware.RetryFilter`1.MassTransit.IFilter<TContext>.Send(TContext context, IPipe`1 next) in /_/src/MassTransit/Middleware/RetryFilter.cs:line 47
+2024-10-15 15:36:47.250 +07:00 [WRN] R-RETRY "rabbitmq://localhost/phucnghi/mentor-created" "f4510000-f64e-50eb-9426-08dcecf4819b" MassTransit.RetryPolicies.RetryConsumeContext<MBS_CONTRACT.SHARE.Services.Mentors.DomainEvent+MentorCreated>
+MongoDB.Bson.BsonSerializationException: An error occurred while serializing the MentorSlots property of class MBS_QUERY.Domain.Documents.MentorProjection: The property 'CreatedOnUtc' of type 'MBS_QUERY.Domain.Documents.SlotProjection' cannot use element name 'CreatedOnUtc' because it is already being used by property 'CreatedOnUtc' of type 'MBS_QUERY.Domain.Abstractions.Entities.Document'.
+ ---> MongoDB.Bson.BsonSerializationException: The property 'CreatedOnUtc' of type 'MBS_QUERY.Domain.Documents.SlotProjection' cannot use element name 'CreatedOnUtc' because it is already being used by property 'CreatedOnUtc' of type 'MBS_QUERY.Domain.Abstractions.Entities.Document'.
+   at MongoDB.Bson.Serialization.BsonClassMap.Freeze()
+   at MongoDB.Bson.Serialization.BsonClassMap.LookupClassMap(Type classType)
+   at MongoDB.Bson.Serialization.BsonClassMapSerializationProvider.GetSerializer(Type type, IBsonSerializerRegistry serializerRegistry)
+   at MongoDB.Bson.Serialization.BsonSerializerRegistry.CreateSerializer(Type type)
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at MongoDB.Bson.Serialization.BsonSerializerRegistry.GetSerializer(Type type)
+   at MongoDB.Bson.Serialization.BsonSerializerRegistry.GetSerializer[T]()
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)
+--- End of stack trace from previous location ---
+   at System.Lazy`1.CreateValue()
+   at MongoDB.Bson.Serialization.Serializers.IEnumerableDeserializingAsCollectionSerializer`3.Serialize(BsonSerializationContext context, BsonSerializationArgs args, TIEnumerable value)
+   at MongoDB.Bson.Serialization.Serializers.SerializerBase`1.MongoDB.Bson.Serialization.IBsonSerializer.Serialize(BsonSerializationContext context, BsonSerializationArgs args, Object value)
+   at MongoDB.Bson.Serialization.IBsonSerializerExtensions.Serialize(IBsonSerializer serializer, BsonSerializationContext context, Object value)
+   at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.SerializeNormalMember(BsonSerializationContext context, Object obj, BsonMemberMap memberMap)
+   at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.SerializeMember(BsonSerializationContext context, Object obj, BsonMemberMap memberMap)
+   --- End of inner exception stack trace ---
+   at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.SerializeMember(BsonSerializationContext context, Object obj, BsonMemberMap memberMap)
+   at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.SerializeClass(BsonSerializationContext context, BsonSerializationArgs args, TClass document)
+   at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.Serialize(BsonSerializationContext context, BsonSerializationArgs args, TClass value)
+   at MongoDB.Bson.Serialization.Serializers.SerializerBase`1.MongoDB.Bson.Serialization.IBsonSerializer.Serialize(BsonSerializationContext context, BsonSerializationArgs args, Object value)
+   at MongoDB.Bson.Serialization.IBsonSerializerExtensions.Serialize(IBsonSerializer serializer, BsonSerializationContext context, Object value)
+   at MongoDB.Bson.Serialization.Serializers.BsonDocumentWrapperSerializer.SerializeValue(BsonSerializationContext context, BsonSerializationArgs args, BsonDocumentWrapper value)
+   at MongoDB.Bson.Serialization.Serializers.BsonValueSerializerBase`1.Serialize(BsonSerializationContext context, BsonSerializationArgs args, TBsonValue value)
+   at MongoDB.Bson.Serialization.Serializers.SerializerBase`1.MongoDB.Bson.Serialization.IBsonSerializer.Serialize(BsonSerializationContext context, BsonSerializationArgs args, Object value)
+   at MongoDB.Bson.Serialization.IBsonSerializerExtensions.Serialize(IBsonSerializer serializer, BsonSerializationContext context, Object value)
+   at MongoDB.Bson.Serialization.Serializers.BsonValueSerializerBase`1.Serialize(BsonSerializationContext context, BsonSerializationArgs args, TBsonValue value)
+   at MongoDB.Driver.Core.Operations.BulkInsertOperation.InsertRequestSerializer.SerializeValue(BsonSerializationContext context, BsonSerializationArgs args, InsertRequest value)
+   at MongoDB.Bson.Serialization.Serializers.SealedClassSerializerBase`1.Serialize(BsonSerializationContext context, BsonSerializationArgs args, TValue value)
+   at MongoDB.Bson.Serialization.Serializers.SerializerBase`1.MongoDB.Bson.Serialization.IBsonSerializer.Serialize(BsonSerializationContext context, BsonSerializationArgs args, Object value)
+   at MongoDB.Bson.Serialization.IBsonSerializerExtensions.Serialize(IBsonSerializer serializer, BsonSerializationContext context, Object value)
+   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandMessageBinaryEncoder.WriteType1Section(BsonBinaryWriter writer, Type1CommandMessageSection section, Int64 messageStartPosition)
+   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandMessageBinaryEncoder.WriteSection(BsonBinaryWriter writer, CommandMessageSection section, Int64 messageStartPosition)
+   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandMessageBinaryEncoder.WriteSections(BsonBinaryWriter writer, IEnumerable`1 sections, Int64 messageStartPosition)
+   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandMessageBinaryEncoder.WriteMessage(CommandMessage message)
+   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandRequestMessageBinaryEncoder.WriteMessage(CommandRequestMessage message)
+   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandRequestMessageBinaryEncoder.MongoDB.Driver.Core.WireProtocol.Messages.Encoders.IMessageEncoder.WriteMessage(MongoDBMessage message)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.SendMessagesHelper.EncodeMessages(CancellationToken cancellationToken, List`1& sentMessages)
+   at MongoDB.Driver.Core.Connections.BinaryConnection.SendMessagesAsync(IEnumerable`1 messages, MessageEncoderSettings messageEncoderSettings, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.ConnectionPools.ExclusiveConnectionPool.PooledConnection.SendMessagesAsync(IEnumerable`1 messages, MessageEncoderSettings messageEncoderSettings, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.WireProtocol.CommandUsingCommandMessageWireProtocol`1.SendMessageAndProcessResponseAsync(CommandRequestMessage message, Int32 responseTo, IConnection connection, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.WireProtocol.CommandUsingCommandMessageWireProtocol`1.ExecuteAsync(IConnection connection, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Servers.Server.ServerChannel.ExecuteProtocolAsync[TResult](IWireProtocol`1 protocol, ICoreSession session, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.RetryableWriteOperationExecutor.ExecuteAsync[TResult](IRetryableWriteOperation`1 operation, RetryableWriteContext context, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.BulkUnmixedWriteOperationBase`1.ExecuteBatchAsync(RetryableWriteContext context, Batch batch, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.BulkUnmixedWriteOperationBase`1.ExecuteBatchesAsync(RetryableWriteContext context, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.BulkMixedWriteOperation.ExecuteBatchAsync(RetryableWriteContext context, Batch batch, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.BulkMixedWriteOperation.ExecuteAsync(IWriteBinding binding, CancellationToken cancellationToken)
+   at MongoDB.Driver.OperationExecutor.ExecuteWriteOperationAsync[TResult](IWriteBinding binding, IWriteOperation`1 operation, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.ExecuteWriteOperationAsync[TResult](IClientSessionHandle session, IWriteOperation`1 operation, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.BulkWriteAsync(IClientSessionHandle session, IEnumerable`1 requests, BulkWriteOptions options, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.UsingImplicitSessionAsync[TResult](Func`2 funcAsync, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionBase`1.InsertOneAsync(TDocument document, InsertOneOptions options, Func`3 bulkWriteAsync)
+   at MBS_QUERY.Application.UserCases.Events.Mentors.MentorCreatedEventHandler.Handle(MentorCreated request, CancellationToken cancellationToken) in C:\Users\ADMIN\Desktop\PRN231\MBS\MBS-QUERY\MBS_QUERY.Application\UserCases\Events\Mentors\MentorCreatedEventHandler.cs:line 26
+   at MBS_QUERY.Application.Behaviors.TracingPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\ADMIN\Desktop\PRN231\MBS\MBS-QUERY\MBS_QUERY.Application\Behaviors\TracingPipelineBehavior.cs:line 23
+   at MBS_QUERY.Application.Behaviors.PerformancePipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\ADMIN\Desktop\PRN231\MBS\MBS-QUERY\MBS_QUERY.Application\Behaviors\PerformancePipelineBehavior.cs:line 23
+   at MediatR.Wrappers.RequestHandlerWrapperImpl`2.Handle(Object request, IServiceProvider serviceProvider, CancellationToken cancellationToken)
+   at MBS_QUERY.Infrastructure.Consumer.Abstractions.Messages.Consumer`1.Consume(ConsumeContext`1 context) in C:\Users\ADMIN\Desktop\PRN231\MBS\MBS-QUERY\MBS_QUERY.Infrastructure\Consumer\Abstractions\Messages\Consumer.cs:line 21
+   at MassTransit.DependencyInjection.ScopeConsumerFactory`1.Send[TMessage](ConsumeContext`1 context, IPipe`1 next) in /_/src/MassTransit/DependencyInjection/DependencyInjection/ScopeConsumerFactory.cs:line 22
+   at MassTransit.DependencyInjection.ScopeConsumerFactory`1.Send[TMessage](ConsumeContext`1 context, IPipe`1 next) in /_/src/MassTransit/DependencyInjection/DependencyInjection/ScopeConsumerFactory.cs:line 22
+   at MassTransit.Middleware.ConsumerMessageFilter`2.MassTransit.IFilter<MassTransit.ConsumeContext<TMessage>>.Send(ConsumeContext`1 context, IPipe`1 next) in /_/src/MassTransit/Middleware/ConsumerMessageFilter.cs:line 48
+   at MassTransit.Middleware.ConsumerMessageFilter`2.MassTransit.IFilter<MassTransit.ConsumeContext<TMessage>>.Send(ConsumeContext`1 context, IPipe`1 next) in /_/src/MassTransit/Middleware/ConsumerMessageFilter.cs:line 73
+   at MassTransit.Middleware.RetryFilter`1.MassTransit.IFilter<TContext>.Send(TContext context, IPipe`1 next) in /_/src/MassTransit/Middleware/RetryFilter.cs:line 47
+2024-10-15 15:39:27.078 +07:00 [WRN] Long Time Running - Request Details: MentorSlotCreated (11780 milliseconds) {"IdEvent":"8d940e23-f4af-4269-87fa-99ed07652954","Slots":[{"MentorId":"0caba0c4-6da2-4215-94ba-b87ce65e40d1","StartTime":"07:00:00.0000000","EndTime":"08:00:00.0000000","Date":"2001-01-06","IsOnline":true,"Note":"string","Month":1,"IsBook":false,"CreatedOnUtc":"0001-01-01T00:00:00.0000000+00:00","ModifiedOnUtc":null,"$type":"Slot"}],"MentorId":"0caba0c4-6da2-4215-94ba-b87ce65e40d1","$type":"MentorSlotCreated"}
+2024-10-15 15:40:01.228 +07:00 [WRN] Long Time Running - Request Details: MentorSlotCreated (10412 milliseconds) {"IdEvent":"bc9ce840-6df1-46ba-8956-2d7e33d0fa84","Slots":[{"MentorId":"52e915dd-d176-46fb-b09e-6f79a20af21e","StartTime":"07:00:00.0000000","EndTime":"08:00:00.0000000","Date":"2001-01-06","IsOnline":true,"Note":"string","Month":1,"IsBook":false,"CreatedOnUtc":"0001-01-01T00:00:00.0000000+00:00","ModifiedOnUtc":null,"$type":"Slot"}],"MentorId":"52e915dd-d176-46fb-b09e-6f79a20af21e","$type":"MentorSlotCreated"}
+2024-10-15 15:40:29.296 +07:00 [WRN] Connection Failed: "rabbitmq://localhost/phucnghi"
+RabbitMQ.Client.Exceptions.BrokerUnreachableException: None of the specified endpoints were reachable
+ ---> System.IO.IOException: connection.start was never received, likely due to a network timeout
+ ---> System.IO.EndOfStreamException: Reached the end of the stream. Possible authentication failure.
+   at RabbitMQ.Client.Impl.InboundFrame.ReadFrom(Stream reader, Byte[] frameHeaderBuffer, ArrayPool`1 pool, UInt32 maxMessageSize)
+   at RabbitMQ.Client.Impl.SocketFrameHandler.ReadFrame()
+   at RabbitMQ.Client.Framing.Impl.Connection.MainLoopIteration()
+   at RabbitMQ.Client.Framing.Impl.Connection.MainLoop()
+   --- End of inner exception stack trace ---
+   at RabbitMQ.Client.Framing.Impl.Connection.StartAndTune()
+   at RabbitMQ.Client.Framing.Impl.Connection.Open(Boolean insist)
+   at RabbitMQ.Client.Framing.Impl.Connection..ctor(IConnectionFactory factory, Boolean insist, IFrameHandler frameHandler, String clientProvidedName)
+   at RabbitMQ.Client.Framing.Impl.Connection..ctor(IConnectionFactory factory, Boolean insist, IFrameHandler frameHandler, ArrayPool`1 memoryPool, String clientProvidedName)
+   at RabbitMQ.Client.Framing.Impl.ProtocolBase.CreateConnection(IConnectionFactory factory, Boolean insist, IFrameHandler frameHandler, ArrayPool`1 memoryPool, String clientProvidedName)
+   at RabbitMQ.Client.ConnectionFactory.CreateConnection(IEndpointResolver endpointResolver, String clientProvidedName)
+   --- End of inner exception stack trace ---
+   at RabbitMQ.Client.ConnectionFactory.CreateConnection(IEndpointResolver endpointResolver, String clientProvidedName)
+   at RabbitMQ.Client.ConnectionFactory.CreateConnection(IList`1 hostnames, String clientProvidedName)
+   at MassTransit.RabbitMqTransport.ConnectionContextFactory.CreateConnection(ISupervisor supervisor) in /_/src/Transports/MassTransit.RabbitMqTransport/RabbitMqTransport/ConnectionContextFactory.cs:line 85
+2024-10-15 15:40:41.352 +07:00 [WRN] Connection Failed: "rabbitmq://localhost/phucnghi"
+RabbitMQ.Client.Exceptions.BrokerUnreachableException: None of the specified endpoints were reachable
+ ---> System.AggregateException: One or more errors occurred. (Connection failed)
+ ---> RabbitMQ.Client.Exceptions.ConnectFailureException: Connection failed
+ ---> System.Net.Sockets.SocketException (10061): No connection could be made because the target machine actively refused it.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Threading.Tasks.ValueTask.ValueTaskSourceAsTask.<>c.<.cctor>b__4_0(Object state)
+--- End of stack trace from previous location ---
+   at RabbitMQ.Client.TcpClientAdapter.ConnectAsync(String host, Int32 port)
+   at RabbitMQ.Client.Impl.TaskExtensions.TimeoutAfter(Task task, TimeSpan timeout)
+   at RabbitMQ.Client.Impl.SocketFrameHandler.ConnectOrFail(ITcpClient socket, AmqpTcpEndpoint endpoint, TimeSpan timeout)
+   --- End of inner exception stack trace ---
+   at RabbitMQ.Client.Impl.SocketFrameHandler.ConnectOrFail(ITcpClient socket, AmqpTcpEndpoint endpoint, TimeSpan timeout)
+   at RabbitMQ.Client.Impl.SocketFrameHandler.ConnectUsingAddressFamily(AmqpTcpEndpoint endpoint, Func`2 socketFactory, TimeSpan timeout, AddressFamily family)
+   at RabbitMQ.Client.Impl.SocketFrameHandler.ConnectUsingIPv4(AmqpTcpEndpoint endpoint, Func`2 socketFactory, TimeSpan timeout)
+   at RabbitMQ.Client.Impl.SocketFrameHandler..ctor(AmqpTcpEndpoint endpoint, Func`2 socketFactory, TimeSpan connectionTimeout, TimeSpan readTimeout, TimeSpan writeTimeout)
+   at RabbitMQ.Client.Framing.Impl.IProtocolExtensions.CreateFrameHandler(IProtocol protocol, AmqpTcpEndpoint endpoint, ArrayPool`1 pool, Func`2 socketFactory, TimeSpan connectionTimeout, TimeSpan readTimeout, TimeSpan writeTimeout)
+   at RabbitMQ.Client.ConnectionFactory.CreateFrameHandler(AmqpTcpEndpoint endpoint)
+   at RabbitMQ.Client.EndpointResolverExtensions.SelectOne[T](IEndpointResolver resolver, Func`2 selector)
+   --- End of inner exception stack trace ---
+   at RabbitMQ.Client.EndpointResolverExtensions.SelectOne[T](IEndpointResolver resolver, Func`2 selector)
+   at RabbitMQ.Client.ConnectionFactory.CreateConnection(IEndpointResolver endpointResolver, String clientProvidedName)
+   --- End of inner exception stack trace ---
+   at RabbitMQ.Client.ConnectionFactory.CreateConnection(IEndpointResolver endpointResolver, String clientProvidedName)
+   at RabbitMQ.Client.ConnectionFactory.CreateConnection(IList`1 hostnames, String clientProvidedName)
+   at MassTransit.RabbitMqTransport.ConnectionContextFactory.CreateConnection(ISupervisor supervisor) in /_/src/Transports/MassTransit.RabbitMqTransport/RabbitMqTransport/ConnectionContextFactory.cs:line 85
+2024-10-15 15:40:55.925 +07:00 [WRN] Connection Failed: "rabbitmq://localhost/phucnghi"
+RabbitMQ.Client.Exceptions.BrokerUnreachableException: None of the specified endpoints were reachable
+ ---> System.AggregateException: One or more errors occurred. (Connection failed)
+ ---> RabbitMQ.Client.Exceptions.ConnectFailureException: Connection failed
+ ---> System.Net.Sockets.SocketException (10061): No connection could be made because the target machine actively refused it.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Threading.Tasks.ValueTask.ValueTaskSourceAsTask.<>c.<.cctor>b__4_0(Object state)
+--- End of stack trace from previous location ---
+   at RabbitMQ.Client.TcpClientAdapter.ConnectAsync(String host, Int32 port)
+   at RabbitMQ.Client.Impl.TaskExtensions.TimeoutAfter(Task task, TimeSpan timeout)
+   at RabbitMQ.Client.Impl.SocketFrameHandler.ConnectOrFail(ITcpClient socket, AmqpTcpEndpoint endpoint, TimeSpan timeout)
+   --- End of inner exception stack trace ---
+   at RabbitMQ.Client.Impl.SocketFrameHandler.ConnectOrFail(ITcpClient socket, AmqpTcpEndpoint endpoint, TimeSpan timeout)
+   at RabbitMQ.Client.Impl.SocketFrameHandler.ConnectUsingAddressFamily(AmqpTcpEndpoint endpoint, Func`2 socketFactory, TimeSpan timeout, AddressFamily family)
+   at RabbitMQ.Client.Impl.SocketFrameHandler.ConnectUsingIPv4(AmqpTcpEndpoint endpoint, Func`2 socketFactory, TimeSpan timeout)
+   at RabbitMQ.Client.Impl.SocketFrameHandler..ctor(AmqpTcpEndpoint endpoint, Func`2 socketFactory, TimeSpan connectionTimeout, TimeSpan readTimeout, TimeSpan writeTimeout)
+   at RabbitMQ.Client.Framing.Impl.IProtocolExtensions.CreateFrameHandler(IProtocol protocol, AmqpTcpEndpoint endpoint, ArrayPool`1 pool, Func`2 socketFactory, TimeSpan connectionTimeout, TimeSpan readTimeout, TimeSpan writeTimeout)
+   at RabbitMQ.Client.ConnectionFactory.CreateFrameHandler(AmqpTcpEndpoint endpoint)
+   at RabbitMQ.Client.EndpointResolverExtensions.SelectOne[T](IEndpointResolver resolver, Func`2 selector)
+   --- End of inner exception stack trace ---
+   at RabbitMQ.Client.EndpointResolverExtensions.SelectOne[T](IEndpointResolver resolver, Func`2 selector)
+   at RabbitMQ.Client.ConnectionFactory.CreateConnection(IEndpointResolver endpointResolver, String clientProvidedName)
+   --- End of inner exception stack trace ---
+   at RabbitMQ.Client.ConnectionFactory.CreateConnection(IEndpointResolver endpointResolver, String clientProvidedName)
+   at RabbitMQ.Client.ConnectionFactory.CreateConnection(IList`1 hostnames, String clientProvidedName)
+   at MassTransit.RabbitMqTransport.ConnectionContextFactory.CreateConnection(ISupervisor supervisor) in /_/src/Transports/MassTransit.RabbitMqTransport/RabbitMqTransport/ConnectionContextFactory.cs:line 85
+2024-10-15 15:41:16.663 +07:00 [WRN] Connection Failed: "rabbitmq://localhost/phucnghi"
+RabbitMQ.Client.Exceptions.BrokerUnreachableException: None of the specified endpoints were reachable
+ ---> System.AggregateException: One or more errors occurred. (Connection failed)
+ ---> RabbitMQ.Client.Exceptions.ConnectFailureException: Connection failed
+ ---> System.Net.Sockets.SocketException (10061): No connection could be made because the target machine actively refused it.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Threading.Tasks.ValueTask.ValueTaskSourceAsTask.<>c.<.cctor>b__4_0(Object state)
+--- End of stack trace from previous location ---
+   at RabbitMQ.Client.TcpClientAdapter.ConnectAsync(String host, Int32 port)
+   at RabbitMQ.Client.Impl.TaskExtensions.TimeoutAfter(Task task, TimeSpan timeout)
+   at RabbitMQ.Client.Impl.SocketFrameHandler.ConnectOrFail(ITcpClient socket, AmqpTcpEndpoint endpoint, TimeSpan timeout)
+   --- End of inner exception stack trace ---
+   at RabbitMQ.Client.Impl.SocketFrameHandler.ConnectOrFail(ITcpClient socket, AmqpTcpEndpoint endpoint, TimeSpan timeout)
+   at RabbitMQ.Client.Impl.SocketFrameHandler.ConnectUsingAddressFamily(AmqpTcpEndpoint endpoint, Func`2 socketFactory, TimeSpan timeout, AddressFamily family)
+   at RabbitMQ.Client.Impl.SocketFrameHandler.ConnectUsingIPv4(AmqpTcpEndpoint endpoint, Func`2 socketFactory, TimeSpan timeout)
+   at RabbitMQ.Client.Impl.SocketFrameHandler..ctor(AmqpTcpEndpoint endpoint, Func`2 socketFactory, TimeSpan connectionTimeout, TimeSpan readTimeout, TimeSpan writeTimeout)
+   at RabbitMQ.Client.Framing.Impl.IProtocolExtensions.CreateFrameHandler(IProtocol protocol, AmqpTcpEndpoint endpoint, ArrayPool`1 pool, Func`2 socketFactory, TimeSpan connectionTimeout, TimeSpan readTimeout, TimeSpan writeTimeout)
+   at RabbitMQ.Client.ConnectionFactory.CreateFrameHandler(AmqpTcpEndpoint endpoint)
+   at RabbitMQ.Client.EndpointResolverExtensions.SelectOne[T](IEndpointResolver resolver, Func`2 selector)
+   --- End of inner exception stack trace ---
+   at RabbitMQ.Client.EndpointResolverExtensions.SelectOne[T](IEndpointResolver resolver, Func`2 selector)
+   at RabbitMQ.Client.ConnectionFactory.CreateConnection(IEndpointResolver endpointResolver, String clientProvidedName)
+   --- End of inner exception stack trace ---
+   at RabbitMQ.Client.ConnectionFactory.CreateConnection(IEndpointResolver endpointResolver, String clientProvidedName)
+   at RabbitMQ.Client.ConnectionFactory.CreateConnection(IList`1 hostnames, String clientProvidedName)
+   at MassTransit.RabbitMqTransport.ConnectionContextFactory.CreateConnection(ISupervisor supervisor) in /_/src/Transports/MassTransit.RabbitMqTransport/RabbitMqTransport/ConnectionContextFactory.cs:line 85
+2024-10-15 15:41:50.569 +07:00 [WRN] Connection Failed: "rabbitmq://localhost/phucnghi"
+RabbitMQ.Client.Exceptions.BrokerUnreachableException: None of the specified endpoints were reachable
+ ---> System.AggregateException: One or more errors occurred. (Connection failed)
+ ---> RabbitMQ.Client.Exceptions.ConnectFailureException: Connection failed
+ ---> System.Net.Sockets.SocketException (10061): No connection could be made because the target machine actively refused it.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Threading.Tasks.ValueTask.ValueTaskSourceAsTask.<>c.<.cctor>b__4_0(Object state)
+--- End of stack trace from previous location ---
+   at RabbitMQ.Client.TcpClientAdapter.ConnectAsync(String host, Int32 port)
+   at RabbitMQ.Client.Impl.TaskExtensions.TimeoutAfter(Task task, TimeSpan timeout)
+   at RabbitMQ.Client.Impl.SocketFrameHandler.ConnectOrFail(ITcpClient socket, AmqpTcpEndpoint endpoint, TimeSpan timeout)
+   --- End of inner exception stack trace ---
+   at RabbitMQ.Client.Impl.SocketFrameHandler.ConnectOrFail(ITcpClient socket, AmqpTcpEndpoint endpoint, TimeSpan timeout)
+   at RabbitMQ.Client.Impl.SocketFrameHandler.ConnectUsingAddressFamily(AmqpTcpEndpoint endpoint, Func`2 socketFactory, TimeSpan timeout, AddressFamily family)
+   at RabbitMQ.Client.Impl.SocketFrameHandler.ConnectUsingIPv4(AmqpTcpEndpoint endpoint, Func`2 socketFactory, TimeSpan timeout)
+   at RabbitMQ.Client.Impl.SocketFrameHandler..ctor(AmqpTcpEndpoint endpoint, Func`2 socketFactory, TimeSpan connectionTimeout, TimeSpan readTimeout, TimeSpan writeTimeout)
+   at RabbitMQ.Client.Framing.Impl.IProtocolExtensions.CreateFrameHandler(IProtocol protocol, AmqpTcpEndpoint endpoint, ArrayPool`1 pool, Func`2 socketFactory, TimeSpan connectionTimeout, TimeSpan readTimeout, TimeSpan writeTimeout)
+   at RabbitMQ.Client.ConnectionFactory.CreateFrameHandler(AmqpTcpEndpoint endpoint)
+   at RabbitMQ.Client.EndpointResolverExtensions.SelectOne[T](IEndpointResolver resolver, Func`2 selector)
+   --- End of inner exception stack trace ---
+   at RabbitMQ.Client.EndpointResolverExtensions.SelectOne[T](IEndpointResolver resolver, Func`2 selector)
+   at RabbitMQ.Client.ConnectionFactory.CreateConnection(IEndpointResolver endpointResolver, String clientProvidedName)
+   --- End of inner exception stack trace ---
+   at RabbitMQ.Client.ConnectionFactory.CreateConnection(IEndpointResolver endpointResolver, String clientProvidedName)
+   at RabbitMQ.Client.ConnectionFactory.CreateConnection(IList`1 hostnames, String clientProvidedName)
+   at MassTransit.RabbitMqTransport.ConnectionContextFactory.CreateConnection(ISupervisor supervisor) in /_/src/Transports/MassTransit.RabbitMqTransport/RabbitMqTransport/ConnectionContextFactory.cs:line 85
+2024-10-15 15:42:25.956 +07:00 [WRN] Connection Failed: "rabbitmq://localhost/phucnghi"
+RabbitMQ.Client.Exceptions.BrokerUnreachableException: None of the specified endpoints were reachable
+ ---> System.AggregateException: One or more errors occurred. (Connection failed)
+ ---> RabbitMQ.Client.Exceptions.ConnectFailureException: Connection failed
+ ---> System.Net.Sockets.SocketException (10061): No connection could be made because the target machine actively refused it.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Threading.Tasks.ValueTask.ValueTaskSourceAsTask.<>c.<.cctor>b__4_0(Object state)
+--- End of stack trace from previous location ---
+   at RabbitMQ.Client.TcpClientAdapter.ConnectAsync(String host, Int32 port)
+   at RabbitMQ.Client.Impl.TaskExtensions.TimeoutAfter(Task task, TimeSpan timeout)
+   at RabbitMQ.Client.Impl.SocketFrameHandler.ConnectOrFail(ITcpClient socket, AmqpTcpEndpoint endpoint, TimeSpan timeout)
+   --- End of inner exception stack trace ---
+   at RabbitMQ.Client.Impl.SocketFrameHandler.ConnectOrFail(ITcpClient socket, AmqpTcpEndpoint endpoint, TimeSpan timeout)
+   at RabbitMQ.Client.Impl.SocketFrameHandler.ConnectUsingAddressFamily(AmqpTcpEndpoint endpoint, Func`2 socketFactory, TimeSpan timeout, AddressFamily family)
+   at RabbitMQ.Client.Impl.SocketFrameHandler.ConnectUsingIPv4(AmqpTcpEndpoint endpoint, Func`2 socketFactory, TimeSpan timeout)
+   at RabbitMQ.Client.Impl.SocketFrameHandler..ctor(AmqpTcpEndpoint endpoint, Func`2 socketFactory, TimeSpan connectionTimeout, TimeSpan readTimeout, TimeSpan writeTimeout)
+   at RabbitMQ.Client.Framing.Impl.IProtocolExtensions.CreateFrameHandler(IProtocol protocol, AmqpTcpEndpoint endpoint, ArrayPool`1 pool, Func`2 socketFactory, TimeSpan connectionTimeout, TimeSpan readTimeout, TimeSpan writeTimeout)
+   at RabbitMQ.Client.ConnectionFactory.CreateFrameHandler(AmqpTcpEndpoint endpoint)
+   at RabbitMQ.Client.EndpointResolverExtensions.SelectOne[T](IEndpointResolver resolver, Func`2 selector)
+   --- End of inner exception stack trace ---
+   at RabbitMQ.Client.EndpointResolverExtensions.SelectOne[T](IEndpointResolver resolver, Func`2 selector)
+   at RabbitMQ.Client.ConnectionFactory.CreateConnection(IEndpointResolver endpointResolver, String clientProvidedName)
+   --- End of inner exception stack trace ---
+   at RabbitMQ.Client.ConnectionFactory.CreateConnection(IEndpointResolver endpointResolver, String clientProvidedName)
+   at RabbitMQ.Client.ConnectionFactory.CreateConnection(IList`1 hostnames, String clientProvidedName)
+   at MassTransit.RabbitMqTransport.ConnectionContextFactory.CreateConnection(ISupervisor supervisor) in /_/src/Transports/MassTransit.RabbitMqTransport/RabbitMqTransport/ConnectionContextFactory.cs:line 85
+2024-10-15 15:43:01.388 +07:00 [WRN] Connection Failed: "rabbitmq://localhost/phucnghi"
+RabbitMQ.Client.Exceptions.BrokerUnreachableException: None of the specified endpoints were reachable
+ ---> System.AggregateException: One or more errors occurred. (Connection failed)
+ ---> RabbitMQ.Client.Exceptions.ConnectFailureException: Connection failed
+ ---> System.Net.Sockets.SocketException (10061): No connection could be made because the target machine actively refused it.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Threading.Tasks.ValueTask.ValueTaskSourceAsTask.<>c.<.cctor>b__4_0(Object state)
+--- End of stack trace from previous location ---
+   at RabbitMQ.Client.TcpClientAdapter.ConnectAsync(String host, Int32 port)
+   at RabbitMQ.Client.Impl.TaskExtensions.TimeoutAfter(Task task, TimeSpan timeout)
+   at RabbitMQ.Client.Impl.SocketFrameHandler.ConnectOrFail(ITcpClient socket, AmqpTcpEndpoint endpoint, TimeSpan timeout)
+   --- End of inner exception stack trace ---
+   at RabbitMQ.Client.Impl.SocketFrameHandler.ConnectOrFail(ITcpClient socket, AmqpTcpEndpoint endpoint, TimeSpan timeout)
+   at RabbitMQ.Client.Impl.SocketFrameHandler.ConnectUsingAddressFamily(AmqpTcpEndpoint endpoint, Func`2 socketFactory, TimeSpan timeout, AddressFamily family)
+   at RabbitMQ.Client.Impl.SocketFrameHandler.ConnectUsingIPv4(AmqpTcpEndpoint endpoint, Func`2 socketFactory, TimeSpan timeout)
+   at RabbitMQ.Client.Impl.SocketFrameHandler..ctor(AmqpTcpEndpoint endpoint, Func`2 socketFactory, TimeSpan connectionTimeout, TimeSpan readTimeout, TimeSpan writeTimeout)
+   at RabbitMQ.Client.Framing.Impl.IProtocolExtensions.CreateFrameHandler(IProtocol protocol, AmqpTcpEndpoint endpoint, ArrayPool`1 pool, Func`2 socketFactory, TimeSpan connectionTimeout, TimeSpan readTimeout, TimeSpan writeTimeout)
+   at RabbitMQ.Client.ConnectionFactory.CreateFrameHandler(AmqpTcpEndpoint endpoint)
+   at RabbitMQ.Client.EndpointResolverExtensions.SelectOne[T](IEndpointResolver resolver, Func`2 selector)
+   --- End of inner exception stack trace ---
+   at RabbitMQ.Client.EndpointResolverExtensions.SelectOne[T](IEndpointResolver resolver, Func`2 selector)
+   at RabbitMQ.Client.ConnectionFactory.CreateConnection(IEndpointResolver endpointResolver, String clientProvidedName)
+   --- End of inner exception stack trace ---
+   at RabbitMQ.Client.ConnectionFactory.CreateConnection(IEndpointResolver endpointResolver, String clientProvidedName)
+   at RabbitMQ.Client.ConnectionFactory.CreateConnection(IList`1 hostnames, String clientProvidedName)
+   at MassTransit.RabbitMqTransport.ConnectionContextFactory.CreateConnection(ISupervisor supervisor) in /_/src/Transports/MassTransit.RabbitMqTransport/RabbitMqTransport/ConnectionContextFactory.cs:line 85
+2024-10-15 16:19:55.838 +07:00 [WRN] Long Time Running - Request Details: MentorSlotCreated (22022 milliseconds) {"IdEvent":"4ab45b00-d0bd-4d3c-8c8b-bbb00b5187ac","Slots":[{"Id":"83bd5ccc-3f45-448d-9861-d676460837dd","MentorId":"52e915dd-d176-46fb-b09e-6f79a20af21e","StartTime":"07:00:00.0000000","EndTime":"08:00:00.0000000","Date":"2001-01-20","IsOnline":true,"Note":"string","Month":1,"IsBook":false,"$type":"Slot"},{"Id":"fbad9683-dedc-448d-8966-b488a0ca121f","MentorId":"52e915dd-d176-46fb-b09e-6f79a20af21e","StartTime":"07:00:00.0000000","EndTime":"08:00:00.0000000","Date":"2001-01-21","IsOnline":true,"Note":"string","Month":1,"IsBook":false,"$type":"Slot"},{"Id":"5255242f-1ed0-4372-9371-2438f113073b","MentorId":"52e915dd-d176-46fb-b09e-6f79a20af21e","StartTime":"07:00:00.0000000","EndTime":"08:00:00.0000000","Date":"2001-01-06","IsOnline":true,"Note":"string","Month":1,"IsBook":false,"$type":"Slot"},{"Id":"277101e4-08fa-4b61-bcee-4c84143fbc6f","MentorId":"52e915dd-d176-46fb-b09e-6f79a20af21e","StartTime":"07:00:00.0000000","EndTime":"08:00:00.0000000","Date":"2001-01-14","IsOnline":true,"Note":"string","Month":1,"IsBook":false,"$type":"Slot"},{"Id":"fc858a8f-e75c-44d2-83e2-5155721aead4","MentorId":"52e915dd-d176-46fb-b09e-6f79a20af21e","StartTime":"07:00:00.0000000","EndTime":"08:00:00.0000000","Date":"2001-01-15","IsOnline":true,"Note":"string","Month":1,"IsBook":false,"$type":"Slot"},{"Id":"8da81d15-2c96-4acc-b27f-541ec0deae35","MentorId":"52e915dd-d176-46fb-b09e-6f79a20af21e","StartTime":"07:00:00.0000000","EndTime":"08:00:00.0000000","Date":"2001-01-16","IsOnline":true,"Note":"string","Month":1,"IsBook":false,"$type":"Slot"},{"Id":"f30131f6-2270-475e-9d83-66b40f372682","MentorId":"52e915dd-d176-46fb-b09e-6f79a20af21e","StartTime":"07:00:00.0000000","EndTime":"08:00:00.0000000","Date":"2001-01-13","IsOnline":true,"Note":"string","Month":1,"IsBook":false,"$type":"Slot"},{"Id":"6b0443a5-4dd7-43f1-97f2-e93ec7daff94","MentorId":"52e915dd-d176-46fb-b09e-6f79a20af21e","StartTime":"07:00:00.0000000","EndTime":"08:00:00.0000000","Date":"2001-01-19","IsOnline":true,"Note":"string","Month":1,"IsBook":false,"$type":"Slot"},{"Id":"5a21dc14-4cae-4846-b48f-ed8500751981","MentorId":"52e915dd-d176-46fb-b09e-6f79a20af21e","StartTime":"07:00:00.0000000","EndTime":"08:00:00.0000000","Date":"2001-01-18","IsOnline":true,"Note":"string","Month":1,"IsBook":false,"$type":"Slot"}],"MentorId":"52e915dd-d176-46fb-b09e-6f79a20af21e","$type":"MentorSlotCreated"}
+2024-10-15 16:20:30.365 +07:00 [WRN] Long Time Running - Request Details: MentorSlotCreated (11254 milliseconds) {"IdEvent":"776c5267-bdc8-4a5a-b460-bf3b78169bbb","Slots":[{"Id":"9d5b66cb-67d1-433e-94f7-86a7ae7e3517","MentorId":"52e915dd-d176-46fb-b09e-6f79a20af21e","StartTime":"07:00:00.0000000","EndTime":"08:00:00.0000000","Date":"2001-01-22","IsOnline":true,"Note":"string","Month":1,"IsBook":false,"$type":"Slot"},{"Id":"5255242f-1ed0-4372-9371-2438f113073b","MentorId":"52e915dd-d176-46fb-b09e-6f79a20af21e","StartTime":"07:00:00.0000000","EndTime":"08:00:00.0000000","Date":"2001-01-06","IsOnline":true,"Note":"string","Month":1,"IsBook":false,"$type":"Slot"},{"Id":"277101e4-08fa-4b61-bcee-4c84143fbc6f","MentorId":"52e915dd-d176-46fb-b09e-6f79a20af21e","StartTime":"07:00:00.0000000","EndTime":"08:00:00.0000000","Date":"2001-01-14","IsOnline":true,"Note":"string","Month":1,"IsBook":false,"$type":"Slot"},{"Id":"fc858a8f-e75c-44d2-83e2-5155721aead4","MentorId":"52e915dd-d176-46fb-b09e-6f79a20af21e","StartTime":"07:00:00.0000000","EndTime":"08:00:00.0000000","Date":"2001-01-15","IsOnline":true,"Note":"string","Month":1,"IsBook":false,"$type":"Slot"},{"Id":"8da81d15-2c96-4acc-b27f-541ec0deae35","MentorId":"52e915dd-d176-46fb-b09e-6f79a20af21e","StartTime":"07:00:00.0000000","EndTime":"08:00:00.0000000","Date":"2001-01-16","IsOnline":true,"Note":"string","Month":1,"IsBook":false,"$type":"Slot"},{"Id":"f30131f6-2270-475e-9d83-66b40f372682","MentorId":"52e915dd-d176-46fb-b09e-6f79a20af21e","StartTime":"07:00:00.0000000","EndTime":"08:00:00.0000000","Date":"2001-01-13","IsOnline":true,"Note":"string","Month":1,"IsBook":false,"$type":"Slot"},{"Id":"fbad9683-dedc-448d-8966-b488a0ca121f","MentorId":"52e915dd-d176-46fb-b09e-6f79a20af21e","StartTime":"07:00:00.0000000","EndTime":"08:00:00.0000000","Date":"2001-01-21","IsOnline":true,"Note":"string","Month":1,"IsBook":false,"$type":"Slot"},{"Id":"83bd5ccc-3f45-448d-9861-d676460837dd","MentorId":"52e915dd-d176-46fb-b09e-6f79a20af21e","StartTime":"07:00:00.0000000","EndTime":"08:00:00.0000000","Date":"2001-01-20","IsOnline":true,"Note":"string","Month":1,"IsBook":false,"$type":"Slot"},{"Id":"6b0443a5-4dd7-43f1-97f2-e93ec7daff94","MentorId":"52e915dd-d176-46fb-b09e-6f79a20af21e","StartTime":"07:00:00.0000000","EndTime":"08:00:00.0000000","Date":"2001-01-19","IsOnline":true,"Note":"string","Month":1,"IsBook":false,"$type":"Slot"},{"Id":"5a21dc14-4cae-4846-b48f-ed8500751981","MentorId":"52e915dd-d176-46fb-b09e-6f79a20af21e","StartTime":"07:00:00.0000000","EndTime":"08:00:00.0000000","Date":"2001-01-18","IsOnline":true,"Note":"string","Month":1,"IsBook":false,"$type":"Slot"}],"MentorId":"52e915dd-d176-46fb-b09e-6f79a20af21e","$type":"MentorSlotCreated"}
+2024-10-15 16:33:25.437 +07:00 [WRN] Long Time Running - Request Details: MentorSlotCreated (12343 milliseconds) {"IdEvent":"1aee33ab-ec29-489a-b952-bdb2a82178a1","Slots":[{"Id":"f6f5e03e-4bc0-48c4-8e0e-6f53a5be1b23","MentorId":"52e915dd-d176-46fb-b09e-6f79a20af21e","StartTime":"07:00:00.0000000","EndTime":"08:00:00.0000000","Date":"2001-01-24","IsOnline":true,"Note":"string","Month":1,"IsBook":false,"$type":"Slot"},{"Id":"a57b607d-c24d-4646-8ba8-9dd9c4c5f616","MentorId":"52e915dd-d176-46fb-b09e-6f79a20af21e","StartTime":"07:00:00.0000000","EndTime":"08:00:00.0000000","Date":"2001-01-23","IsOnline":true,"Note":"string","Month":1,"IsBook":false,"$type":"Slot"}],"MentorId":"52e915dd-d176-46fb-b09e-6f79a20af21e","$type":"MentorSlotCreated"}
