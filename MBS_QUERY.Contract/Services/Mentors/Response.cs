@@ -2,19 +2,39 @@ namespace MBS_QUERY.Contract.Services.Mentors;
 
 public static class Response
 {
-    public record GetAllMentorsResponse
+    public interface MentorResponse
     {
         public Guid Id { set; get; }
         public string FullName { set; get; }
         public string Email { set; get; }
         public int Point { set; get; }
         public DateTime CreatedOnUtc { set; get; }
-        public IReadOnlyCollection<Skill> Skills { set; get; }
-        public IReadOnlyCollection<Slot> Slots { set; get; }
+    }
+    
+    public record GetAllMentorsResponse : MentorResponse
+    {
+        public Guid Id { get; set; }
+        public string FullName { get; set; }
+        public string Email { get; set; }
+        public int Point { get; set; }
+        public DateTime CreatedOnUtc { get; set; }
+        public IReadOnlyCollection<string> Skills { set; get; }
     };
+
+    public record GetMentorResponse : MentorResponse
+    {
+        public Guid Id { get; set; }
+        public string FullName { get; set; } = default!;
+        public string Email { get; set; } = default!;
+        public int Point { get; set; }
+        public DateTime CreatedOnUtc { get; set; }
+        public IReadOnlyCollection<Skill> Skills { set; get; } = default!;
+        public IReadOnlyCollection<Slot> Slots { set; get; } = default!;
+    };
+    
     public class Slot
     {
-        public Guid? MentorId { get; set; }
+        // public Guid? MentorId { get; set; }
         public TimeOnly StartTime { get; set; }
         public TimeOnly EndTime { get; set; }
         public DateOnly Date { get; set; }
@@ -39,6 +59,4 @@ public static class Response
         public string CetificateImageUrl { set; get; }
         public DateTime CreatedOnUtc { set; get; }
     }
-    
-    public record GetMentorResponse(Guid Id, string Name, decimal Price, string Description);
 }

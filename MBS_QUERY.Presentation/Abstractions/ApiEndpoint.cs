@@ -19,7 +19,7 @@ public abstract class ApiEndpoint
             _ =>
                 Results.BadRequest(
                     CreateProblemDetails(
-                        "Bab Request", StatusCodes.Status400BadRequest,
+                        "Bad Request", StatusCodes.Status400BadRequest,
                         result.Error))
         };
 

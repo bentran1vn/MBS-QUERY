@@ -1,462 +1,952 @@
-2024-10-15 14:39:44.644 +07:00 [WRN] Connection Failed: "rabbitmq://localhost/phucnghi"
-RabbitMQ.Client.Exceptions.BrokerUnreachableException: None of the specified endpoints were reachable
- ---> System.IO.IOException: connection.start was never received, likely due to a network timeout
- ---> System.IO.EndOfStreamException: Reached the end of the stream. Possible authentication failure.
-   at RabbitMQ.Client.Impl.InboundFrame.ReadFrom(Stream reader, Byte[] frameHeaderBuffer, ArrayPool`1 pool, UInt32 maxMessageSize)
-   at RabbitMQ.Client.Impl.SocketFrameHandler.ReadFrame()
-   at RabbitMQ.Client.Framing.Impl.Connection.MainLoopIteration()
-   at RabbitMQ.Client.Framing.Impl.Connection.MainLoop()
-   --- End of inner exception stack trace ---
-   at RabbitMQ.Client.Framing.Impl.Connection.StartAndTune()
-   at RabbitMQ.Client.Framing.Impl.Connection.Open(Boolean insist)
-   at RabbitMQ.Client.Framing.Impl.Connection..ctor(IConnectionFactory factory, Boolean insist, IFrameHandler frameHandler, String clientProvidedName)
-   at RabbitMQ.Client.Framing.Impl.Connection..ctor(IConnectionFactory factory, Boolean insist, IFrameHandler frameHandler, ArrayPool`1 memoryPool, String clientProvidedName)
-   at RabbitMQ.Client.Framing.Impl.ProtocolBase.CreateConnection(IConnectionFactory factory, Boolean insist, IFrameHandler frameHandler, ArrayPool`1 memoryPool, String clientProvidedName)
-   at RabbitMQ.Client.ConnectionFactory.CreateConnection(IEndpointResolver endpointResolver, String clientProvidedName)
-   --- End of inner exception stack trace ---
-   at RabbitMQ.Client.ConnectionFactory.CreateConnection(IEndpointResolver endpointResolver, String clientProvidedName)
-   at RabbitMQ.Client.ConnectionFactory.CreateConnection(IList`1 hostnames, String clientProvidedName)
-   at MassTransit.RabbitMqTransport.ConnectionContextFactory.CreateConnection(ISupervisor supervisor) in /_/src/Transports/MassTransit.RabbitMqTransport/RabbitMqTransport/ConnectionContextFactory.cs:line 85
-2024-10-15 14:39:55.313 +07:00 [WRN] Connection Failed: "rabbitmq://localhost/phucnghi"
-RabbitMQ.Client.Exceptions.BrokerUnreachableException: None of the specified endpoints were reachable
- ---> System.IO.IOException: connection.start was never received, likely due to a network timeout
- ---> System.IO.IOException: Unable to read data from the transport connection: An established connection was aborted by the software in your host machine..
- ---> System.Net.Sockets.SocketException (10053): An established connection was aborted by the software in your host machine.
-   at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 count)
-   --- End of inner exception stack trace ---
-   at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 count)
-   at System.IO.BufferedStream.ReadByteSlow()
-   at RabbitMQ.Client.Impl.InboundFrame.ReadFrom(Stream reader, Byte[] frameHeaderBuffer, ArrayPool`1 pool, UInt32 maxMessageSize)
-   at RabbitMQ.Client.Impl.SocketFrameHandler.ReadFrame()
-   at RabbitMQ.Client.Framing.Impl.Connection.MainLoopIteration()
-   at RabbitMQ.Client.Framing.Impl.Connection.MainLoop()
-   --- End of inner exception stack trace ---
-   at RabbitMQ.Client.Framing.Impl.Connection.StartAndTune()
-   at RabbitMQ.Client.Framing.Impl.Connection.Open(Boolean insist)
-   at RabbitMQ.Client.Framing.Impl.Connection..ctor(IConnectionFactory factory, Boolean insist, IFrameHandler frameHandler, String clientProvidedName)
-   at RabbitMQ.Client.Framing.Impl.Connection..ctor(IConnectionFactory factory, Boolean insist, IFrameHandler frameHandler, ArrayPool`1 memoryPool, String clientProvidedName)
-   at RabbitMQ.Client.Framing.Impl.ProtocolBase.CreateConnection(IConnectionFactory factory, Boolean insist, IFrameHandler frameHandler, ArrayPool`1 memoryPool, String clientProvidedName)
-   at RabbitMQ.Client.ConnectionFactory.CreateConnection(IEndpointResolver endpointResolver, String clientProvidedName)
-   --- End of inner exception stack trace ---
-   at RabbitMQ.Client.ConnectionFactory.CreateConnection(IEndpointResolver endpointResolver, String clientProvidedName)
-   at RabbitMQ.Client.ConnectionFactory.CreateConnection(IList`1 hostnames, String clientProvidedName)
-   at MassTransit.RabbitMqTransport.ConnectionContextFactory.CreateConnection(ISupervisor supervisor) in /_/src/Transports/MassTransit.RabbitMqTransport/RabbitMqTransport/ConnectionContextFactory.cs:line 85
-2024-10-15 14:40:08.646 +07:00 [WRN] R-RETRY "rabbitmq://localhost/phucnghi/mentor-created" "b0610000-f64e-50eb-a612-08dcece6ef27" MassTransit.RetryPolicies.RetryConsumeContext<MBS_CONTRACT.SHARE.Services.Mentors.DomainEvent+MentorCreated>
-MongoDB.Bson.BsonSerializationException: An error occurred while serializing the MentorSlots property of class MBS_QUERY.Domain.Documents.MentorProjection: The property 'CreatedOnUtc' of type 'MBS_QUERY.Domain.Documents.SlotProjection' cannot use element name 'CreatedOnUtc' because it is already being used by property 'CreatedOnUtc' of type 'MBS_QUERY.Domain.Abstractions.Entities.Document'.
- ---> MongoDB.Bson.BsonSerializationException: The property 'CreatedOnUtc' of type 'MBS_QUERY.Domain.Documents.SlotProjection' cannot use element name 'CreatedOnUtc' because it is already being used by property 'CreatedOnUtc' of type 'MBS_QUERY.Domain.Abstractions.Entities.Document'.
-   at MongoDB.Bson.Serialization.BsonClassMap.Freeze()
-   at MongoDB.Bson.Serialization.BsonClassMap.LookupClassMap(Type classType)
-   at MongoDB.Bson.Serialization.BsonClassMapSerializationProvider.GetSerializer(Type type, IBsonSerializerRegistry serializerRegistry)
-   at MongoDB.Bson.Serialization.BsonSerializerRegistry.CreateSerializer(Type type)
-   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
-   at MongoDB.Bson.Serialization.BsonSerializerRegistry.GetSerializer(Type type)
-   at MongoDB.Bson.Serialization.BsonSerializerRegistry.GetSerializer[T]()
-   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)
-   at System.Lazy`1.ExecutionAndPublication(LazyHelper executionAndPublication, Boolean useDefaultConstructor)
-   at System.Lazy`1.CreateValue()
-   at MongoDB.Bson.Serialization.Serializers.IEnumerableDeserializingAsCollectionSerializer`3.Serialize(BsonSerializationContext context, BsonSerializationArgs args, TIEnumerable value)
-   at MongoDB.Bson.Serialization.Serializers.SerializerBase`1.MongoDB.Bson.Serialization.IBsonSerializer.Serialize(BsonSerializationContext context, BsonSerializationArgs args, Object value)
-   at MongoDB.Bson.Serialization.IBsonSerializerExtensions.Serialize(IBsonSerializer serializer, BsonSerializationContext context, Object value)
-   at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.SerializeNormalMember(BsonSerializationContext context, Object obj, BsonMemberMap memberMap)
-   at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.SerializeMember(BsonSerializationContext context, Object obj, BsonMemberMap memberMap)
-   --- End of inner exception stack trace ---
-   at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.SerializeMember(BsonSerializationContext context, Object obj, BsonMemberMap memberMap)
-   at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.SerializeClass(BsonSerializationContext context, BsonSerializationArgs args, TClass document)
-   at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.Serialize(BsonSerializationContext context, BsonSerializationArgs args, TClass value)
-   at MongoDB.Bson.Serialization.Serializers.SerializerBase`1.MongoDB.Bson.Serialization.IBsonSerializer.Serialize(BsonSerializationContext context, BsonSerializationArgs args, Object value)
-   at MongoDB.Bson.Serialization.IBsonSerializerExtensions.Serialize(IBsonSerializer serializer, BsonSerializationContext context, Object value)
-   at MongoDB.Bson.Serialization.Serializers.BsonDocumentWrapperSerializer.SerializeValue(BsonSerializationContext context, BsonSerializationArgs args, BsonDocumentWrapper value)
-   at MongoDB.Bson.Serialization.Serializers.BsonValueSerializerBase`1.Serialize(BsonSerializationContext context, BsonSerializationArgs args, TBsonValue value)
-   at MongoDB.Bson.Serialization.Serializers.SerializerBase`1.MongoDB.Bson.Serialization.IBsonSerializer.Serialize(BsonSerializationContext context, BsonSerializationArgs args, Object value)
-   at MongoDB.Bson.Serialization.IBsonSerializerExtensions.Serialize(IBsonSerializer serializer, BsonSerializationContext context, Object value)
-   at MongoDB.Bson.Serialization.Serializers.BsonValueSerializerBase`1.Serialize(BsonSerializationContext context, BsonSerializationArgs args, TBsonValue value)
-   at MongoDB.Driver.Core.Operations.BulkInsertOperation.InsertRequestSerializer.SerializeValue(BsonSerializationContext context, BsonSerializationArgs args, InsertRequest value)
-   at MongoDB.Bson.Serialization.Serializers.SealedClassSerializerBase`1.Serialize(BsonSerializationContext context, BsonSerializationArgs args, TValue value)
-   at MongoDB.Bson.Serialization.Serializers.SerializerBase`1.MongoDB.Bson.Serialization.IBsonSerializer.Serialize(BsonSerializationContext context, BsonSerializationArgs args, Object value)
-   at MongoDB.Bson.Serialization.IBsonSerializerExtensions.Serialize(IBsonSerializer serializer, BsonSerializationContext context, Object value)
-   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandMessageBinaryEncoder.WriteType1Section(BsonBinaryWriter writer, Type1CommandMessageSection section, Int64 messageStartPosition)
-   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandMessageBinaryEncoder.WriteSection(BsonBinaryWriter writer, CommandMessageSection section, Int64 messageStartPosition)
-   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandMessageBinaryEncoder.WriteSections(BsonBinaryWriter writer, IEnumerable`1 sections, Int64 messageStartPosition)
-   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandMessageBinaryEncoder.WriteMessage(CommandMessage message)
-   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandRequestMessageBinaryEncoder.WriteMessage(CommandRequestMessage message)
-   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandRequestMessageBinaryEncoder.MongoDB.Driver.Core.WireProtocol.Messages.Encoders.IMessageEncoder.WriteMessage(MongoDBMessage message)
-   at MongoDB.Driver.Core.Connections.BinaryConnection.SendMessagesHelper.EncodeMessages(CancellationToken cancellationToken, List`1& sentMessages)
-   at MongoDB.Driver.Core.Connections.BinaryConnection.SendMessagesAsync(IEnumerable`1 messages, MessageEncoderSettings messageEncoderSettings, CancellationToken cancellationToken)
-   at MongoDB.Driver.Core.ConnectionPools.ExclusiveConnectionPool.PooledConnection.SendMessagesAsync(IEnumerable`1 messages, MessageEncoderSettings messageEncoderSettings, CancellationToken cancellationToken)
-   at MongoDB.Driver.Core.WireProtocol.CommandUsingCommandMessageWireProtocol`1.SendMessageAndProcessResponseAsync(CommandRequestMessage message, Int32 responseTo, IConnection connection, CancellationToken cancellationToken)
-   at MongoDB.Driver.Core.WireProtocol.CommandUsingCommandMessageWireProtocol`1.ExecuteAsync(IConnection connection, CancellationToken cancellationToken)
-   at MongoDB.Driver.Core.Servers.Server.ServerChannel.ExecuteProtocolAsync[TResult](IWireProtocol`1 protocol, ICoreSession session, CancellationToken cancellationToken)
-   at MongoDB.Driver.Core.Operations.RetryableWriteOperationExecutor.ExecuteAsync[TResult](IRetryableWriteOperation`1 operation, RetryableWriteContext context, CancellationToken cancellationToken)
-   at MongoDB.Driver.Core.Operations.BulkUnmixedWriteOperationBase`1.ExecuteBatchAsync(RetryableWriteContext context, Batch batch, CancellationToken cancellationToken)
-   at MongoDB.Driver.Core.Operations.BulkUnmixedWriteOperationBase`1.ExecuteBatchesAsync(RetryableWriteContext context, CancellationToken cancellationToken)
-   at MongoDB.Driver.Core.Operations.BulkMixedWriteOperation.ExecuteBatchAsync(RetryableWriteContext context, Batch batch, CancellationToken cancellationToken)
-   at MongoDB.Driver.Core.Operations.BulkMixedWriteOperation.ExecuteAsync(IWriteBinding binding, CancellationToken cancellationToken)
-   at MongoDB.Driver.OperationExecutor.ExecuteWriteOperationAsync[TResult](IWriteBinding binding, IWriteOperation`1 operation, CancellationToken cancellationToken)
-   at MongoDB.Driver.MongoCollectionImpl`1.ExecuteWriteOperationAsync[TResult](IClientSessionHandle session, IWriteOperation`1 operation, CancellationToken cancellationToken)
-   at MongoDB.Driver.MongoCollectionImpl`1.BulkWriteAsync(IClientSessionHandle session, IEnumerable`1 requests, BulkWriteOptions options, CancellationToken cancellationToken)
-   at MongoDB.Driver.MongoCollectionImpl`1.UsingImplicitSessionAsync[TResult](Func`2 funcAsync, CancellationToken cancellationToken)
-   at MongoDB.Driver.MongoCollectionBase`1.InsertOneAsync(TDocument document, InsertOneOptions options, Func`3 bulkWriteAsync)
-   at MBS_QUERY.Application.UserCases.Events.Mentors.MentorCreatedEventHandler.Handle(MentorCreated request, CancellationToken cancellationToken) in C:\Users\ADMIN\Desktop\PRN231\MBS\MBS-QUERY\MBS_QUERY.Application\UserCases\Events\Mentors\MentorCreatedEventHandler.cs:line 27
-   at MBS_QUERY.Application.Behaviors.TracingPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\ADMIN\Desktop\PRN231\MBS\MBS-QUERY\MBS_QUERY.Application\Behaviors\TracingPipelineBehavior.cs:line 23
-   at MBS_QUERY.Application.Behaviors.PerformancePipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\ADMIN\Desktop\PRN231\MBS\MBS-QUERY\MBS_QUERY.Application\Behaviors\PerformancePipelineBehavior.cs:line 23
-   at MediatR.Wrappers.RequestHandlerWrapperImpl`2.Handle(Object request, IServiceProvider serviceProvider, CancellationToken cancellationToken)
-   at MBS_QUERY.Infrastructure.Consumer.Abstractions.Messages.Consumer`1.Consume(ConsumeContext`1 context) in C:\Users\ADMIN\Desktop\PRN231\MBS\MBS-QUERY\MBS_QUERY.Infrastructure\Consumer\Abstractions\Messages\Consumer.cs:line 21
-   at MassTransit.DependencyInjection.ScopeConsumerFactory`1.Send[TMessage](ConsumeContext`1 context, IPipe`1 next) in /_/src/MassTransit/DependencyInjection/DependencyInjection/ScopeConsumerFactory.cs:line 22
-   at MassTransit.DependencyInjection.ScopeConsumerFactory`1.Send[TMessage](ConsumeContext`1 context, IPipe`1 next) in /_/src/MassTransit/DependencyInjection/DependencyInjection/ScopeConsumerFactory.cs:line 22
-   at MassTransit.Middleware.ConsumerMessageFilter`2.MassTransit.IFilter<MassTransit.ConsumeContext<TMessage>>.Send(ConsumeContext`1 context, IPipe`1 next) in /_/src/MassTransit/Middleware/ConsumerMessageFilter.cs:line 48
-   at MassTransit.Middleware.ConsumerMessageFilter`2.MassTransit.IFilter<MassTransit.ConsumeContext<TMessage>>.Send(ConsumeContext`1 context, IPipe`1 next) in /_/src/MassTransit/Middleware/ConsumerMessageFilter.cs:line 73
-   at MassTransit.Middleware.RetryFilter`1.MassTransit.IFilter<TContext>.Send(TContext context, IPipe`1 next) in /_/src/MassTransit/Middleware/RetryFilter.cs:line 47
-2024-10-15 14:40:55.266 +07:00 [ERR] R-FAULT "rabbitmq://localhost/phucnghi/mentor-created" "b0610000-f64e-50eb-a612-08dcece6ef27" MBS_CONTRACT.SHARE.Services.Mentors.DomainEvent+MentorCreated MBS_QUERY.Infrastructure.Consumer.MessageBus.Consumers.Events.MentorConsumer+MentorCreatedConsumer("00:00:00.3929689")
-MongoDB.Bson.BsonSerializationException: An error occurred while serializing the MentorSlots property of class MBS_QUERY.Domain.Documents.MentorProjection: The property 'CreatedOnUtc' of type 'MBS_QUERY.Domain.Documents.SlotProjection' cannot use element name 'CreatedOnUtc' because it is already being used by property 'CreatedOnUtc' of type 'MBS_QUERY.Domain.Abstractions.Entities.Document'.
- ---> MongoDB.Bson.BsonSerializationException: The property 'CreatedOnUtc' of type 'MBS_QUERY.Domain.Documents.SlotProjection' cannot use element name 'CreatedOnUtc' because it is already being used by property 'CreatedOnUtc' of type 'MBS_QUERY.Domain.Abstractions.Entities.Document'.
-   at MongoDB.Bson.Serialization.BsonClassMap.Freeze()
-   at MongoDB.Bson.Serialization.BsonClassMap.LookupClassMap(Type classType)
-   at MongoDB.Bson.Serialization.BsonClassMapSerializationProvider.GetSerializer(Type type, IBsonSerializerRegistry serializerRegistry)
-   at MongoDB.Bson.Serialization.BsonSerializerRegistry.CreateSerializer(Type type)
-   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
-   at MongoDB.Bson.Serialization.BsonSerializerRegistry.GetSerializer(Type type)
-   at MongoDB.Bson.Serialization.BsonSerializerRegistry.GetSerializer[T]()
-   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)
---- End of stack trace from previous location ---
-   at System.Lazy`1.CreateValue()
-   at MongoDB.Bson.Serialization.Serializers.IEnumerableDeserializingAsCollectionSerializer`3.Serialize(BsonSerializationContext context, BsonSerializationArgs args, TIEnumerable value)
-   at MongoDB.Bson.Serialization.Serializers.SerializerBase`1.MongoDB.Bson.Serialization.IBsonSerializer.Serialize(BsonSerializationContext context, BsonSerializationArgs args, Object value)
-   at MongoDB.Bson.Serialization.IBsonSerializerExtensions.Serialize(IBsonSerializer serializer, BsonSerializationContext context, Object value)
-   at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.SerializeNormalMember(BsonSerializationContext context, Object obj, BsonMemberMap memberMap)
-   at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.SerializeMember(BsonSerializationContext context, Object obj, BsonMemberMap memberMap)
-   --- End of inner exception stack trace ---
-   at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.SerializeMember(BsonSerializationContext context, Object obj, BsonMemberMap memberMap)
-   at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.SerializeClass(BsonSerializationContext context, BsonSerializationArgs args, TClass document)
-   at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.Serialize(BsonSerializationContext context, BsonSerializationArgs args, TClass value)
-   at MongoDB.Bson.Serialization.Serializers.SerializerBase`1.MongoDB.Bson.Serialization.IBsonSerializer.Serialize(BsonSerializationContext context, BsonSerializationArgs args, Object value)
-   at MongoDB.Bson.Serialization.IBsonSerializerExtensions.Serialize(IBsonSerializer serializer, BsonSerializationContext context, Object value)
-   at MongoDB.Bson.Serialization.Serializers.BsonDocumentWrapperSerializer.SerializeValue(BsonSerializationContext context, BsonSerializationArgs args, BsonDocumentWrapper value)
-   at MongoDB.Bson.Serialization.Serializers.BsonValueSerializerBase`1.Serialize(BsonSerializationContext context, BsonSerializationArgs args, TBsonValue value)
-   at MongoDB.Bson.Serialization.Serializers.SerializerBase`1.MongoDB.Bson.Serialization.IBsonSerializer.Serialize(BsonSerializationContext context, BsonSerializationArgs args, Object value)
-   at MongoDB.Bson.Serialization.Serializers.BsonValueSerializerBase`1.Serialize(BsonSerializationContext context, BsonSerializationArgs args, TBsonValue value)
-   at MongoDB.Driver.Core.Operations.BulkInsertOperation.InsertRequestSerializer.SerializeValue(BsonSerializationContext context, BsonSerializationArgs args, InsertRequest value)
-   at MongoDB.Bson.Serialization.Serializers.SealedClassSerializerBase`1.Serialize(BsonSerializationContext context, BsonSerializationArgs args, TValue value)
-   at MongoDB.Bson.Serialization.Serializers.SerializerBase`1.MongoDB.Bson.Serialization.IBsonSerializer.Serialize(BsonSerializationContext context, BsonSerializationArgs args, Object value)
-   at MongoDB.Bson.Serialization.IBsonSerializerExtensions.Serialize(IBsonSerializer serializer, BsonSerializationContext context, Object value)
-   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandMessageBinaryEncoder.WriteType1Section(BsonBinaryWriter writer, Type1CommandMessageSection section, Int64 messageStartPosition)
-   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandMessageBinaryEncoder.WriteSection(BsonBinaryWriter writer, CommandMessageSection section, Int64 messageStartPosition)
-   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandMessageBinaryEncoder.WriteSections(BsonBinaryWriter writer, IEnumerable`1 sections, Int64 messageStartPosition)
-   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandMessageBinaryEncoder.WriteMessage(CommandMessage message)
-   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandRequestMessageBinaryEncoder.WriteMessage(CommandRequestMessage message)
-   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandRequestMessageBinaryEncoder.MongoDB.Driver.Core.WireProtocol.Messages.Encoders.IMessageEncoder.WriteMessage(MongoDBMessage message)
-   at MongoDB.Driver.Core.Connections.BinaryConnection.SendMessagesHelper.EncodeMessages(CancellationToken cancellationToken, List`1& sentMessages)
-   at MongoDB.Driver.Core.Connections.BinaryConnection.SendMessagesAsync(IEnumerable`1 messages, MessageEncoderSettings messageEncoderSettings, CancellationToken cancellationToken)
-   at MongoDB.Driver.Core.ConnectionPools.ExclusiveConnectionPool.PooledConnection.SendMessagesAsync(IEnumerable`1 messages, MessageEncoderSettings messageEncoderSettings, CancellationToken cancellationToken)
-   at MongoDB.Driver.Core.WireProtocol.CommandUsingCommandMessageWireProtocol`1.SendMessageAndProcessResponseAsync(CommandRequestMessage message, Int32 responseTo, IConnection connection, CancellationToken cancellationToken)
-   at MongoDB.Driver.Core.WireProtocol.CommandUsingCommandMessageWireProtocol`1.ExecuteAsync(IConnection connection, CancellationToken cancellationToken)
-   at MongoDB.Driver.Core.Servers.Server.ServerChannel.ExecuteProtocolAsync[TResult](IWireProtocol`1 protocol, ICoreSession session, CancellationToken cancellationToken)
-   at MongoDB.Driver.Core.Operations.RetryableWriteOperationExecutor.ExecuteAsync[TResult](IRetryableWriteOperation`1 operation, RetryableWriteContext context, CancellationToken cancellationToken)
-   at MongoDB.Driver.Core.Operations.BulkUnmixedWriteOperationBase`1.ExecuteBatchAsync(RetryableWriteContext context, Batch batch, CancellationToken cancellationToken)
-   at MongoDB.Driver.Core.Operations.BulkUnmixedWriteOperationBase`1.ExecuteBatchesAsync(RetryableWriteContext context, CancellationToken cancellationToken)
-   at MongoDB.Driver.Core.Operations.BulkMixedWriteOperation.ExecuteBatchAsync(RetryableWriteContext context, Batch batch, CancellationToken cancellationToken)
-   at MongoDB.Driver.Core.Operations.BulkMixedWriteOperation.ExecuteAsync(IWriteBinding binding, CancellationToken cancellationToken)
-   at MongoDB.Driver.OperationExecutor.ExecuteWriteOperationAsync[TResult](IWriteBinding binding, IWriteOperation`1 operation, CancellationToken cancellationToken)
-   at MongoDB.Driver.MongoCollectionImpl`1.ExecuteWriteOperationAsync[TResult](IClientSessionHandle session, IWriteOperation`1 operation, CancellationToken cancellationToken)
-   at MongoDB.Driver.MongoCollectionImpl`1.BulkWriteAsync(IClientSessionHandle session, IEnumerable`1 requests, BulkWriteOptions options, CancellationToken cancellationToken)
-   at MongoDB.Driver.MongoCollectionImpl`1.UsingImplicitSessionAsync[TResult](Func`2 funcAsync, CancellationToken cancellationToken)
-   at MongoDB.Driver.MongoCollectionBase`1.InsertOneAsync(TDocument document, InsertOneOptions options, Func`3 bulkWriteAsync)
-   at MBS_QUERY.Application.UserCases.Events.Mentors.MentorCreatedEventHandler.Handle(MentorCreated request, CancellationToken cancellationToken) in C:\Users\ADMIN\Desktop\PRN231\MBS\MBS-QUERY\MBS_QUERY.Application\UserCases\Events\Mentors\MentorCreatedEventHandler.cs:line 27
-   at MBS_QUERY.Application.Behaviors.TracingPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\ADMIN\Desktop\PRN231\MBS\MBS-QUERY\MBS_QUERY.Application\Behaviors\TracingPipelineBehavior.cs:line 23
-   at MBS_QUERY.Application.Behaviors.PerformancePipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\ADMIN\Desktop\PRN231\MBS\MBS-QUERY\MBS_QUERY.Application\Behaviors\PerformancePipelineBehavior.cs:line 23
-   at MediatR.Wrappers.RequestHandlerWrapperImpl`2.Handle(Object request, IServiceProvider serviceProvider, CancellationToken cancellationToken)
-   at MBS_QUERY.Infrastructure.Consumer.Abstractions.Messages.Consumer`1.Consume(ConsumeContext`1 context) in C:\Users\ADMIN\Desktop\PRN231\MBS\MBS-QUERY\MBS_QUERY.Infrastructure\Consumer\Abstractions\Messages\Consumer.cs:line 21
-   at MassTransit.DependencyInjection.ScopeConsumerFactory`1.Send[TMessage](ConsumeContext`1 context, IPipe`1 next) in /_/src/MassTransit/DependencyInjection/DependencyInjection/ScopeConsumerFactory.cs:line 22
-   at MassTransit.DependencyInjection.ScopeConsumerFactory`1.Send[TMessage](ConsumeContext`1 context, IPipe`1 next) in /_/src/MassTransit/DependencyInjection/DependencyInjection/ScopeConsumerFactory.cs:line 22
-   at MassTransit.Middleware.ConsumerMessageFilter`2.MassTransit.IFilter<MassTransit.ConsumeContext<TMessage>>.Send(ConsumeContext`1 context, IPipe`1 next) in /_/src/MassTransit/Middleware/ConsumerMessageFilter.cs:line 48
-   at MassTransit.Middleware.ConsumerMessageFilter`2.MassTransit.IFilter<MassTransit.ConsumeContext<TMessage>>.Send(ConsumeContext`1 context, IPipe`1 next) in /_/src/MassTransit/Middleware/ConsumerMessageFilter.cs:line 73
-   at MassTransit.Middleware.RetryFilter`1.Attempt(TContext context, RetryContext`1 retryContext, IPipe`1 next) in /_/src/MassTransit/Middleware/RetryFilter.cs:line 158
-2024-10-15 14:40:55.283 +07:00 [ERR] Fault on consuming message MentorCreated from MBS_CONTRACT.SHARE.Services.Mentors by MBS_QUERY.Infrastructure.Consumer.MessageBus.Consumers.Events.MentorConsumer+MentorCreatedConsumer, Duration: 0.3929689s, Error: An error occurred while serializing the MentorSlots property of class MBS_QUERY.Domain.Documents.MentorProjection: The property 'CreatedOnUtc' of type 'MBS_QUERY.Domain.Documents.SlotProjection' cannot use element name 'CreatedOnUtc' because it is already being used by property 'CreatedOnUtc' of type 'MBS_QUERY.Domain.Abstractions.Entities.Document'., CorrelationId: null
-2024-10-15 15:35:54.519 +07:00 [WRN] R-RETRY "rabbitmq://localhost/phucnghi/mentor-created" "f4510000-f64e-50eb-0d1d-08dcecf461de" MassTransit.RetryPolicies.RetryConsumeContext<MBS_CONTRACT.SHARE.Services.Mentors.DomainEvent+MentorCreated>
-MongoDB.Bson.BsonSerializationException: An error occurred while serializing the MentorSlots property of class MBS_QUERY.Domain.Documents.MentorProjection: The property 'CreatedOnUtc' of type 'MBS_QUERY.Domain.Documents.SlotProjection' cannot use element name 'CreatedOnUtc' because it is already being used by property 'CreatedOnUtc' of type 'MBS_QUERY.Domain.Abstractions.Entities.Document'.
- ---> MongoDB.Bson.BsonSerializationException: The property 'CreatedOnUtc' of type 'MBS_QUERY.Domain.Documents.SlotProjection' cannot use element name 'CreatedOnUtc' because it is already being used by property 'CreatedOnUtc' of type 'MBS_QUERY.Domain.Abstractions.Entities.Document'.
-   at MongoDB.Bson.Serialization.BsonClassMap.Freeze()
-   at MongoDB.Bson.Serialization.BsonClassMap.LookupClassMap(Type classType)
-   at MongoDB.Bson.Serialization.BsonClassMapSerializationProvider.GetSerializer(Type type, IBsonSerializerRegistry serializerRegistry)
-   at MongoDB.Bson.Serialization.BsonSerializerRegistry.CreateSerializer(Type type)
-   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
-   at MongoDB.Bson.Serialization.BsonSerializerRegistry.GetSerializer(Type type)
-   at MongoDB.Bson.Serialization.BsonSerializerRegistry.GetSerializer[T]()
-   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)
-   at System.Lazy`1.ExecutionAndPublication(LazyHelper executionAndPublication, Boolean useDefaultConstructor)
-   at System.Lazy`1.CreateValue()
-   at MongoDB.Bson.Serialization.Serializers.IEnumerableDeserializingAsCollectionSerializer`3.Serialize(BsonSerializationContext context, BsonSerializationArgs args, TIEnumerable value)
-   at MongoDB.Bson.Serialization.Serializers.SerializerBase`1.MongoDB.Bson.Serialization.IBsonSerializer.Serialize(BsonSerializationContext context, BsonSerializationArgs args, Object value)
-   at MongoDB.Bson.Serialization.IBsonSerializerExtensions.Serialize(IBsonSerializer serializer, BsonSerializationContext context, Object value)
-   at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.SerializeNormalMember(BsonSerializationContext context, Object obj, BsonMemberMap memberMap)
-   at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.SerializeMember(BsonSerializationContext context, Object obj, BsonMemberMap memberMap)
-   --- End of inner exception stack trace ---
-   at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.SerializeMember(BsonSerializationContext context, Object obj, BsonMemberMap memberMap)
-   at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.SerializeClass(BsonSerializationContext context, BsonSerializationArgs args, TClass document)
-   at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.Serialize(BsonSerializationContext context, BsonSerializationArgs args, TClass value)
-   at MongoDB.Bson.Serialization.Serializers.SerializerBase`1.MongoDB.Bson.Serialization.IBsonSerializer.Serialize(BsonSerializationContext context, BsonSerializationArgs args, Object value)
-   at MongoDB.Bson.Serialization.IBsonSerializerExtensions.Serialize(IBsonSerializer serializer, BsonSerializationContext context, Object value)
-   at MongoDB.Bson.Serialization.Serializers.BsonDocumentWrapperSerializer.SerializeValue(BsonSerializationContext context, BsonSerializationArgs args, BsonDocumentWrapper value)
-   at MongoDB.Bson.Serialization.Serializers.BsonValueSerializerBase`1.Serialize(BsonSerializationContext context, BsonSerializationArgs args, TBsonValue value)
-   at MongoDB.Bson.Serialization.Serializers.SerializerBase`1.MongoDB.Bson.Serialization.IBsonSerializer.Serialize(BsonSerializationContext context, BsonSerializationArgs args, Object value)
-   at MongoDB.Bson.Serialization.IBsonSerializerExtensions.Serialize(IBsonSerializer serializer, BsonSerializationContext context, Object value)
-   at MongoDB.Bson.Serialization.Serializers.BsonValueSerializerBase`1.Serialize(BsonSerializationContext context, BsonSerializationArgs args, TBsonValue value)
-   at MongoDB.Driver.Core.Operations.BulkInsertOperation.InsertRequestSerializer.SerializeValue(BsonSerializationContext context, BsonSerializationArgs args, InsertRequest value)
-   at MongoDB.Bson.Serialization.Serializers.SealedClassSerializerBase`1.Serialize(BsonSerializationContext context, BsonSerializationArgs args, TValue value)
-   at MongoDB.Bson.Serialization.Serializers.SerializerBase`1.MongoDB.Bson.Serialization.IBsonSerializer.Serialize(BsonSerializationContext context, BsonSerializationArgs args, Object value)
-   at MongoDB.Bson.Serialization.IBsonSerializerExtensions.Serialize(IBsonSerializer serializer, BsonSerializationContext context, Object value)
-   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandMessageBinaryEncoder.WriteType1Section(BsonBinaryWriter writer, Type1CommandMessageSection section, Int64 messageStartPosition)
-   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandMessageBinaryEncoder.WriteSection(BsonBinaryWriter writer, CommandMessageSection section, Int64 messageStartPosition)
-   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandMessageBinaryEncoder.WriteSections(BsonBinaryWriter writer, IEnumerable`1 sections, Int64 messageStartPosition)
-   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandMessageBinaryEncoder.WriteMessage(CommandMessage message)
-   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandRequestMessageBinaryEncoder.WriteMessage(CommandRequestMessage message)
-   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandRequestMessageBinaryEncoder.MongoDB.Driver.Core.WireProtocol.Messages.Encoders.IMessageEncoder.WriteMessage(MongoDBMessage message)
-   at MongoDB.Driver.Core.Connections.BinaryConnection.SendMessagesHelper.EncodeMessages(CancellationToken cancellationToken, List`1& sentMessages)
-   at MongoDB.Driver.Core.Connections.BinaryConnection.SendMessagesAsync(IEnumerable`1 messages, MessageEncoderSettings messageEncoderSettings, CancellationToken cancellationToken)
-   at MongoDB.Driver.Core.ConnectionPools.ExclusiveConnectionPool.PooledConnection.SendMessagesAsync(IEnumerable`1 messages, MessageEncoderSettings messageEncoderSettings, CancellationToken cancellationToken)
-   at MongoDB.Driver.Core.WireProtocol.CommandUsingCommandMessageWireProtocol`1.SendMessageAndProcessResponseAsync(CommandRequestMessage message, Int32 responseTo, IConnection connection, CancellationToken cancellationToken)
-   at MongoDB.Driver.Core.WireProtocol.CommandUsingCommandMessageWireProtocol`1.ExecuteAsync(IConnection connection, CancellationToken cancellationToken)
-   at MongoDB.Driver.Core.Servers.Server.ServerChannel.ExecuteProtocolAsync[TResult](IWireProtocol`1 protocol, ICoreSession session, CancellationToken cancellationToken)
-   at MongoDB.Driver.Core.Operations.RetryableWriteOperationExecutor.ExecuteAsync[TResult](IRetryableWriteOperation`1 operation, RetryableWriteContext context, CancellationToken cancellationToken)
-   at MongoDB.Driver.Core.Operations.BulkUnmixedWriteOperationBase`1.ExecuteBatchAsync(RetryableWriteContext context, Batch batch, CancellationToken cancellationToken)
-   at MongoDB.Driver.Core.Operations.BulkUnmixedWriteOperationBase`1.ExecuteBatchesAsync(RetryableWriteContext context, CancellationToken cancellationToken)
-   at MongoDB.Driver.Core.Operations.BulkMixedWriteOperation.ExecuteBatchAsync(RetryableWriteContext context, Batch batch, CancellationToken cancellationToken)
-   at MongoDB.Driver.Core.Operations.BulkMixedWriteOperation.ExecuteAsync(IWriteBinding binding, CancellationToken cancellationToken)
-   at MongoDB.Driver.OperationExecutor.ExecuteWriteOperationAsync[TResult](IWriteBinding binding, IWriteOperation`1 operation, CancellationToken cancellationToken)
-   at MongoDB.Driver.MongoCollectionImpl`1.ExecuteWriteOperationAsync[TResult](IClientSessionHandle session, IWriteOperation`1 operation, CancellationToken cancellationToken)
-   at MongoDB.Driver.MongoCollectionImpl`1.BulkWriteAsync(IClientSessionHandle session, IEnumerable`1 requests, BulkWriteOptions options, CancellationToken cancellationToken)
-   at MongoDB.Driver.MongoCollectionImpl`1.UsingImplicitSessionAsync[TResult](Func`2 funcAsync, CancellationToken cancellationToken)
-   at MongoDB.Driver.MongoCollectionBase`1.InsertOneAsync(TDocument document, InsertOneOptions options, Func`3 bulkWriteAsync)
-   at MBS_QUERY.Application.UserCases.Events.Mentors.MentorCreatedEventHandler.Handle(MentorCreated request, CancellationToken cancellationToken) in C:\Users\ADMIN\Desktop\PRN231\MBS\MBS-QUERY\MBS_QUERY.Application\UserCases\Events\Mentors\MentorCreatedEventHandler.cs:line 27
-   at MBS_QUERY.Application.Behaviors.TracingPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\ADMIN\Desktop\PRN231\MBS\MBS-QUERY\MBS_QUERY.Application\Behaviors\TracingPipelineBehavior.cs:line 23
-   at MBS_QUERY.Application.Behaviors.PerformancePipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\ADMIN\Desktop\PRN231\MBS\MBS-QUERY\MBS_QUERY.Application\Behaviors\PerformancePipelineBehavior.cs:line 23
-   at MediatR.Wrappers.RequestHandlerWrapperImpl`2.Handle(Object request, IServiceProvider serviceProvider, CancellationToken cancellationToken)
-   at MBS_QUERY.Infrastructure.Consumer.Abstractions.Messages.Consumer`1.Consume(ConsumeContext`1 context) in C:\Users\ADMIN\Desktop\PRN231\MBS\MBS-QUERY\MBS_QUERY.Infrastructure\Consumer\Abstractions\Messages\Consumer.cs:line 21
-   at MassTransit.DependencyInjection.ScopeConsumerFactory`1.Send[TMessage](ConsumeContext`1 context, IPipe`1 next) in /_/src/MassTransit/DependencyInjection/DependencyInjection/ScopeConsumerFactory.cs:line 22
-   at MassTransit.DependencyInjection.ScopeConsumerFactory`1.Send[TMessage](ConsumeContext`1 context, IPipe`1 next) in /_/src/MassTransit/DependencyInjection/DependencyInjection/ScopeConsumerFactory.cs:line 22
-   at MassTransit.Middleware.ConsumerMessageFilter`2.MassTransit.IFilter<MassTransit.ConsumeContext<TMessage>>.Send(ConsumeContext`1 context, IPipe`1 next) in /_/src/MassTransit/Middleware/ConsumerMessageFilter.cs:line 48
-   at MassTransit.Middleware.ConsumerMessageFilter`2.MassTransit.IFilter<MassTransit.ConsumeContext<TMessage>>.Send(ConsumeContext`1 context, IPipe`1 next) in /_/src/MassTransit/Middleware/ConsumerMessageFilter.cs:line 73
-   at MassTransit.Middleware.RetryFilter`1.MassTransit.IFilter<TContext>.Send(TContext context, IPipe`1 next) in /_/src/MassTransit/Middleware/RetryFilter.cs:line 47
-2024-10-15 15:36:25.939 +07:00 [WRN] R-RETRY "rabbitmq://localhost/phucnghi/mentor-created" "f4510000-f64e-50eb-0d1d-08dcecf461de" MassTransit.RetryPolicies.RetryConsumeContext<MBS_CONTRACT.SHARE.Services.Mentors.DomainEvent+MentorCreated>
-MongoDB.Bson.BsonSerializationException: An error occurred while serializing the MentorSlots property of class MBS_QUERY.Domain.Documents.MentorProjection: The property 'CreatedOnUtc' of type 'MBS_QUERY.Domain.Documents.SlotProjection' cannot use element name 'CreatedOnUtc' because it is already being used by property 'CreatedOnUtc' of type 'MBS_QUERY.Domain.Abstractions.Entities.Document'.
- ---> MongoDB.Bson.BsonSerializationException: The property 'CreatedOnUtc' of type 'MBS_QUERY.Domain.Documents.SlotProjection' cannot use element name 'CreatedOnUtc' because it is already being used by property 'CreatedOnUtc' of type 'MBS_QUERY.Domain.Abstractions.Entities.Document'.
-   at MongoDB.Bson.Serialization.BsonClassMap.Freeze()
-   at MongoDB.Bson.Serialization.BsonClassMap.LookupClassMap(Type classType)
-   at MongoDB.Bson.Serialization.BsonClassMapSerializationProvider.GetSerializer(Type type, IBsonSerializerRegistry serializerRegistry)
-   at MongoDB.Bson.Serialization.BsonSerializerRegistry.CreateSerializer(Type type)
-   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
-   at MongoDB.Bson.Serialization.BsonSerializerRegistry.GetSerializer(Type type)
-   at MongoDB.Bson.Serialization.BsonSerializerRegistry.GetSerializer[T]()
-   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)
-   at System.Lazy`1.ExecutionAndPublication(LazyHelper executionAndPublication, Boolean useDefaultConstructor)
-   at System.Lazy`1.CreateValue()
-   at MongoDB.Bson.Serialization.Serializers.IEnumerableDeserializingAsCollectionSerializer`3.Serialize(BsonSerializationContext context, BsonSerializationArgs args, TIEnumerable value)
-   at MongoDB.Bson.Serialization.Serializers.SerializerBase`1.MongoDB.Bson.Serialization.IBsonSerializer.Serialize(BsonSerializationContext context, BsonSerializationArgs args, Object value)
-   at MongoDB.Bson.Serialization.IBsonSerializerExtensions.Serialize(IBsonSerializer serializer, BsonSerializationContext context, Object value)
-   at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.SerializeNormalMember(BsonSerializationContext context, Object obj, BsonMemberMap memberMap)
-   at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.SerializeMember(BsonSerializationContext context, Object obj, BsonMemberMap memberMap)
-   --- End of inner exception stack trace ---
-   at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.SerializeMember(BsonSerializationContext context, Object obj, BsonMemberMap memberMap)
-   at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.SerializeClass(BsonSerializationContext context, BsonSerializationArgs args, TClass document)
-   at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.Serialize(BsonSerializationContext context, BsonSerializationArgs args, TClass value)
-   at MongoDB.Bson.Serialization.Serializers.SerializerBase`1.MongoDB.Bson.Serialization.IBsonSerializer.Serialize(BsonSerializationContext context, BsonSerializationArgs args, Object value)
-   at MongoDB.Bson.Serialization.IBsonSerializerExtensions.Serialize(IBsonSerializer serializer, BsonSerializationContext context, Object value)
-   at MongoDB.Bson.Serialization.Serializers.BsonDocumentWrapperSerializer.SerializeValue(BsonSerializationContext context, BsonSerializationArgs args, BsonDocumentWrapper value)
-   at MongoDB.Bson.Serialization.Serializers.BsonValueSerializerBase`1.Serialize(BsonSerializationContext context, BsonSerializationArgs args, TBsonValue value)
-   at MongoDB.Bson.Serialization.Serializers.SerializerBase`1.MongoDB.Bson.Serialization.IBsonSerializer.Serialize(BsonSerializationContext context, BsonSerializationArgs args, Object value)
-   at MongoDB.Bson.Serialization.IBsonSerializerExtensions.Serialize(IBsonSerializer serializer, BsonSerializationContext context, Object value)
-   at MongoDB.Bson.Serialization.Serializers.BsonValueSerializerBase`1.Serialize(BsonSerializationContext context, BsonSerializationArgs args, TBsonValue value)
-   at MongoDB.Driver.Core.Operations.BulkInsertOperation.InsertRequestSerializer.SerializeValue(BsonSerializationContext context, BsonSerializationArgs args, InsertRequest value)
-   at MongoDB.Bson.Serialization.Serializers.SealedClassSerializerBase`1.Serialize(BsonSerializationContext context, BsonSerializationArgs args, TValue value)
-   at MongoDB.Bson.Serialization.Serializers.SerializerBase`1.MongoDB.Bson.Serialization.IBsonSerializer.Serialize(BsonSerializationContext context, BsonSerializationArgs args, Object value)
-   at MongoDB.Bson.Serialization.IBsonSerializerExtensions.Serialize(IBsonSerializer serializer, BsonSerializationContext context, Object value)
-   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandMessageBinaryEncoder.WriteType1Section(BsonBinaryWriter writer, Type1CommandMessageSection section, Int64 messageStartPosition)
-   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandMessageBinaryEncoder.WriteSection(BsonBinaryWriter writer, CommandMessageSection section, Int64 messageStartPosition)
-   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandMessageBinaryEncoder.WriteSections(BsonBinaryWriter writer, IEnumerable`1 sections, Int64 messageStartPosition)
-   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandMessageBinaryEncoder.WriteMessage(CommandMessage message)
-   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandRequestMessageBinaryEncoder.WriteMessage(CommandRequestMessage message)
-   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandRequestMessageBinaryEncoder.MongoDB.Driver.Core.WireProtocol.Messages.Encoders.IMessageEncoder.WriteMessage(MongoDBMessage message)
-   at MongoDB.Driver.Core.Connections.BinaryConnection.SendMessagesHelper.EncodeMessages(CancellationToken cancellationToken, List`1& sentMessages)
-   at MongoDB.Driver.Core.Connections.BinaryConnection.SendMessagesAsync(IEnumerable`1 messages, MessageEncoderSettings messageEncoderSettings, CancellationToken cancellationToken)
-   at MongoDB.Driver.Core.ConnectionPools.ExclusiveConnectionPool.PooledConnection.SendMessagesAsync(IEnumerable`1 messages, MessageEncoderSettings messageEncoderSettings, CancellationToken cancellationToken)
-   at MongoDB.Driver.Core.WireProtocol.CommandUsingCommandMessageWireProtocol`1.SendMessageAndProcessResponseAsync(CommandRequestMessage message, Int32 responseTo, IConnection connection, CancellationToken cancellationToken)
-   at MongoDB.Driver.Core.WireProtocol.CommandUsingCommandMessageWireProtocol`1.ExecuteAsync(IConnection connection, CancellationToken cancellationToken)
-   at MongoDB.Driver.Core.Servers.Server.ServerChannel.ExecuteProtocolAsync[TResult](IWireProtocol`1 protocol, ICoreSession session, CancellationToken cancellationToken)
-   at MongoDB.Driver.Core.Operations.RetryableWriteOperationExecutor.ExecuteAsync[TResult](IRetryableWriteOperation`1 operation, RetryableWriteContext context, CancellationToken cancellationToken)
-   at MongoDB.Driver.Core.Operations.BulkUnmixedWriteOperationBase`1.ExecuteBatchAsync(RetryableWriteContext context, Batch batch, CancellationToken cancellationToken)
-   at MongoDB.Driver.Core.Operations.BulkUnmixedWriteOperationBase`1.ExecuteBatchesAsync(RetryableWriteContext context, CancellationToken cancellationToken)
-   at MongoDB.Driver.Core.Operations.BulkMixedWriteOperation.ExecuteBatchAsync(RetryableWriteContext context, Batch batch, CancellationToken cancellationToken)
-   at MongoDB.Driver.Core.Operations.BulkMixedWriteOperation.ExecuteAsync(IWriteBinding binding, CancellationToken cancellationToken)
-   at MongoDB.Driver.OperationExecutor.ExecuteWriteOperationAsync[TResult](IWriteBinding binding, IWriteOperation`1 operation, CancellationToken cancellationToken)
-   at MongoDB.Driver.MongoCollectionImpl`1.ExecuteWriteOperationAsync[TResult](IClientSessionHandle session, IWriteOperation`1 operation, CancellationToken cancellationToken)
-   at MongoDB.Driver.MongoCollectionImpl`1.BulkWriteAsync(IClientSessionHandle session, IEnumerable`1 requests, BulkWriteOptions options, CancellationToken cancellationToken)
-   at MongoDB.Driver.MongoCollectionImpl`1.UsingImplicitSessionAsync[TResult](Func`2 funcAsync, CancellationToken cancellationToken)
-   at MongoDB.Driver.MongoCollectionBase`1.InsertOneAsync(TDocument document, InsertOneOptions options, Func`3 bulkWriteAsync)
-   at MBS_QUERY.Application.UserCases.Events.Mentors.MentorCreatedEventHandler.Handle(MentorCreated request, CancellationToken cancellationToken) in C:\Users\ADMIN\Desktop\PRN231\MBS\MBS-QUERY\MBS_QUERY.Application\UserCases\Events\Mentors\MentorCreatedEventHandler.cs:line 27
-   at MBS_QUERY.Application.Behaviors.TracingPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\ADMIN\Desktop\PRN231\MBS\MBS-QUERY\MBS_QUERY.Application\Behaviors\TracingPipelineBehavior.cs:line 23
-   at MBS_QUERY.Application.Behaviors.PerformancePipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\ADMIN\Desktop\PRN231\MBS\MBS-QUERY\MBS_QUERY.Application\Behaviors\PerformancePipelineBehavior.cs:line 23
-   at MediatR.Wrappers.RequestHandlerWrapperImpl`2.Handle(Object request, IServiceProvider serviceProvider, CancellationToken cancellationToken)
-   at MBS_QUERY.Infrastructure.Consumer.Abstractions.Messages.Consumer`1.Consume(ConsumeContext`1 context) in C:\Users\ADMIN\Desktop\PRN231\MBS\MBS-QUERY\MBS_QUERY.Infrastructure\Consumer\Abstractions\Messages\Consumer.cs:line 21
-   at MassTransit.DependencyInjection.ScopeConsumerFactory`1.Send[TMessage](ConsumeContext`1 context, IPipe`1 next) in /_/src/MassTransit/DependencyInjection/DependencyInjection/ScopeConsumerFactory.cs:line 22
-   at MassTransit.DependencyInjection.ScopeConsumerFactory`1.Send[TMessage](ConsumeContext`1 context, IPipe`1 next) in /_/src/MassTransit/DependencyInjection/DependencyInjection/ScopeConsumerFactory.cs:line 22
-   at MassTransit.Middleware.ConsumerMessageFilter`2.MassTransit.IFilter<MassTransit.ConsumeContext<TMessage>>.Send(ConsumeContext`1 context, IPipe`1 next) in /_/src/MassTransit/Middleware/ConsumerMessageFilter.cs:line 48
-   at MassTransit.Middleware.ConsumerMessageFilter`2.MassTransit.IFilter<MassTransit.ConsumeContext<TMessage>>.Send(ConsumeContext`1 context, IPipe`1 next) in /_/src/MassTransit/Middleware/ConsumerMessageFilter.cs:line 73
-   at MassTransit.Middleware.RetryFilter`1.MassTransit.IFilter<TContext>.Send(TContext context, IPipe`1 next) in /_/src/MassTransit/Middleware/RetryFilter.cs:line 47
-2024-10-15 15:36:42.886 +07:00 [WRN] R-RETRY "rabbitmq://localhost/phucnghi/mentor-created" "f4510000-f64e-50eb-0d1d-08dcecf461de" MassTransit.RetryPolicies.RetryConsumeContext<MBS_CONTRACT.SHARE.Services.Mentors.DomainEvent+MentorCreated>
-MongoDB.Bson.BsonSerializationException: An error occurred while serializing the MentorSlots property of class MBS_QUERY.Domain.Documents.MentorProjection: The property 'CreatedOnUtc' of type 'MBS_QUERY.Domain.Documents.SlotProjection' cannot use element name 'CreatedOnUtc' because it is already being used by property 'CreatedOnUtc' of type 'MBS_QUERY.Domain.Abstractions.Entities.Document'.
- ---> MongoDB.Bson.BsonSerializationException: The property 'CreatedOnUtc' of type 'MBS_QUERY.Domain.Documents.SlotProjection' cannot use element name 'CreatedOnUtc' because it is already being used by property 'CreatedOnUtc' of type 'MBS_QUERY.Domain.Abstractions.Entities.Document'.
-   at MongoDB.Bson.Serialization.BsonClassMap.Freeze()
-   at MongoDB.Bson.Serialization.BsonClassMap.LookupClassMap(Type classType)
-   at MongoDB.Bson.Serialization.BsonClassMapSerializationProvider.GetSerializer(Type type, IBsonSerializerRegistry serializerRegistry)
-   at MongoDB.Bson.Serialization.BsonSerializerRegistry.CreateSerializer(Type type)
-   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
-   at MongoDB.Bson.Serialization.BsonSerializerRegistry.GetSerializer(Type type)
-   at MongoDB.Bson.Serialization.BsonSerializerRegistry.GetSerializer[T]()
-   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)
-   at System.Lazy`1.ExecutionAndPublication(LazyHelper executionAndPublication, Boolean useDefaultConstructor)
-   at System.Lazy`1.CreateValue()
-   at MongoDB.Bson.Serialization.Serializers.IEnumerableDeserializingAsCollectionSerializer`3.Serialize(BsonSerializationContext context, BsonSerializationArgs args, TIEnumerable value)
-   at MongoDB.Bson.Serialization.Serializers.SerializerBase`1.MongoDB.Bson.Serialization.IBsonSerializer.Serialize(BsonSerializationContext context, BsonSerializationArgs args, Object value)
-   at MongoDB.Bson.Serialization.IBsonSerializerExtensions.Serialize(IBsonSerializer serializer, BsonSerializationContext context, Object value)
-   at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.SerializeNormalMember(BsonSerializationContext context, Object obj, BsonMemberMap memberMap)
-   at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.SerializeMember(BsonSerializationContext context, Object obj, BsonMemberMap memberMap)
-   --- End of inner exception stack trace ---
-   at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.SerializeMember(BsonSerializationContext context, Object obj, BsonMemberMap memberMap)
-   at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.SerializeClass(BsonSerializationContext context, BsonSerializationArgs args, TClass document)
-   at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.Serialize(BsonSerializationContext context, BsonSerializationArgs args, TClass value)
-   at MongoDB.Bson.Serialization.Serializers.SerializerBase`1.MongoDB.Bson.Serialization.IBsonSerializer.Serialize(BsonSerializationContext context, BsonSerializationArgs args, Object value)
-   at MongoDB.Bson.Serialization.IBsonSerializerExtensions.Serialize(IBsonSerializer serializer, BsonSerializationContext context, Object value)
-   at MongoDB.Bson.Serialization.Serializers.BsonDocumentWrapperSerializer.SerializeValue(BsonSerializationContext context, BsonSerializationArgs args, BsonDocumentWrapper value)
-   at MongoDB.Bson.Serialization.Serializers.BsonValueSerializerBase`1.Serialize(BsonSerializationContext context, BsonSerializationArgs args, TBsonValue value)
-   at MongoDB.Bson.Serialization.Serializers.SerializerBase`1.MongoDB.Bson.Serialization.IBsonSerializer.Serialize(BsonSerializationContext context, BsonSerializationArgs args, Object value)
-   at MongoDB.Bson.Serialization.IBsonSerializerExtensions.Serialize(IBsonSerializer serializer, BsonSerializationContext context, Object value)
-   at MongoDB.Bson.Serialization.Serializers.BsonValueSerializerBase`1.Serialize(BsonSerializationContext context, BsonSerializationArgs args, TBsonValue value)
-   at MongoDB.Driver.Core.Operations.BulkInsertOperation.InsertRequestSerializer.SerializeValue(BsonSerializationContext context, BsonSerializationArgs args, InsertRequest value)
-   at MongoDB.Bson.Serialization.Serializers.SealedClassSerializerBase`1.Serialize(BsonSerializationContext context, BsonSerializationArgs args, TValue value)
-   at MongoDB.Bson.Serialization.Serializers.SerializerBase`1.MongoDB.Bson.Serialization.IBsonSerializer.Serialize(BsonSerializationContext context, BsonSerializationArgs args, Object value)
-   at MongoDB.Bson.Serialization.IBsonSerializerExtensions.Serialize(IBsonSerializer serializer, BsonSerializationContext context, Object value)
-   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandMessageBinaryEncoder.WriteType1Section(BsonBinaryWriter writer, Type1CommandMessageSection section, Int64 messageStartPosition)
-   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandMessageBinaryEncoder.WriteSection(BsonBinaryWriter writer, CommandMessageSection section, Int64 messageStartPosition)
-   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandMessageBinaryEncoder.WriteSections(BsonBinaryWriter writer, IEnumerable`1 sections, Int64 messageStartPosition)
-   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandMessageBinaryEncoder.WriteMessage(CommandMessage message)
-   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandRequestMessageBinaryEncoder.WriteMessage(CommandRequestMessage message)
-   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandRequestMessageBinaryEncoder.MongoDB.Driver.Core.WireProtocol.Messages.Encoders.IMessageEncoder.WriteMessage(MongoDBMessage message)
-   at MongoDB.Driver.Core.Connections.BinaryConnection.SendMessagesHelper.EncodeMessages(CancellationToken cancellationToken, List`1& sentMessages)
-   at MongoDB.Driver.Core.Connections.BinaryConnection.SendMessagesAsync(IEnumerable`1 messages, MessageEncoderSettings messageEncoderSettings, CancellationToken cancellationToken)
-   at MongoDB.Driver.Core.ConnectionPools.ExclusiveConnectionPool.PooledConnection.SendMessagesAsync(IEnumerable`1 messages, MessageEncoderSettings messageEncoderSettings, CancellationToken cancellationToken)
-   at MongoDB.Driver.Core.WireProtocol.CommandUsingCommandMessageWireProtocol`1.SendMessageAndProcessResponseAsync(CommandRequestMessage message, Int32 responseTo, IConnection connection, CancellationToken cancellationToken)
-   at MongoDB.Driver.Core.WireProtocol.CommandUsingCommandMessageWireProtocol`1.ExecuteAsync(IConnection connection, CancellationToken cancellationToken)
-   at MongoDB.Driver.Core.Servers.Server.ServerChannel.ExecuteProtocolAsync[TResult](IWireProtocol`1 protocol, ICoreSession session, CancellationToken cancellationToken)
-   at MongoDB.Driver.Core.Operations.RetryableWriteOperationExecutor.ExecuteAsync[TResult](IRetryableWriteOperation`1 operation, RetryableWriteContext context, CancellationToken cancellationToken)
-   at MongoDB.Driver.Core.Operations.BulkUnmixedWriteOperationBase`1.ExecuteBatchAsync(RetryableWriteContext context, Batch batch, CancellationToken cancellationToken)
-   at MongoDB.Driver.Core.Operations.BulkUnmixedWriteOperationBase`1.ExecuteBatchesAsync(RetryableWriteContext context, CancellationToken cancellationToken)
-   at MongoDB.Driver.Core.Operations.BulkMixedWriteOperation.ExecuteBatchAsync(RetryableWriteContext context, Batch batch, CancellationToken cancellationToken)
-   at MongoDB.Driver.Core.Operations.BulkMixedWriteOperation.ExecuteAsync(IWriteBinding binding, CancellationToken cancellationToken)
-   at MongoDB.Driver.OperationExecutor.ExecuteWriteOperationAsync[TResult](IWriteBinding binding, IWriteOperation`1 operation, CancellationToken cancellationToken)
-   at MongoDB.Driver.MongoCollectionImpl`1.ExecuteWriteOperationAsync[TResult](IClientSessionHandle session, IWriteOperation`1 operation, CancellationToken cancellationToken)
-   at MongoDB.Driver.MongoCollectionImpl`1.BulkWriteAsync(IClientSessionHandle session, IEnumerable`1 requests, BulkWriteOptions options, CancellationToken cancellationToken)
-   at MongoDB.Driver.MongoCollectionImpl`1.UsingImplicitSessionAsync[TResult](Func`2 funcAsync, CancellationToken cancellationToken)
-   at MongoDB.Driver.MongoCollectionBase`1.InsertOneAsync(TDocument document, InsertOneOptions options, Func`3 bulkWriteAsync)
-   at MBS_QUERY.Application.UserCases.Events.Mentors.MentorCreatedEventHandler.Handle(MentorCreated request, CancellationToken cancellationToken) in C:\Users\ADMIN\Desktop\PRN231\MBS\MBS-QUERY\MBS_QUERY.Application\UserCases\Events\Mentors\MentorCreatedEventHandler.cs:line 26
-   at MBS_QUERY.Application.Behaviors.TracingPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\ADMIN\Desktop\PRN231\MBS\MBS-QUERY\MBS_QUERY.Application\Behaviors\TracingPipelineBehavior.cs:line 23
-   at MBS_QUERY.Application.Behaviors.PerformancePipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\ADMIN\Desktop\PRN231\MBS\MBS-QUERY\MBS_QUERY.Application\Behaviors\PerformancePipelineBehavior.cs:line 23
-   at MediatR.Wrappers.RequestHandlerWrapperImpl`2.Handle(Object request, IServiceProvider serviceProvider, CancellationToken cancellationToken)
-   at MBS_QUERY.Infrastructure.Consumer.Abstractions.Messages.Consumer`1.Consume(ConsumeContext`1 context) in C:\Users\ADMIN\Desktop\PRN231\MBS\MBS-QUERY\MBS_QUERY.Infrastructure\Consumer\Abstractions\Messages\Consumer.cs:line 21
-   at MassTransit.DependencyInjection.ScopeConsumerFactory`1.Send[TMessage](ConsumeContext`1 context, IPipe`1 next) in /_/src/MassTransit/DependencyInjection/DependencyInjection/ScopeConsumerFactory.cs:line 22
-   at MassTransit.DependencyInjection.ScopeConsumerFactory`1.Send[TMessage](ConsumeContext`1 context, IPipe`1 next) in /_/src/MassTransit/DependencyInjection/DependencyInjection/ScopeConsumerFactory.cs:line 22
-   at MassTransit.Middleware.ConsumerMessageFilter`2.MassTransit.IFilter<MassTransit.ConsumeContext<TMessage>>.Send(ConsumeContext`1 context, IPipe`1 next) in /_/src/MassTransit/Middleware/ConsumerMessageFilter.cs:line 48
-   at MassTransit.Middleware.ConsumerMessageFilter`2.MassTransit.IFilter<MassTransit.ConsumeContext<TMessage>>.Send(ConsumeContext`1 context, IPipe`1 next) in /_/src/MassTransit/Middleware/ConsumerMessageFilter.cs:line 73
-   at MassTransit.Middleware.RetryFilter`1.MassTransit.IFilter<TContext>.Send(TContext context, IPipe`1 next) in /_/src/MassTransit/Middleware/RetryFilter.cs:line 47
-2024-10-15 15:36:47.250 +07:00 [WRN] R-RETRY "rabbitmq://localhost/phucnghi/mentor-created" "f4510000-f64e-50eb-9426-08dcecf4819b" MassTransit.RetryPolicies.RetryConsumeContext<MBS_CONTRACT.SHARE.Services.Mentors.DomainEvent+MentorCreated>
-MongoDB.Bson.BsonSerializationException: An error occurred while serializing the MentorSlots property of class MBS_QUERY.Domain.Documents.MentorProjection: The property 'CreatedOnUtc' of type 'MBS_QUERY.Domain.Documents.SlotProjection' cannot use element name 'CreatedOnUtc' because it is already being used by property 'CreatedOnUtc' of type 'MBS_QUERY.Domain.Abstractions.Entities.Document'.
- ---> MongoDB.Bson.BsonSerializationException: The property 'CreatedOnUtc' of type 'MBS_QUERY.Domain.Documents.SlotProjection' cannot use element name 'CreatedOnUtc' because it is already being used by property 'CreatedOnUtc' of type 'MBS_QUERY.Domain.Abstractions.Entities.Document'.
-   at MongoDB.Bson.Serialization.BsonClassMap.Freeze()
-   at MongoDB.Bson.Serialization.BsonClassMap.LookupClassMap(Type classType)
-   at MongoDB.Bson.Serialization.BsonClassMapSerializationProvider.GetSerializer(Type type, IBsonSerializerRegistry serializerRegistry)
-   at MongoDB.Bson.Serialization.BsonSerializerRegistry.CreateSerializer(Type type)
-   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
-   at MongoDB.Bson.Serialization.BsonSerializerRegistry.GetSerializer(Type type)
-   at MongoDB.Bson.Serialization.BsonSerializerRegistry.GetSerializer[T]()
-   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)
---- End of stack trace from previous location ---
-   at System.Lazy`1.CreateValue()
-   at MongoDB.Bson.Serialization.Serializers.IEnumerableDeserializingAsCollectionSerializer`3.Serialize(BsonSerializationContext context, BsonSerializationArgs args, TIEnumerable value)
-   at MongoDB.Bson.Serialization.Serializers.SerializerBase`1.MongoDB.Bson.Serialization.IBsonSerializer.Serialize(BsonSerializationContext context, BsonSerializationArgs args, Object value)
-   at MongoDB.Bson.Serialization.IBsonSerializerExtensions.Serialize(IBsonSerializer serializer, BsonSerializationContext context, Object value)
-   at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.SerializeNormalMember(BsonSerializationContext context, Object obj, BsonMemberMap memberMap)
-   at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.SerializeMember(BsonSerializationContext context, Object obj, BsonMemberMap memberMap)
-   --- End of inner exception stack trace ---
-   at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.SerializeMember(BsonSerializationContext context, Object obj, BsonMemberMap memberMap)
-   at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.SerializeClass(BsonSerializationContext context, BsonSerializationArgs args, TClass document)
-   at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.Serialize(BsonSerializationContext context, BsonSerializationArgs args, TClass value)
-   at MongoDB.Bson.Serialization.Serializers.SerializerBase`1.MongoDB.Bson.Serialization.IBsonSerializer.Serialize(BsonSerializationContext context, BsonSerializationArgs args, Object value)
-   at MongoDB.Bson.Serialization.IBsonSerializerExtensions.Serialize(IBsonSerializer serializer, BsonSerializationContext context, Object value)
-   at MongoDB.Bson.Serialization.Serializers.BsonDocumentWrapperSerializer.SerializeValue(BsonSerializationContext context, BsonSerializationArgs args, BsonDocumentWrapper value)
-   at MongoDB.Bson.Serialization.Serializers.BsonValueSerializerBase`1.Serialize(BsonSerializationContext context, BsonSerializationArgs args, TBsonValue value)
-   at MongoDB.Bson.Serialization.Serializers.SerializerBase`1.MongoDB.Bson.Serialization.IBsonSerializer.Serialize(BsonSerializationContext context, BsonSerializationArgs args, Object value)
-   at MongoDB.Bson.Serialization.IBsonSerializerExtensions.Serialize(IBsonSerializer serializer, BsonSerializationContext context, Object value)
-   at MongoDB.Bson.Serialization.Serializers.BsonValueSerializerBase`1.Serialize(BsonSerializationContext context, BsonSerializationArgs args, TBsonValue value)
-   at MongoDB.Driver.Core.Operations.BulkInsertOperation.InsertRequestSerializer.SerializeValue(BsonSerializationContext context, BsonSerializationArgs args, InsertRequest value)
-   at MongoDB.Bson.Serialization.Serializers.SealedClassSerializerBase`1.Serialize(BsonSerializationContext context, BsonSerializationArgs args, TValue value)
-   at MongoDB.Bson.Serialization.Serializers.SerializerBase`1.MongoDB.Bson.Serialization.IBsonSerializer.Serialize(BsonSerializationContext context, BsonSerializationArgs args, Object value)
-   at MongoDB.Bson.Serialization.IBsonSerializerExtensions.Serialize(IBsonSerializer serializer, BsonSerializationContext context, Object value)
-   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandMessageBinaryEncoder.WriteType1Section(BsonBinaryWriter writer, Type1CommandMessageSection section, Int64 messageStartPosition)
-   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandMessageBinaryEncoder.WriteSection(BsonBinaryWriter writer, CommandMessageSection section, Int64 messageStartPosition)
-   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandMessageBinaryEncoder.WriteSections(BsonBinaryWriter writer, IEnumerable`1 sections, Int64 messageStartPosition)
-   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandMessageBinaryEncoder.WriteMessage(CommandMessage message)
-   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandRequestMessageBinaryEncoder.WriteMessage(CommandRequestMessage message)
-   at MongoDB.Driver.Core.WireProtocol.Messages.Encoders.BinaryEncoders.CommandRequestMessageBinaryEncoder.MongoDB.Driver.Core.WireProtocol.Messages.Encoders.IMessageEncoder.WriteMessage(MongoDBMessage message)
-   at MongoDB.Driver.Core.Connections.BinaryConnection.SendMessagesHelper.EncodeMessages(CancellationToken cancellationToken, List`1& sentMessages)
-   at MongoDB.Driver.Core.Connections.BinaryConnection.SendMessagesAsync(IEnumerable`1 messages, MessageEncoderSettings messageEncoderSettings, CancellationToken cancellationToken)
-   at MongoDB.Driver.Core.ConnectionPools.ExclusiveConnectionPool.PooledConnection.SendMessagesAsync(IEnumerable`1 messages, MessageEncoderSettings messageEncoderSettings, CancellationToken cancellationToken)
-   at MongoDB.Driver.Core.WireProtocol.CommandUsingCommandMessageWireProtocol`1.SendMessageAndProcessResponseAsync(CommandRequestMessage message, Int32 responseTo, IConnection connection, CancellationToken cancellationToken)
-   at MongoDB.Driver.Core.WireProtocol.CommandUsingCommandMessageWireProtocol`1.ExecuteAsync(IConnection connection, CancellationToken cancellationToken)
-   at MongoDB.Driver.Core.Servers.Server.ServerChannel.ExecuteProtocolAsync[TResult](IWireProtocol`1 protocol, ICoreSession session, CancellationToken cancellationToken)
-   at MongoDB.Driver.Core.Operations.RetryableWriteOperationExecutor.ExecuteAsync[TResult](IRetryableWriteOperation`1 operation, RetryableWriteContext context, CancellationToken cancellationToken)
-   at MongoDB.Driver.Core.Operations.BulkUnmixedWriteOperationBase`1.ExecuteBatchAsync(RetryableWriteContext context, Batch batch, CancellationToken cancellationToken)
-   at MongoDB.Driver.Core.Operations.BulkUnmixedWriteOperationBase`1.ExecuteBatchesAsync(RetryableWriteContext context, CancellationToken cancellationToken)
-   at MongoDB.Driver.Core.Operations.BulkMixedWriteOperation.ExecuteBatchAsync(RetryableWriteContext context, Batch batch, CancellationToken cancellationToken)
-   at MongoDB.Driver.Core.Operations.BulkMixedWriteOperation.ExecuteAsync(IWriteBinding binding, CancellationToken cancellationToken)
-   at MongoDB.Driver.OperationExecutor.ExecuteWriteOperationAsync[TResult](IWriteBinding binding, IWriteOperation`1 operation, CancellationToken cancellationToken)
-   at MongoDB.Driver.MongoCollectionImpl`1.ExecuteWriteOperationAsync[TResult](IClientSessionHandle session, IWriteOperation`1 operation, CancellationToken cancellationToken)
-   at MongoDB.Driver.MongoCollectionImpl`1.BulkWriteAsync(IClientSessionHandle session, IEnumerable`1 requests, BulkWriteOptions options, CancellationToken cancellationToken)
-   at MongoDB.Driver.MongoCollectionImpl`1.UsingImplicitSessionAsync[TResult](Func`2 funcAsync, CancellationToken cancellationToken)
-   at MongoDB.Driver.MongoCollectionBase`1.InsertOneAsync(TDocument document, InsertOneOptions options, Func`3 bulkWriteAsync)
-   at MBS_QUERY.Application.UserCases.Events.Mentors.MentorCreatedEventHandler.Handle(MentorCreated request, CancellationToken cancellationToken) in C:\Users\ADMIN\Desktop\PRN231\MBS\MBS-QUERY\MBS_QUERY.Application\UserCases\Events\Mentors\MentorCreatedEventHandler.cs:line 26
-   at MBS_QUERY.Application.Behaviors.TracingPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\ADMIN\Desktop\PRN231\MBS\MBS-QUERY\MBS_QUERY.Application\Behaviors\TracingPipelineBehavior.cs:line 23
-   at MBS_QUERY.Application.Behaviors.PerformancePipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Users\ADMIN\Desktop\PRN231\MBS\MBS-QUERY\MBS_QUERY.Application\Behaviors\PerformancePipelineBehavior.cs:line 23
-   at MediatR.Wrappers.RequestHandlerWrapperImpl`2.Handle(Object request, IServiceProvider serviceProvider, CancellationToken cancellationToken)
-   at MBS_QUERY.Infrastructure.Consumer.Abstractions.Messages.Consumer`1.Consume(ConsumeContext`1 context) in C:\Users\ADMIN\Desktop\PRN231\MBS\MBS-QUERY\MBS_QUERY.Infrastructure\Consumer\Abstractions\Messages\Consumer.cs:line 21
-   at MassTransit.DependencyInjection.ScopeConsumerFactory`1.Send[TMessage](ConsumeContext`1 context, IPipe`1 next) in /_/src/MassTransit/DependencyInjection/DependencyInjection/ScopeConsumerFactory.cs:line 22
-   at MassTransit.DependencyInjection.ScopeConsumerFactory`1.Send[TMessage](ConsumeContext`1 context, IPipe`1 next) in /_/src/MassTransit/DependencyInjection/DependencyInjection/ScopeConsumerFactory.cs:line 22
-   at MassTransit.Middleware.ConsumerMessageFilter`2.MassTransit.IFilter<MassTransit.ConsumeContext<TMessage>>.Send(ConsumeContext`1 context, IPipe`1 next) in /_/src/MassTransit/Middleware/ConsumerMessageFilter.cs:line 48
-   at MassTransit.Middleware.ConsumerMessageFilter`2.MassTransit.IFilter<MassTransit.ConsumeContext<TMessage>>.Send(ConsumeContext`1 context, IPipe`1 next) in /_/src/MassTransit/Middleware/ConsumerMessageFilter.cs:line 73
-   at MassTransit.Middleware.RetryFilter`1.MassTransit.IFilter<TContext>.Send(TContext context, IPipe`1 next) in /_/src/MassTransit/Middleware/RetryFilter.cs:line 47
-2024-10-15 15:39:27.078 +07:00 [WRN] Long Time Running - Request Details: MentorSlotCreated (11780 milliseconds) {"IdEvent":"8d940e23-f4af-4269-87fa-99ed07652954","Slots":[{"MentorId":"0caba0c4-6da2-4215-94ba-b87ce65e40d1","StartTime":"07:00:00.0000000","EndTime":"08:00:00.0000000","Date":"2001-01-06","IsOnline":true,"Note":"string","Month":1,"IsBook":false,"CreatedOnUtc":"0001-01-01T00:00:00.0000000+00:00","ModifiedOnUtc":null,"$type":"Slot"}],"MentorId":"0caba0c4-6da2-4215-94ba-b87ce65e40d1","$type":"MentorSlotCreated"}
-2024-10-15 15:40:01.228 +07:00 [WRN] Long Time Running - Request Details: MentorSlotCreated (10412 milliseconds) {"IdEvent":"bc9ce840-6df1-46ba-8956-2d7e33d0fa84","Slots":[{"MentorId":"52e915dd-d176-46fb-b09e-6f79a20af21e","StartTime":"07:00:00.0000000","EndTime":"08:00:00.0000000","Date":"2001-01-06","IsOnline":true,"Note":"string","Month":1,"IsBook":false,"CreatedOnUtc":"0001-01-01T00:00:00.0000000+00:00","ModifiedOnUtc":null,"$type":"Slot"}],"MentorId":"52e915dd-d176-46fb-b09e-6f79a20af21e","$type":"MentorSlotCreated"}
-2024-10-15 15:40:29.296 +07:00 [WRN] Connection Failed: "rabbitmq://localhost/phucnghi"
-RabbitMQ.Client.Exceptions.BrokerUnreachableException: None of the specified endpoints were reachable
- ---> System.IO.IOException: connection.start was never received, likely due to a network timeout
- ---> System.IO.EndOfStreamException: Reached the end of the stream. Possible authentication failure.
-   at RabbitMQ.Client.Impl.InboundFrame.ReadFrom(Stream reader, Byte[] frameHeaderBuffer, ArrayPool`1 pool, UInt32 maxMessageSize)
-   at RabbitMQ.Client.Impl.SocketFrameHandler.ReadFrame()
-   at RabbitMQ.Client.Framing.Impl.Connection.MainLoopIteration()
-   at RabbitMQ.Client.Framing.Impl.Connection.MainLoop()
-   --- End of inner exception stack trace ---
-   at RabbitMQ.Client.Framing.Impl.Connection.StartAndTune()
-   at RabbitMQ.Client.Framing.Impl.Connection.Open(Boolean insist)
-   at RabbitMQ.Client.Framing.Impl.Connection..ctor(IConnectionFactory factory, Boolean insist, IFrameHandler frameHandler, String clientProvidedName)
-   at RabbitMQ.Client.Framing.Impl.Connection..ctor(IConnectionFactory factory, Boolean insist, IFrameHandler frameHandler, ArrayPool`1 memoryPool, String clientProvidedName)
-   at RabbitMQ.Client.Framing.Impl.ProtocolBase.CreateConnection(IConnectionFactory factory, Boolean insist, IFrameHandler frameHandler, ArrayPool`1 memoryPool, String clientProvidedName)
-   at RabbitMQ.Client.ConnectionFactory.CreateConnection(IEndpointResolver endpointResolver, String clientProvidedName)
-   --- End of inner exception stack trace ---
-   at RabbitMQ.Client.ConnectionFactory.CreateConnection(IEndpointResolver endpointResolver, String clientProvidedName)
-   at RabbitMQ.Client.ConnectionFactory.CreateConnection(IList`1 hostnames, String clientProvidedName)
-   at MassTransit.RabbitMqTransport.ConnectionContextFactory.CreateConnection(ISupervisor supervisor) in /_/src/Transports/MassTransit.RabbitMqTransport/RabbitMqTransport/ConnectionContextFactory.cs:line 85
-2024-10-15 15:40:41.352 +07:00 [WRN] Connection Failed: "rabbitmq://localhost/phucnghi"
+2024-10-15 15:57:43.368 +07:00 [WRN] Connection Failed: "rabbitmq://103.162.14.116/myHost"
 RabbitMQ.Client.Exceptions.BrokerUnreachableException: None of the specified endpoints were reachable
  ---> System.AggregateException: One or more errors occurred. (Connection failed)
  ---> RabbitMQ.Client.Exceptions.ConnectFailureException: Connection failed
- ---> System.Net.Sockets.SocketException (10061): No connection could be made because the target machine actively refused it.
+ ---> System.Net.Sockets.SocketException (51): Network is unreachable
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.CreateException(SocketError error, Boolean forAsyncThrow)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ConnectAsync(Socket socket)
+   at System.Net.Sockets.Socket.ConnectAsync(EndPoint remoteEP, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.ConnectAsync(EndPoint remoteEP)
+   at RabbitMQ.Client.TcpClientAdapter.ConnectAsync(String host, Int32 port)
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at RabbitMQ.Client.TcpClientAdapter.ConnectAsync(String host, Int32 port)
+   at RabbitMQ.Client.Impl.SocketFrameHandler.ConnectOrFail(ITcpClient socket, AmqpTcpEndpoint endpoint, TimeSpan timeout)
+   at RabbitMQ.Client.Impl.SocketFrameHandler.ConnectUsingAddressFamily(AmqpTcpEndpoint endpoint, Func`2 socketFactory, TimeSpan timeout, AddressFamily family)
+   at RabbitMQ.Client.Impl.SocketFrameHandler.ConnectUsingIPv4(AmqpTcpEndpoint endpoint, Func`2 socketFactory, TimeSpan timeout)
+   at RabbitMQ.Client.Impl.SocketFrameHandler..ctor(AmqpTcpEndpoint endpoint, Func`2 socketFactory, TimeSpan connectionTimeout, TimeSpan readTimeout, TimeSpan writeTimeout)
+   at RabbitMQ.Client.Framing.Impl.IProtocolExtensions.CreateFrameHandler(IProtocol protocol, AmqpTcpEndpoint endpoint, ArrayPool`1 pool, Func`2 socketFactory, TimeSpan connectionTimeout, TimeSpan readTimeout, TimeSpan writeTimeout)
+   at RabbitMQ.Client.ConnectionFactory.CreateFrameHandler(AmqpTcpEndpoint endpoint)
+   at RabbitMQ.Client.EndpointResolverExtensions.SelectOne[T](IEndpointResolver resolver, Func`2 selector)
+   at RabbitMQ.Client.ConnectionFactory.CreateConnection(IEndpointResolver endpointResolver, String clientProvidedName)
+   at RabbitMQ.Client.ConnectionFactory.CreateConnection(IList`1 hostnames, String clientProvidedName)
+   at MassTransit.RabbitMqTransport.ConnectionContextFactory.CreateConnection(ISupervisor supervisor) in /_/src/Transports/MassTransit.RabbitMqTransport/RabbitMqTransport/ConnectionContextFactory.cs:line 85
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at MassTransit.RabbitMqTransport.ConnectionContextFactory.CreateConnection(ISupervisor supervisor)
+   at MassTransit.RabbitMqTransport.ConnectionContextFactory.<>c__DisplayClass3_0.<MassTransit.Agents.IPipeContextFactory<MassTransit.RabbitMqTransport.ConnectionContext>.CreateContext>b__0() in /_/src/Transports/MassTransit.RabbitMqTransport/RabbitMqTransport/ConnectionContextFactory.cs:line 30
+   at System.Threading.Tasks.Task`1.InnerInvoke()
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+   at System.Threading.ThreadPoolWorkQueue.Dispatch()
+   at System.Threading.PortableThreadPool.WorkerThread.WorkerThreadStart()
+   at System.Threading.Thread.StartCallback()
+--- End of stack trace from previous location ---
+   at RabbitMQ.Client.TcpClientAdapter.ConnectAsync(String host, Int32 port)
+   at RabbitMQ.Client.Impl.TaskExtensions.TimeoutAfter(Task task, TimeSpan timeout)
+   at RabbitMQ.Client.Impl.SocketFrameHandler.ConnectOrFail(ITcpClient socket, AmqpTcpEndpoint endpoint, TimeSpan timeout)
+   --- End of inner exception stack trace ---
+   at RabbitMQ.Client.Impl.SocketFrameHandler.ConnectOrFail(ITcpClient socket, AmqpTcpEndpoint endpoint, TimeSpan timeout)
+   at RabbitMQ.Client.Impl.SocketFrameHandler.ConnectUsingAddressFamily(AmqpTcpEndpoint endpoint, Func`2 socketFactory, TimeSpan timeout, AddressFamily family)
+   at RabbitMQ.Client.Impl.SocketFrameHandler.ConnectUsingIPv4(AmqpTcpEndpoint endpoint, Func`2 socketFactory, TimeSpan timeout)
+   at RabbitMQ.Client.Impl.SocketFrameHandler..ctor(AmqpTcpEndpoint endpoint, Func`2 socketFactory, TimeSpan connectionTimeout, TimeSpan readTimeout, TimeSpan writeTimeout)
+   at RabbitMQ.Client.Framing.Impl.IProtocolExtensions.CreateFrameHandler(IProtocol protocol, AmqpTcpEndpoint endpoint, ArrayPool`1 pool, Func`2 socketFactory, TimeSpan connectionTimeout, TimeSpan readTimeout, TimeSpan writeTimeout)
+   at RabbitMQ.Client.ConnectionFactory.CreateFrameHandler(AmqpTcpEndpoint endpoint)
+   at RabbitMQ.Client.EndpointResolverExtensions.SelectOne[T](IEndpointResolver resolver, Func`2 selector)
+   --- End of inner exception stack trace ---
+   at RabbitMQ.Client.EndpointResolverExtensions.SelectOne[T](IEndpointResolver resolver, Func`2 selector)
+   at RabbitMQ.Client.ConnectionFactory.CreateConnection(IEndpointResolver endpointResolver, String clientProvidedName)
+   --- End of inner exception stack trace ---
+   at RabbitMQ.Client.ConnectionFactory.CreateConnection(IEndpointResolver endpointResolver, String clientProvidedName)
+   at RabbitMQ.Client.ConnectionFactory.CreateConnection(IList`1 hostnames, String clientProvidedName)
+   at MassTransit.RabbitMqTransport.ConnectionContextFactory.CreateConnection(ISupervisor supervisor) in /_/src/Transports/MassTransit.RabbitMqTransport/RabbitMqTransport/ConnectionContextFactory.cs:line 85
+2024-10-15 15:57:54.568 +07:00 [ERR] The provider for the source 'IQueryable' doesn't implement 'IAsyncQueryProvider'. Only providers that implement 'IAsyncQueryProvider' can be used for Entity Framework asynchronous operations.
+System.InvalidOperationException: The provider for the source 'IQueryable' doesn't implement 'IAsyncQueryProvider'. Only providers that implement 'IAsyncQueryProvider' can be used for Entity Framework asynchronous operations.
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ExecuteAsync[TSource,TResult](MethodInfo operatorMethodInfo, IQueryable`1 source, Expression expression, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ExecuteAsync[TSource,TResult](MethodInfo operatorMethodInfo, IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.CountAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1.CreateAsync(IQueryable`1 query, Int32 pageIndex, Int32 pageSize)
+   at MBS_QUERY.Application.UserCases.Queries.Mentors.GetAllMentorsQueryHandler.Handle(GetAllMentorsQuery request, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/UserCases/Queries/Mentors/GetAllMentorsQueryHandler.cs:line 28
+   at MBS_COMMAND.Application.Behaviors.TracingPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/TracingPipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.PerformancePipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/PerformancePipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.ValidationPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/ValidationPipelineBehavior.cs:line 24
+   at MBS_QUERY.Presentation.APIs.Metors.MentorApi.GetAllMentors(ISender sender) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Presentation/APIs/Metors/MentorApi.cs:line 26
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at MBS_QUERY.API.Middlewares.ExceptionHandlingMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS-QUERY.API/Middlewares/ExceptionHandlingMiddleware.cs:line 17
+2024-10-15 16:00:11.325 +07:00 [ERR] The provider for the source 'IQueryable' doesn't implement 'IAsyncQueryProvider'. Only providers that implement 'IAsyncQueryProvider' can be used for Entity Framework asynchronous operations.
+System.InvalidOperationException: The provider for the source 'IQueryable' doesn't implement 'IAsyncQueryProvider'. Only providers that implement 'IAsyncQueryProvider' can be used for Entity Framework asynchronous operations.
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ExecuteAsync[TSource,TResult](MethodInfo operatorMethodInfo, IQueryable`1 source, Expression expression, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ExecuteAsync[TSource,TResult](MethodInfo operatorMethodInfo, IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.CountAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1.CreateAsync(IQueryable`1 query, Int32 pageIndex, Int32 pageSize)
+   at MBS_QUERY.Application.UserCases.Queries.Mentors.GetAllMentorsQueryHandler.Handle(GetAllMentorsQuery request, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/UserCases/Queries/Mentors/GetAllMentorsQueryHandler.cs:line 28
+   at MBS_COMMAND.Application.Behaviors.TracingPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/TracingPipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.PerformancePipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/PerformancePipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.ValidationPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/ValidationPipelineBehavior.cs:line 24
+   at MBS_QUERY.Presentation.APIs.Metors.MentorApi.GetAllMentors(ISender sender) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Presentation/APIs/Metors/MentorApi.cs:line 26
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at MBS_QUERY.API.Middlewares.ExceptionHandlingMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS-QUERY.API/Middlewares/ExceptionHandlingMiddleware.cs:line 17
+2024-10-15 16:00:23.148 +07:00 [ERR] The provider for the source 'IQueryable' doesn't implement 'IAsyncQueryProvider'. Only providers that implement 'IAsyncQueryProvider' can be used for Entity Framework asynchronous operations.
+System.InvalidOperationException: The provider for the source 'IQueryable' doesn't implement 'IAsyncQueryProvider'. Only providers that implement 'IAsyncQueryProvider' can be used for Entity Framework asynchronous operations.
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ExecuteAsync[TSource,TResult](MethodInfo operatorMethodInfo, IQueryable`1 source, Expression expression, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ExecuteAsync[TSource,TResult](MethodInfo operatorMethodInfo, IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.CountAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1.CreateAsync(IQueryable`1 query, Int32 pageIndex, Int32 pageSize)
+   at MBS_QUERY.Application.UserCases.Queries.Mentors.GetAllMentorsQueryHandler.Handle(GetAllMentorsQuery request, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/UserCases/Queries/Mentors/GetAllMentorsQueryHandler.cs:line 28
+   at MBS_COMMAND.Application.Behaviors.TracingPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/TracingPipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.PerformancePipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/PerformancePipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.ValidationPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/ValidationPipelineBehavior.cs:line 24
+   at MBS_QUERY.Presentation.APIs.Metors.MentorApi.GetAllMentors(ISender sender) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Presentation/APIs/Metors/MentorApi.cs:line 26
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at MBS_QUERY.API.Middlewares.ExceptionHandlingMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS-QUERY.API/Middlewares/ExceptionHandlingMiddleware.cs:line 17
+2024-10-15 16:06:55.736 +07:00 [ERR] Error mapping types.
+
+Mapping types:
+PagedResult`1 -> PagedResult`1
+MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+
+Type Map configuration:
+PagedResult`1 -> PagedResult`1
+MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+
+Destination Member:
+Void .ctor(System.Collections.Generic.List`1[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse], Int32, Int32, Int32), parameter items
+
+AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+PagedResult`1 -> PagedResult`1
+MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+
+Type Map configuration:
+PagedResult`1 -> PagedResult`1
+MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+
+Destination Member:
+Void .ctor(System.Collections.Generic.List`1[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse], Int32, Int32, Int32), parameter items
+
+ ---> AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+MentorProjection -> GetAllMentorsResponse
+MBS_QUERY.Domain.Documents.MentorProjection -> MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse
+
+Type Map configuration:
+MentorProjection -> GetAllMentorsResponse
+MBS_QUERY.Domain.Documents.MentorProjection -> MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse
+
+Destination Member:
+Id
+
+ ---> AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+ObjectId -> Guid
+MongoDB.Bson.ObjectId -> System.Guid
+
+Destination Member:
+Id
+
+   at lambda_method36(Closure, ObjectId, Guid, ResolutionContext)
+   at lambda_method35(Closure, Object, PagedResult`1, ResolutionContext)
+   --- End of inner exception stack trace ---
+   at lambda_method35(Closure, Object, PagedResult`1, ResolutionContext)
+   --- End of inner exception stack trace ---
+   at lambda_method35(Closure, Object, PagedResult`1, ResolutionContext)
+   at MBS_QUERY.Application.UserCases.Queries.Mentors.GetAllMentorsQueryHandler.Handle(GetAllMentorsQuery request, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/UserCases/Queries/Mentors/GetAllMentorsQueryHandler.cs:line 32
+   at MBS_COMMAND.Application.Behaviors.TracingPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/TracingPipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.PerformancePipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/PerformancePipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.ValidationPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/ValidationPipelineBehavior.cs:line 24
+   at MBS_QUERY.Presentation.APIs.Metors.MentorApi.GetAllMentors(ISender sender) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Presentation/APIs/Metors/MentorApi.cs:line 26
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at MBS_QUERY.API.Middlewares.ExceptionHandlingMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS-QUERY.API/Middlewares/ExceptionHandlingMiddleware.cs:line 17
+2024-10-15 16:07:29.106 +07:00 [ERR] Error mapping types.
+
+Mapping types:
+PagedResult`1 -> PagedResult`1
+MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+
+Type Map configuration:
+PagedResult`1 -> PagedResult`1
+MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+
+Destination Member:
+Void .ctor(System.Collections.Generic.List`1[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse], Int32, Int32, Int32), parameter items
+
+AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+PagedResult`1 -> PagedResult`1
+MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+
+Type Map configuration:
+PagedResult`1 -> PagedResult`1
+MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+
+Destination Member:
+Void .ctor(System.Collections.Generic.List`1[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse], Int32, Int32, Int32), parameter items
+
+ ---> AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+MentorProjection -> GetAllMentorsResponse
+MBS_QUERY.Domain.Documents.MentorProjection -> MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse
+
+Type Map configuration:
+MentorProjection -> GetAllMentorsResponse
+MBS_QUERY.Domain.Documents.MentorProjection -> MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse
+
+Destination Member:
+Id
+
+ ---> AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+ObjectId -> Guid
+MongoDB.Bson.ObjectId -> System.Guid
+
+Destination Member:
+Id
+
+   at lambda_method36(Closure, ObjectId, Guid, ResolutionContext)
+   at lambda_method35(Closure, Object, PagedResult`1, ResolutionContext)
+   --- End of inner exception stack trace ---
+   at lambda_method35(Closure, Object, PagedResult`1, ResolutionContext)
+   --- End of inner exception stack trace ---
+   at lambda_method35(Closure, Object, PagedResult`1, ResolutionContext)
+   at MBS_QUERY.Application.UserCases.Queries.Mentors.GetAllMentorsQueryHandler.Handle(GetAllMentorsQuery request, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/UserCases/Queries/Mentors/GetAllMentorsQueryHandler.cs:line 32
+   at MBS_COMMAND.Application.Behaviors.TracingPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/TracingPipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.PerformancePipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/PerformancePipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.ValidationPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/ValidationPipelineBehavior.cs:line 24
+   at MBS_QUERY.Presentation.APIs.Metors.MentorApi.GetAllMentors(ISender sender) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Presentation/APIs/Metors/MentorApi.cs:line 26
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at MBS_QUERY.API.Middlewares.ExceptionHandlingMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS-QUERY.API/Middlewares/ExceptionHandlingMiddleware.cs:line 17
+2024-10-15 16:08:47.938 +07:00 [ERR] Error mapping types.
+
+Mapping types:
+PagedResult`1 -> PagedResult`1
+MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+
+Type Map configuration:
+PagedResult`1 -> PagedResult`1
+MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+
+Destination Member:
+Void .ctor(System.Collections.Generic.List`1[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse], Int32, Int32, Int32), parameter items
+
+AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+PagedResult`1 -> PagedResult`1
+MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+
+Type Map configuration:
+PagedResult`1 -> PagedResult`1
+MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+
+Destination Member:
+Void .ctor(System.Collections.Generic.List`1[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse], Int32, Int32, Int32), parameter items
+
+ ---> AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+MentorProjection -> GetAllMentorsResponse
+MBS_QUERY.Domain.Documents.MentorProjection -> MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse
+
+Type Map configuration:
+MentorProjection -> GetAllMentorsResponse
+MBS_QUERY.Domain.Documents.MentorProjection -> MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse
+
+Destination Member:
+Id
+
+ ---> AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+ObjectId -> Guid
+MongoDB.Bson.ObjectId -> System.Guid
+
+Destination Member:
+Id
+
+   at lambda_method36(Closure, ObjectId, Guid, ResolutionContext)
+   at lambda_method35(Closure, Object, PagedResult`1, ResolutionContext)
+   --- End of inner exception stack trace ---
+   at lambda_method35(Closure, Object, PagedResult`1, ResolutionContext)
+   --- End of inner exception stack trace ---
+   at lambda_method35(Closure, Object, PagedResult`1, ResolutionContext)
+   at MBS_QUERY.Application.UserCases.Queries.Mentors.GetAllMentorsQueryHandler.Handle(GetAllMentorsQuery request, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/UserCases/Queries/Mentors/GetAllMentorsQueryHandler.cs:line 32
+   at MBS_COMMAND.Application.Behaviors.TracingPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/TracingPipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.PerformancePipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/PerformancePipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.ValidationPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/ValidationPipelineBehavior.cs:line 24
+   at MBS_QUERY.Presentation.APIs.Metors.MentorApi.GetAllMentors(ISender sender) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Presentation/APIs/Metors/MentorApi.cs:line 26
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at MBS_QUERY.API.Middlewares.ExceptionHandlingMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS-QUERY.API/Middlewares/ExceptionHandlingMiddleware.cs:line 17
+2024-10-15 16:11:38.546 +07:00 [ERR] Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+ ---> AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+MentorProjection -> GetAllMentorsResponse
+MBS_QUERY.Domain.Documents.MentorProjection -> MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse
+
+Type Map configuration:
+MentorProjection -> GetAllMentorsResponse
+MBS_QUERY.Domain.Documents.MentorProjection -> MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse
+
+Destination Member:
+Id
+
+ ---> AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+ObjectId -> Guid
+MongoDB.Bson.ObjectId -> System.Guid
+
+Destination Member:
+Id
+
+   at lambda_method37(Closure, ObjectId, Guid, ResolutionContext)
+   at lambda_method36(Closure, Object, List`1, ResolutionContext)
+   --- End of inner exception stack trace ---
+   at lambda_method36(Closure, Object, List`1, ResolutionContext)
+   --- End of inner exception stack trace ---
+   at lambda_method36(Closure, Object, List`1, ResolutionContext)
+   at MBS_QUERY.Application.Mapper.ServiceProfile.<>c.<.ctor>b__0_16(PagedResult`1 src, ResolutionContext ctx) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Mapper/ServiceProfile.cs:line 31
+   at lambda_method35(Closure, Object, PagedResult`1, ResolutionContext)
+   at MBS_QUERY.Application.UserCases.Queries.Mentors.GetAllMentorsQueryHandler.Handle(GetAllMentorsQuery request, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/UserCases/Queries/Mentors/GetAllMentorsQueryHandler.cs:line 32
+   at MBS_COMMAND.Application.Behaviors.TracingPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/TracingPipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.PerformancePipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/PerformancePipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.ValidationPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/ValidationPipelineBehavior.cs:line 24
+   at MBS_QUERY.Presentation.APIs.Metors.MentorApi.GetAllMentors(ISender sender) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Presentation/APIs/Metors/MentorApi.cs:line 26
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at MBS_QUERY.API.Middlewares.ExceptionHandlingMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS-QUERY.API/Middlewares/ExceptionHandlingMiddleware.cs:line 17
+2024-10-15 16:11:53.001 +07:00 [ERR] Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+ ---> AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+MentorProjection -> GetAllMentorsResponse
+MBS_QUERY.Domain.Documents.MentorProjection -> MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse
+
+Type Map configuration:
+MentorProjection -> GetAllMentorsResponse
+MBS_QUERY.Domain.Documents.MentorProjection -> MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse
+
+Destination Member:
+Id
+
+ ---> AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+ObjectId -> Guid
+MongoDB.Bson.ObjectId -> System.Guid
+
+Destination Member:
+Id
+
+   at lambda_method37(Closure, ObjectId, Guid, ResolutionContext)
+   at lambda_method36(Closure, Object, List`1, ResolutionContext)
+   --- End of inner exception stack trace ---
+   at lambda_method36(Closure, Object, List`1, ResolutionContext)
+   --- End of inner exception stack trace ---
+   at lambda_method36(Closure, Object, List`1, ResolutionContext)
+   at MBS_QUERY.Application.Mapper.ServiceProfile.<>c.<.ctor>b__0_16(PagedResult`1 src, ResolutionContext ctx) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Mapper/ServiceProfile.cs:line 31
+   at lambda_method35(Closure, Object, PagedResult`1, ResolutionContext)
+   at MBS_QUERY.Application.UserCases.Queries.Mentors.GetAllMentorsQueryHandler.Handle(GetAllMentorsQuery request, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/UserCases/Queries/Mentors/GetAllMentorsQueryHandler.cs:line 32
+   at MBS_COMMAND.Application.Behaviors.TracingPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/TracingPipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.PerformancePipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/PerformancePipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.ValidationPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/ValidationPipelineBehavior.cs:line 24
+   at MBS_QUERY.Presentation.APIs.Metors.MentorApi.GetAllMentors(ISender sender) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Presentation/APIs/Metors/MentorApi.cs:line 26
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at MBS_QUERY.API.Middlewares.ExceptionHandlingMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS-QUERY.API/Middlewares/ExceptionHandlingMiddleware.cs:line 17
+2024-10-15 16:14:08.728 +07:00 [ERR] Error mapping types.
+
+Mapping types:
+PagedResult`1 -> PagedResult`1
+MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+
+Type Map configuration:
+PagedResult`1 -> PagedResult`1
+MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+
+Destination Member:
+Void .ctor(System.Collections.Generic.List`1[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse], Int32, Int32, Int32), parameter items
+
+AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+PagedResult`1 -> PagedResult`1
+MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+
+Type Map configuration:
+PagedResult`1 -> PagedResult`1
+MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+
+Destination Member:
+Void .ctor(System.Collections.Generic.List`1[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse], Int32, Int32, Int32), parameter items
+
+ ---> AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+MentorProjection -> GetAllMentorsResponse
+MBS_QUERY.Domain.Documents.MentorProjection -> MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse
+
+Type Map configuration:
+MentorProjection -> GetAllMentorsResponse
+MBS_QUERY.Domain.Documents.MentorProjection -> MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse
+
+Destination Member:
+Id
+
+ ---> AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+ObjectId -> Guid
+MongoDB.Bson.ObjectId -> System.Guid
+
+Destination Member:
+Id
+
+   at lambda_method36(Closure, ObjectId, Guid, ResolutionContext)
+   at lambda_method35(Closure, Object, PagedResult`1, ResolutionContext)
+   --- End of inner exception stack trace ---
+   at lambda_method35(Closure, Object, PagedResult`1, ResolutionContext)
+   --- End of inner exception stack trace ---
+   at lambda_method35(Closure, Object, PagedResult`1, ResolutionContext)
+   at MBS_QUERY.Application.UserCases.Queries.Mentors.GetAllMentorsQueryHandler.Handle(GetAllMentorsQuery request, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/UserCases/Queries/Mentors/GetAllMentorsQueryHandler.cs:line 32
+   at MBS_COMMAND.Application.Behaviors.TracingPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/TracingPipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.PerformancePipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/PerformancePipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.ValidationPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/ValidationPipelineBehavior.cs:line 24
+   at MBS_QUERY.Presentation.APIs.Metors.MentorApi.GetAllMentors(ISender sender) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Presentation/APIs/Metors/MentorApi.cs:line 26
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at MBS_QUERY.API.Middlewares.ExceptionHandlingMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS-QUERY.API/Middlewares/ExceptionHandlingMiddleware.cs:line 17
+2024-10-15 16:17:06.722 +07:00 [ERR] Error mapping types.
+
+Mapping types:
+PagedResult`1 -> PagedResult`1
+MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+
+Type Map configuration:
+PagedResult`1 -> PagedResult`1
+MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+
+Destination Member:
+Void .ctor(System.Collections.Generic.List`1[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse], Int32, Int32, Int32), parameter items
+
+AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+PagedResult`1 -> PagedResult`1
+MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+
+Type Map configuration:
+PagedResult`1 -> PagedResult`1
+MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+
+Destination Member:
+Void .ctor(System.Collections.Generic.List`1[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse], Int32, Int32, Int32), parameter items
+
+ ---> AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+MentorProjection -> GetAllMentorsResponse
+MBS_QUERY.Domain.Documents.MentorProjection -> MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse
+
+Type Map configuration:
+MentorProjection -> GetAllMentorsResponse
+MBS_QUERY.Domain.Documents.MentorProjection -> MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse
+
+Destination Member:
+Id
+
+ ---> AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+ObjectId -> Guid
+MongoDB.Bson.ObjectId -> System.Guid
+
+Destination Member:
+Id
+
+   at lambda_method36(Closure, ObjectId, Guid, ResolutionContext)
+   at lambda_method35(Closure, Object, PagedResult`1, ResolutionContext)
+   --- End of inner exception stack trace ---
+   at lambda_method35(Closure, Object, PagedResult`1, ResolutionContext)
+   --- End of inner exception stack trace ---
+   at lambda_method35(Closure, Object, PagedResult`1, ResolutionContext)
+   at MBS_QUERY.Application.UserCases.Queries.Mentors.GetAllMentorsQueryHandler.Handle(GetAllMentorsQuery request, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/UserCases/Queries/Mentors/GetAllMentorsQueryHandler.cs:line 32
+   at MBS_COMMAND.Application.Behaviors.TracingPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/TracingPipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.PerformancePipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/PerformancePipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.ValidationPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/ValidationPipelineBehavior.cs:line 24
+   at MBS_QUERY.Presentation.APIs.Metors.MentorApi.GetAllMentors(ISender sender) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Presentation/APIs/Metors/MentorApi.cs:line 26
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at MBS_QUERY.API.Middlewares.ExceptionHandlingMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS-QUERY.API/Middlewares/ExceptionHandlingMiddleware.cs:line 17
+2024-10-15 16:20:53.518 +07:00 [ERR] Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+ ---> AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+MentorProjection -> GetAllMentorsResponse
+MBS_QUERY.Domain.Documents.MentorProjection -> MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse
+
+Type Map configuration:
+MentorProjection -> GetAllMentorsResponse
+MBS_QUERY.Domain.Documents.MentorProjection -> MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse
+
+Destination Member:
+Id
+
+ ---> AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+ObjectId -> Guid
+MongoDB.Bson.ObjectId -> System.Guid
+
+Destination Member:
+Id
+
+   at lambda_method37(Closure, ObjectId, Guid, ResolutionContext)
+   at lambda_method36(Closure, Object, List`1, ResolutionContext)
+   --- End of inner exception stack trace ---
+   at lambda_method36(Closure, Object, List`1, ResolutionContext)
+   --- End of inner exception stack trace ---
+   at lambda_method36(Closure, Object, List`1, ResolutionContext)
+   at MBS_QUERY.Application.Mapper.ServiceProfile.<>c.<.ctor>b__0_16(PagedResult`1 src, PagedResult`1 dest, ResolutionContext context) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Mapper/ServiceProfile.cs:line 45
+   at MBS_QUERY.Application.UserCases.Queries.Mentors.GetAllMentorsQueryHandler.Handle(GetAllMentorsQuery request, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/UserCases/Queries/Mentors/GetAllMentorsQueryHandler.cs:line 32
+   at MBS_COMMAND.Application.Behaviors.TracingPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/TracingPipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.PerformancePipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/PerformancePipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.ValidationPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/ValidationPipelineBehavior.cs:line 24
+   at MBS_QUERY.Presentation.APIs.Metors.MentorApi.GetAllMentors(ISender sender) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Presentation/APIs/Metors/MentorApi.cs:line 26
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at MBS_QUERY.API.Middlewares.ExceptionHandlingMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS-QUERY.API/Middlewares/ExceptionHandlingMiddleware.cs:line 17
+2024-10-15 16:22:00.792 +07:00 [ERR] Incorrect number of arguments supplied for call to method 'GetAllMentorsResponse get_Item(Int32)' (Parameter 'property')
+System.ArgumentException: Incorrect number of arguments supplied for call to method 'GetAllMentorsResponse get_Item(Int32)' (Parameter 'property')
+   at System.Linq.Expressions.Expression.Property(Expression expression, PropertyInfo property)
+   at AutoMapper.Execution.TypeMapPlanBuilder.CreatePropertyMapFunc(MemberMap memberMap, Expression destination, MemberInfo destinationMember)
+   at AutoMapper.Execution.TypeMapPlanBuilder.AddPropertyMaps(List`1 actions)
+   at AutoMapper.Execution.TypeMapPlanBuilder.CreateAssignmentFunc(Expression createDestination)
+   at AutoMapper.Execution.TypeMapPlanBuilder.CreateMapperLambda()
+   at AutoMapper.TypeMap.CreateMapperLambda(IGlobalConfiguration configuration)
+   at AutoMapper.TypeMap.Seal(IGlobalConfiguration configuration)
+   at AutoMapper.MapperConfiguration.<.ctor>g__Seal|20_0()
+   at AutoMapper.MapperConfiguration..ctor(MapperConfigurationExpression configurationExpression)
+   at Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.<>c.<AddAutoMapperClasses>b__12_2(IServiceProvider sp)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitFactory(FactoryCallSite factoryCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitRootCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.Resolve(ServiceCallSite callSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.CreateServiceAccessor(ServiceIdentifier serviceIdentifier)
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.GetService(ServiceIdentifier serviceIdentifier, ServiceProviderEngineScope serviceProviderEngineScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService[T](IServiceProvider provider)
+   at Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.<>c.<AddAutoMapperClasses>b__12_3(IServiceProvider sp)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitFactory(FactoryCallSite factoryCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitDisposeCache(ServiceCallSite transientCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitDisposeCache(ServiceCallSite transientCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.Resolve(ServiceCallSite callSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.DynamicServiceProviderEngine.<>c__DisplayClass2_0.<RealizeService>b__0(ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.GetService(ServiceIdentifier serviceIdentifier, ServiceProviderEngineScope serviceProviderEngineScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService[T](IServiceProvider provider)
+   at MediatR.Wrappers.RequestHandlerWrapperImpl`2.<>c__DisplayClass1_0.<Handle>g__Handler|0()
+   at MBS_COMMAND.Application.Behaviors.TracingPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/TracingPipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.PerformancePipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/PerformancePipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.ValidationPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/ValidationPipelineBehavior.cs:line 24
+   at MBS_QUERY.Presentation.APIs.Metors.MentorApi.GetAllMentors(ISender sender) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Presentation/APIs/Metors/MentorApi.cs:line 26
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at MBS_QUERY.API.Middlewares.ExceptionHandlingMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS-QUERY.API/Middlewares/ExceptionHandlingMiddleware.cs:line 17
+2024-10-15 16:22:06.435 +07:00 [ERR] Incorrect number of arguments supplied for call to method 'GetAllMentorsResponse get_Item(Int32)' (Parameter 'property')
+System.ArgumentException: Incorrect number of arguments supplied for call to method 'GetAllMentorsResponse get_Item(Int32)' (Parameter 'property')
+   at System.Linq.Expressions.Expression.Property(Expression expression, PropertyInfo property)
+   at AutoMapper.Execution.TypeMapPlanBuilder.CreatePropertyMapFunc(MemberMap memberMap, Expression destination, MemberInfo destinationMember)
+   at AutoMapper.Execution.TypeMapPlanBuilder.AddPropertyMaps(List`1 actions)
+   at AutoMapper.Execution.TypeMapPlanBuilder.CreateAssignmentFunc(Expression createDestination)
+   at AutoMapper.Execution.TypeMapPlanBuilder.CreateMapperLambda()
+   at AutoMapper.TypeMap.CreateMapperLambda(IGlobalConfiguration configuration)
+   at AutoMapper.TypeMap.Seal(IGlobalConfiguration configuration)
+   at AutoMapper.MapperConfiguration.<.ctor>g__Seal|20_0()
+   at AutoMapper.MapperConfiguration..ctor(MapperConfigurationExpression configurationExpression)
+   at Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.<>c.<AddAutoMapperClasses>b__12_2(IServiceProvider sp)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitRootCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.Resolve(ServiceCallSite callSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.CreateServiceAccessor(ServiceIdentifier serviceIdentifier)
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.GetService(ServiceIdentifier serviceIdentifier, ServiceProviderEngineScope serviceProviderEngineScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService[T](IServiceProvider provider)
+   at Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.<>c.<AddAutoMapperClasses>b__12_3(IServiceProvider sp)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.Resolve(ServiceCallSite callSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.DynamicServiceProviderEngine.<>c__DisplayClass2_0.<RealizeService>b__0(ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.GetService(ServiceIdentifier serviceIdentifier, ServiceProviderEngineScope serviceProviderEngineScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService[T](IServiceProvider provider)
+   at MediatR.Wrappers.RequestHandlerWrapperImpl`2.<>c__DisplayClass1_0.<Handle>g__Handler|0()
+   at MBS_COMMAND.Application.Behaviors.TracingPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/TracingPipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.PerformancePipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/PerformancePipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.ValidationPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/ValidationPipelineBehavior.cs:line 24
+   at MBS_QUERY.Presentation.APIs.Metors.MentorApi.GetAllMentors(ISender sender) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Presentation/APIs/Metors/MentorApi.cs:line 26
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at MBS_QUERY.API.Middlewares.ExceptionHandlingMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS-QUERY.API/Middlewares/ExceptionHandlingMiddleware.cs:line 17
+2024-10-15 16:22:10.838 +07:00 [ERR] Incorrect number of arguments supplied for call to method 'GetAllMentorsResponse get_Item(Int32)' (Parameter 'property')
+System.ArgumentException: Incorrect number of arguments supplied for call to method 'GetAllMentorsResponse get_Item(Int32)' (Parameter 'property')
+   at System.Linq.Expressions.Expression.Property(Expression expression, PropertyInfo property)
+   at AutoMapper.Execution.TypeMapPlanBuilder.CreatePropertyMapFunc(MemberMap memberMap, Expression destination, MemberInfo destinationMember)
+   at AutoMapper.Execution.TypeMapPlanBuilder.AddPropertyMaps(List`1 actions)
+   at AutoMapper.Execution.TypeMapPlanBuilder.CreateAssignmentFunc(Expression createDestination)
+   at AutoMapper.Execution.TypeMapPlanBuilder.CreateMapperLambda()
+   at AutoMapper.TypeMap.CreateMapperLambda(IGlobalConfiguration configuration)
+   at AutoMapper.TypeMap.Seal(IGlobalConfiguration configuration)
+   at AutoMapper.MapperConfiguration.<.ctor>g__Seal|20_0()
+   at AutoMapper.MapperConfiguration..ctor(MapperConfigurationExpression configurationExpression)
+   at Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.<>c.<AddAutoMapperClasses>b__12_2(IServiceProvider sp)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitRootCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.Resolve(ServiceCallSite callSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.CreateServiceAccessor(ServiceIdentifier serviceIdentifier)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService[T](IServiceProvider provider)
+   at Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.<>c.<AddAutoMapperClasses>b__12_3(IServiceProvider sp)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.Resolve(ServiceCallSite callSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.DynamicServiceProviderEngine.<>c__DisplayClass2_0.<RealizeService>b__0(ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService[T](IServiceProvider provider)
+   at MediatR.Wrappers.RequestHandlerWrapperImpl`2.<>c__DisplayClass1_0.<Handle>g__Handler|0()
+   at MBS_COMMAND.Application.Behaviors.TracingPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/TracingPipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.PerformancePipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/PerformancePipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.ValidationPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/ValidationPipelineBehavior.cs:line 24
+   at MBS_QUERY.Presentation.APIs.Metors.MentorApi.GetAllMentors(ISender sender) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Presentation/APIs/Metors/MentorApi.cs:line 26
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at MBS_QUERY.API.Middlewares.ExceptionHandlingMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS-QUERY.API/Middlewares/ExceptionHandlingMiddleware.cs:line 17
+2024-10-15 16:23:39.782 +07:00 [ERR] Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+ ---> AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+MentorProjection -> GetAllMentorsResponse
+MBS_QUERY.Domain.Documents.MentorProjection -> MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse
+
+Type Map configuration:
+MentorProjection -> GetAllMentorsResponse
+MBS_QUERY.Domain.Documents.MentorProjection -> MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse
+
+Destination Member:
+Id
+
+ ---> AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+ObjectId -> Guid
+MongoDB.Bson.ObjectId -> System.Guid
+
+Destination Member:
+Id
+
+   at lambda_method38(Closure, ObjectId, Guid, ResolutionContext)
+   at lambda_method36(Closure, Object, List`1, ResolutionContext)
+   --- End of inner exception stack trace ---
+   at lambda_method36(Closure, Object, List`1, ResolutionContext)
+   --- End of inner exception stack trace ---
+   at lambda_method36(Closure, Object, List`1, ResolutionContext)
+   at MBS_QUERY.Application.Mapper.ServiceProfile.<>c.<.ctor>b__0_17(PagedResult`1 src, PagedResult`1 dest, ResolutionContext context) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Mapper/ServiceProfile.cs:line 56
+   at MBS_QUERY.Application.UserCases.Queries.Mentors.GetAllMentorsQueryHandler.Handle(GetAllMentorsQuery request, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/UserCases/Queries/Mentors/GetAllMentorsQueryHandler.cs:line 32
+   at MBS_COMMAND.Application.Behaviors.TracingPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/TracingPipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.PerformancePipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/PerformancePipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.ValidationPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/ValidationPipelineBehavior.cs:line 24
+   at MBS_QUERY.Presentation.APIs.Metors.MentorApi.GetAllMentors(ISender sender) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Presentation/APIs/Metors/MentorApi.cs:line 26
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at MBS_QUERY.API.Middlewares.ExceptionHandlingMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS-QUERY.API/Middlewares/ExceptionHandlingMiddleware.cs:line 17
+2024-10-15 16:33:00.440 +07:00 [ERR] Error mapping types.
+
+Mapping types:
+PagedResult`1 -> PagedResult`1
+MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+
+Type Map configuration:
+PagedResult`1 -> PagedResult`1
+MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+
+Destination Member:
+Void .ctor(System.Collections.Generic.List`1[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse], Int32, Int32, Int32), parameter items
+
+AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+PagedResult`1 -> PagedResult`1
+MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+
+Type Map configuration:
+PagedResult`1 -> PagedResult`1
+MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+
+Destination Member:
+Void .ctor(System.Collections.Generic.List`1[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse], Int32, Int32, Int32), parameter items
+
+ ---> AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+MentorProjection -> GetAllMentorsResponse
+MBS_QUERY.Domain.Documents.MentorProjection -> MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse
+
+Type Map configuration:
+MentorProjection -> GetAllMentorsResponse
+MBS_QUERY.Domain.Documents.MentorProjection -> MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse
+
+Destination Member:
+Id
+
+ ---> AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+ObjectId -> Guid
+MongoDB.Bson.ObjectId -> System.Guid
+
+Destination Member:
+Id
+
+   at lambda_method40(Closure, ObjectId, Guid, ResolutionContext)
+   at lambda_method35(Closure, Object, PagedResult`1, ResolutionContext)
+   --- End of inner exception stack trace ---
+   at lambda_method35(Closure, Object, PagedResult`1, ResolutionContext)
+   --- End of inner exception stack trace ---
+   at lambda_method35(Closure, Object, PagedResult`1, ResolutionContext)
+   at MBS_QUERY.Application.UserCases.Queries.Mentors.GetAllMentorsQueryHandler.Handle(GetAllMentorsQuery request, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/UserCases/Queries/Mentors/GetAllMentorsQueryHandler.cs:line 32
+   at MBS_COMMAND.Application.Behaviors.TracingPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/TracingPipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.PerformancePipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/PerformancePipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.ValidationPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/ValidationPipelineBehavior.cs:line 24
+   at MBS_QUERY.Presentation.APIs.Metors.MentorApi.GetAllMentors(ISender sender) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Presentation/APIs/Metors/MentorApi.cs:line 26
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at MBS_QUERY.API.Middlewares.ExceptionHandlingMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS-QUERY.API/Middlewares/ExceptionHandlingMiddleware.cs:line 17
+2024-10-15 16:35:36.483 +07:00 [ERR] Error mapping types.
+
+Mapping types:
+PagedResult`1 -> PagedResult`1
+MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+
+Type Map configuration:
+PagedResult`1 -> PagedResult`1
+MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+
+Destination Member:
+Void .ctor(System.Collections.Generic.List`1[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse], Int32, Int32, Int32), parameter items
+
+AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+PagedResult`1 -> PagedResult`1
+MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+
+Type Map configuration:
+PagedResult`1 -> PagedResult`1
+MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Domain.Documents.MentorProjection, MBS_QUERY.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> MBS_QUERY.Contract.Abstractions.Shared.PagedResult`1[[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse, MBS_QUERY.Contract, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+
+Destination Member:
+Void .ctor(System.Collections.Generic.List`1[MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse], Int32, Int32, Int32), parameter items
+
+ ---> AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+MentorProjection -> GetAllMentorsResponse
+MBS_QUERY.Domain.Documents.MentorProjection -> MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse
+
+Type Map configuration:
+MentorProjection -> GetAllMentorsResponse
+MBS_QUERY.Domain.Documents.MentorProjection -> MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse
+
+Destination Member:
+Id
+
+ ---> AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+ObjectId -> Guid
+MongoDB.Bson.ObjectId -> System.Guid
+
+Destination Member:
+Id
+
+   at lambda_method40(Closure, ObjectId, Guid, ResolutionContext)
+   at lambda_method35(Closure, Object, PagedResult`1, ResolutionContext)
+   --- End of inner exception stack trace ---
+   at lambda_method35(Closure, Object, PagedResult`1, ResolutionContext)
+   --- End of inner exception stack trace ---
+   at lambda_method35(Closure, Object, PagedResult`1, ResolutionContext)
+   at MBS_QUERY.Application.UserCases.Queries.Mentors.GetAllMentorsQueryHandler.Handle(GetAllMentorsQuery request, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/UserCases/Queries/Mentors/GetAllMentorsQueryHandler.cs:line 32
+   at MBS_COMMAND.Application.Behaviors.TracingPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/TracingPipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.PerformancePipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/PerformancePipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.ValidationPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/ValidationPipelineBehavior.cs:line 24
+   at MBS_QUERY.Presentation.APIs.Metors.MentorApi.GetAllMentors(ISender sender) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Presentation/APIs/Metors/MentorApi.cs:line 26
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at MBS_QUERY.API.Middlewares.ExceptionHandlingMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS-QUERY.API/Middlewares/ExceptionHandlingMiddleware.cs:line 17
+2024-10-15 16:37:29.218 +07:00 [ERR] Error mapping types.
+
+Mapping types:
+MentorProjection -> GetAllMentorsResponse
+MBS_QUERY.Domain.Documents.MentorProjection -> MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse
+
+Type Map configuration:
+MentorProjection -> GetAllMentorsResponse
+MBS_QUERY.Domain.Documents.MentorProjection -> MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse
+
+Destination Member:
+Id
+
+AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+MentorProjection -> GetAllMentorsResponse
+MBS_QUERY.Domain.Documents.MentorProjection -> MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse
+
+Type Map configuration:
+MentorProjection -> GetAllMentorsResponse
+MBS_QUERY.Domain.Documents.MentorProjection -> MBS_QUERY.Contract.Services.Mentors.Response+GetAllMentorsResponse
+
+Destination Member:
+Id
+
+ ---> AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+ObjectId -> Guid
+MongoDB.Bson.ObjectId -> System.Guid
+
+Destination Member:
+Id
+
+   at lambda_method37(Closure, ObjectId, Guid, ResolutionContext)
+   at lambda_method36(Closure, Object, GetAllMentorsResponse, ResolutionContext)
+   --- End of inner exception stack trace ---
+   at lambda_method36(Closure, Object, GetAllMentorsResponse, ResolutionContext)
+   at MBS_QUERY.Application.Mapper.ServiceProfile.<>c__DisplayClass0_0.<.ctor>b__4(MentorProjection item) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Mapper/ServiceProfile.cs:line 39
+   at System.Linq.Enumerable.SelectListIterator`2.Fill(ReadOnlySpan`1 source, Span`1 destination, Func`2 func)
+   at System.Linq.Enumerable.SelectListIterator`2.ToList()
+   at MBS_QUERY.Application.Mapper.ServiceProfile.<>c.<.ctor>b__0_1(PagedResult`1 src, ResolutionContext context) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Mapper/ServiceProfile.cs:line 39
+   at lambda_method35(Closure, Object, PagedResult`1, ResolutionContext)
+   at MBS_QUERY.Application.UserCases.Queries.Mentors.GetAllMentorsQueryHandler.Handle(GetAllMentorsQuery request, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/UserCases/Queries/Mentors/GetAllMentorsQueryHandler.cs:line 32
+   at MBS_COMMAND.Application.Behaviors.TracingPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/TracingPipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.PerformancePipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/PerformancePipelineBehavior.cs:line 23
+   at MBS_COMMAND.Application.Behaviors.ValidationPipelineBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Application/Behaviors/ValidationPipelineBehavior.cs:line 24
+   at MBS_QUERY.Presentation.APIs.Metors.MentorApi.GetAllMentors(ISender sender) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS_QUERY.Presentation/APIs/Metors/MentorApi.cs:line 26
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at MBS_QUERY.API.Middlewares.ExceptionHandlingMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in /Users/tantran/Documents/WorkSpace/MentorBooking/MBS-QUERY/MBS-QUERY.API/Middlewares/ExceptionHandlingMiddleware.cs:line 17
+2024-10-15 17:12:14.901 +07:00 [WRN] Connection Failed: "rabbitmq://localhost/phucnghi"
+RabbitMQ.Client.Exceptions.BrokerUnreachableException: None of the specified endpoints were reachable
+ ---> System.AggregateException: One or more errors occurred. (Connection failed)
+ ---> RabbitMQ.Client.Exceptions.ConnectFailureException: Connection failed
+ ---> System.Net.Sockets.SocketException (61): Connection refused
    at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
    at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
    at System.Threading.Tasks.ValueTask.ValueTaskSourceAsTask.<>c.<.cctor>b__4_0(Object state)
@@ -479,11 +969,11 @@ RabbitMQ.Client.Exceptions.BrokerUnreachableException: None of the specified end
    at RabbitMQ.Client.ConnectionFactory.CreateConnection(IEndpointResolver endpointResolver, String clientProvidedName)
    at RabbitMQ.Client.ConnectionFactory.CreateConnection(IList`1 hostnames, String clientProvidedName)
    at MassTransit.RabbitMqTransport.ConnectionContextFactory.CreateConnection(ISupervisor supervisor) in /_/src/Transports/MassTransit.RabbitMqTransport/RabbitMqTransport/ConnectionContextFactory.cs:line 85
-2024-10-15 15:40:55.925 +07:00 [WRN] Connection Failed: "rabbitmq://localhost/phucnghi"
+2024-10-15 17:12:21.528 +07:00 [WRN] Connection Failed: "rabbitmq://localhost/phucnghi"
 RabbitMQ.Client.Exceptions.BrokerUnreachableException: None of the specified endpoints were reachable
  ---> System.AggregateException: One or more errors occurred. (Connection failed)
  ---> RabbitMQ.Client.Exceptions.ConnectFailureException: Connection failed
- ---> System.Net.Sockets.SocketException (10061): No connection could be made because the target machine actively refused it.
+ ---> System.Net.Sockets.SocketException (61): Connection refused
    at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
    at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
    at System.Threading.Tasks.ValueTask.ValueTaskSourceAsTask.<>c.<.cctor>b__4_0(Object state)
@@ -506,11 +996,11 @@ RabbitMQ.Client.Exceptions.BrokerUnreachableException: None of the specified end
    at RabbitMQ.Client.ConnectionFactory.CreateConnection(IEndpointResolver endpointResolver, String clientProvidedName)
    at RabbitMQ.Client.ConnectionFactory.CreateConnection(IList`1 hostnames, String clientProvidedName)
    at MassTransit.RabbitMqTransport.ConnectionContextFactory.CreateConnection(ISupervisor supervisor) in /_/src/Transports/MassTransit.RabbitMqTransport/RabbitMqTransport/ConnectionContextFactory.cs:line 85
-2024-10-15 15:41:16.663 +07:00 [WRN] Connection Failed: "rabbitmq://localhost/phucnghi"
+2024-10-15 17:12:31.052 +07:00 [WRN] Connection Failed: "rabbitmq://localhost/phucnghi"
 RabbitMQ.Client.Exceptions.BrokerUnreachableException: None of the specified endpoints were reachable
  ---> System.AggregateException: One or more errors occurred. (Connection failed)
  ---> RabbitMQ.Client.Exceptions.ConnectFailureException: Connection failed
- ---> System.Net.Sockets.SocketException (10061): No connection could be made because the target machine actively refused it.
+ ---> System.Net.Sockets.SocketException (61): Connection refused
    at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
    at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
    at System.Threading.Tasks.ValueTask.ValueTaskSourceAsTask.<>c.<.cctor>b__4_0(Object state)
@@ -533,11 +1023,11 @@ RabbitMQ.Client.Exceptions.BrokerUnreachableException: None of the specified end
    at RabbitMQ.Client.ConnectionFactory.CreateConnection(IEndpointResolver endpointResolver, String clientProvidedName)
    at RabbitMQ.Client.ConnectionFactory.CreateConnection(IList`1 hostnames, String clientProvidedName)
    at MassTransit.RabbitMqTransport.ConnectionContextFactory.CreateConnection(ISupervisor supervisor) in /_/src/Transports/MassTransit.RabbitMqTransport/RabbitMqTransport/ConnectionContextFactory.cs:line 85
-2024-10-15 15:41:50.569 +07:00 [WRN] Connection Failed: "rabbitmq://localhost/phucnghi"
+2024-10-15 17:12:48.150 +07:00 [WRN] Connection Failed: "rabbitmq://localhost/phucnghi"
 RabbitMQ.Client.Exceptions.BrokerUnreachableException: None of the specified endpoints were reachable
  ---> System.AggregateException: One or more errors occurred. (Connection failed)
  ---> RabbitMQ.Client.Exceptions.ConnectFailureException: Connection failed
- ---> System.Net.Sockets.SocketException (10061): No connection could be made because the target machine actively refused it.
+ ---> System.Net.Sockets.SocketException (61): Connection refused
    at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
    at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
    at System.Threading.Tasks.ValueTask.ValueTaskSourceAsTask.<>c.<.cctor>b__4_0(Object state)
@@ -560,11 +1050,11 @@ RabbitMQ.Client.Exceptions.BrokerUnreachableException: None of the specified end
    at RabbitMQ.Client.ConnectionFactory.CreateConnection(IEndpointResolver endpointResolver, String clientProvidedName)
    at RabbitMQ.Client.ConnectionFactory.CreateConnection(IList`1 hostnames, String clientProvidedName)
    at MassTransit.RabbitMqTransport.ConnectionContextFactory.CreateConnection(ISupervisor supervisor) in /_/src/Transports/MassTransit.RabbitMqTransport/RabbitMqTransport/ConnectionContextFactory.cs:line 85
-2024-10-15 15:42:25.956 +07:00 [WRN] Connection Failed: "rabbitmq://localhost/phucnghi"
+2024-10-15 17:13:17.171 +07:00 [WRN] Connection Failed: "rabbitmq://localhost/phucnghi"
 RabbitMQ.Client.Exceptions.BrokerUnreachableException: None of the specified endpoints were reachable
  ---> System.AggregateException: One or more errors occurred. (Connection failed)
  ---> RabbitMQ.Client.Exceptions.ConnectFailureException: Connection failed
- ---> System.Net.Sockets.SocketException (10061): No connection could be made because the target machine actively refused it.
+ ---> System.Net.Sockets.SocketException (61): Connection refused
    at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
    at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
    at System.Threading.Tasks.ValueTask.ValueTaskSourceAsTask.<>c.<.cctor>b__4_0(Object state)
@@ -587,11 +1077,11 @@ RabbitMQ.Client.Exceptions.BrokerUnreachableException: None of the specified end
    at RabbitMQ.Client.ConnectionFactory.CreateConnection(IEndpointResolver endpointResolver, String clientProvidedName)
    at RabbitMQ.Client.ConnectionFactory.CreateConnection(IList`1 hostnames, String clientProvidedName)
    at MassTransit.RabbitMqTransport.ConnectionContextFactory.CreateConnection(ISupervisor supervisor) in /_/src/Transports/MassTransit.RabbitMqTransport/RabbitMqTransport/ConnectionContextFactory.cs:line 85
-2024-10-15 15:43:01.388 +07:00 [WRN] Connection Failed: "rabbitmq://localhost/phucnghi"
+2024-10-15 17:13:48.182 +07:00 [WRN] Connection Failed: "rabbitmq://localhost/phucnghi"
 RabbitMQ.Client.Exceptions.BrokerUnreachableException: None of the specified endpoints were reachable
  ---> System.AggregateException: One or more errors occurred. (Connection failed)
  ---> RabbitMQ.Client.Exceptions.ConnectFailureException: Connection failed
- ---> System.Net.Sockets.SocketException (10061): No connection could be made because the target machine actively refused it.
+ ---> System.Net.Sockets.SocketException (61): Connection refused
    at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
    at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
    at System.Threading.Tasks.ValueTask.ValueTaskSourceAsTask.<>c.<.cctor>b__4_0(Object state)
@@ -614,6 +1104,31 @@ RabbitMQ.Client.Exceptions.BrokerUnreachableException: None of the specified end
    at RabbitMQ.Client.ConnectionFactory.CreateConnection(IEndpointResolver endpointResolver, String clientProvidedName)
    at RabbitMQ.Client.ConnectionFactory.CreateConnection(IList`1 hostnames, String clientProvidedName)
    at MassTransit.RabbitMqTransport.ConnectionContextFactory.CreateConnection(ISupervisor supervisor) in /_/src/Transports/MassTransit.RabbitMqTransport/RabbitMqTransport/ConnectionContextFactory.cs:line 85
-2024-10-15 16:19:55.838 +07:00 [WRN] Long Time Running - Request Details: MentorSlotCreated (22022 milliseconds) {"IdEvent":"4ab45b00-d0bd-4d3c-8c8b-bbb00b5187ac","Slots":[{"Id":"83bd5ccc-3f45-448d-9861-d676460837dd","MentorId":"52e915dd-d176-46fb-b09e-6f79a20af21e","StartTime":"07:00:00.0000000","EndTime":"08:00:00.0000000","Date":"2001-01-20","IsOnline":true,"Note":"string","Month":1,"IsBook":false,"$type":"Slot"},{"Id":"fbad9683-dedc-448d-8966-b488a0ca121f","MentorId":"52e915dd-d176-46fb-b09e-6f79a20af21e","StartTime":"07:00:00.0000000","EndTime":"08:00:00.0000000","Date":"2001-01-21","IsOnline":true,"Note":"string","Month":1,"IsBook":false,"$type":"Slot"},{"Id":"5255242f-1ed0-4372-9371-2438f113073b","MentorId":"52e915dd-d176-46fb-b09e-6f79a20af21e","StartTime":"07:00:00.0000000","EndTime":"08:00:00.0000000","Date":"2001-01-06","IsOnline":true,"Note":"string","Month":1,"IsBook":false,"$type":"Slot"},{"Id":"277101e4-08fa-4b61-bcee-4c84143fbc6f","MentorId":"52e915dd-d176-46fb-b09e-6f79a20af21e","StartTime":"07:00:00.0000000","EndTime":"08:00:00.0000000","Date":"2001-01-14","IsOnline":true,"Note":"string","Month":1,"IsBook":false,"$type":"Slot"},{"Id":"fc858a8f-e75c-44d2-83e2-5155721aead4","MentorId":"52e915dd-d176-46fb-b09e-6f79a20af21e","StartTime":"07:00:00.0000000","EndTime":"08:00:00.0000000","Date":"2001-01-15","IsOnline":true,"Note":"string","Month":1,"IsBook":false,"$type":"Slot"},{"Id":"8da81d15-2c96-4acc-b27f-541ec0deae35","MentorId":"52e915dd-d176-46fb-b09e-6f79a20af21e","StartTime":"07:00:00.0000000","EndTime":"08:00:00.0000000","Date":"2001-01-16","IsOnline":true,"Note":"string","Month":1,"IsBook":false,"$type":"Slot"},{"Id":"f30131f6-2270-475e-9d83-66b40f372682","MentorId":"52e915dd-d176-46fb-b09e-6f79a20af21e","StartTime":"07:00:00.0000000","EndTime":"08:00:00.0000000","Date":"2001-01-13","IsOnline":true,"Note":"string","Month":1,"IsBook":false,"$type":"Slot"},{"Id":"6b0443a5-4dd7-43f1-97f2-e93ec7daff94","MentorId":"52e915dd-d176-46fb-b09e-6f79a20af21e","StartTime":"07:00:00.0000000","EndTime":"08:00:00.0000000","Date":"2001-01-19","IsOnline":true,"Note":"string","Month":1,"IsBook":false,"$type":"Slot"},{"Id":"5a21dc14-4cae-4846-b48f-ed8500751981","MentorId":"52e915dd-d176-46fb-b09e-6f79a20af21e","StartTime":"07:00:00.0000000","EndTime":"08:00:00.0000000","Date":"2001-01-18","IsOnline":true,"Note":"string","Month":1,"IsBook":false,"$type":"Slot"}],"MentorId":"52e915dd-d176-46fb-b09e-6f79a20af21e","$type":"MentorSlotCreated"}
-2024-10-15 16:20:30.365 +07:00 [WRN] Long Time Running - Request Details: MentorSlotCreated (11254 milliseconds) {"IdEvent":"776c5267-bdc8-4a5a-b460-bf3b78169bbb","Slots":[{"Id":"9d5b66cb-67d1-433e-94f7-86a7ae7e3517","MentorId":"52e915dd-d176-46fb-b09e-6f79a20af21e","StartTime":"07:00:00.0000000","EndTime":"08:00:00.0000000","Date":"2001-01-22","IsOnline":true,"Note":"string","Month":1,"IsBook":false,"$type":"Slot"},{"Id":"5255242f-1ed0-4372-9371-2438f113073b","MentorId":"52e915dd-d176-46fb-b09e-6f79a20af21e","StartTime":"07:00:00.0000000","EndTime":"08:00:00.0000000","Date":"2001-01-06","IsOnline":true,"Note":"string","Month":1,"IsBook":false,"$type":"Slot"},{"Id":"277101e4-08fa-4b61-bcee-4c84143fbc6f","MentorId":"52e915dd-d176-46fb-b09e-6f79a20af21e","StartTime":"07:00:00.0000000","EndTime":"08:00:00.0000000","Date":"2001-01-14","IsOnline":true,"Note":"string","Month":1,"IsBook":false,"$type":"Slot"},{"Id":"fc858a8f-e75c-44d2-83e2-5155721aead4","MentorId":"52e915dd-d176-46fb-b09e-6f79a20af21e","StartTime":"07:00:00.0000000","EndTime":"08:00:00.0000000","Date":"2001-01-15","IsOnline":true,"Note":"string","Month":1,"IsBook":false,"$type":"Slot"},{"Id":"8da81d15-2c96-4acc-b27f-541ec0deae35","MentorId":"52e915dd-d176-46fb-b09e-6f79a20af21e","StartTime":"07:00:00.0000000","EndTime":"08:00:00.0000000","Date":"2001-01-16","IsOnline":true,"Note":"string","Month":1,"IsBook":false,"$type":"Slot"},{"Id":"f30131f6-2270-475e-9d83-66b40f372682","MentorId":"52e915dd-d176-46fb-b09e-6f79a20af21e","StartTime":"07:00:00.0000000","EndTime":"08:00:00.0000000","Date":"2001-01-13","IsOnline":true,"Note":"string","Month":1,"IsBook":false,"$type":"Slot"},{"Id":"fbad9683-dedc-448d-8966-b488a0ca121f","MentorId":"52e915dd-d176-46fb-b09e-6f79a20af21e","StartTime":"07:00:00.0000000","EndTime":"08:00:00.0000000","Date":"2001-01-21","IsOnline":true,"Note":"string","Month":1,"IsBook":false,"$type":"Slot"},{"Id":"83bd5ccc-3f45-448d-9861-d676460837dd","MentorId":"52e915dd-d176-46fb-b09e-6f79a20af21e","StartTime":"07:00:00.0000000","EndTime":"08:00:00.0000000","Date":"2001-01-20","IsOnline":true,"Note":"string","Month":1,"IsBook":false,"$type":"Slot"},{"Id":"6b0443a5-4dd7-43f1-97f2-e93ec7daff94","MentorId":"52e915dd-d176-46fb-b09e-6f79a20af21e","StartTime":"07:00:00.0000000","EndTime":"08:00:00.0000000","Date":"2001-01-19","IsOnline":true,"Note":"string","Month":1,"IsBook":false,"$type":"Slot"},{"Id":"5a21dc14-4cae-4846-b48f-ed8500751981","MentorId":"52e915dd-d176-46fb-b09e-6f79a20af21e","StartTime":"07:00:00.0000000","EndTime":"08:00:00.0000000","Date":"2001-01-18","IsOnline":true,"Note":"string","Month":1,"IsBook":false,"$type":"Slot"}],"MentorId":"52e915dd-d176-46fb-b09e-6f79a20af21e","$type":"MentorSlotCreated"}
-2024-10-15 16:33:25.437 +07:00 [WRN] Long Time Running - Request Details: MentorSlotCreated (12343 milliseconds) {"IdEvent":"1aee33ab-ec29-489a-b952-bdb2a82178a1","Slots":[{"Id":"f6f5e03e-4bc0-48c4-8e0e-6f53a5be1b23","MentorId":"52e915dd-d176-46fb-b09e-6f79a20af21e","StartTime":"07:00:00.0000000","EndTime":"08:00:00.0000000","Date":"2001-01-24","IsOnline":true,"Note":"string","Month":1,"IsBook":false,"$type":"Slot"},{"Id":"a57b607d-c24d-4646-8ba8-9dd9c4c5f616","MentorId":"52e915dd-d176-46fb-b09e-6f79a20af21e","StartTime":"07:00:00.0000000","EndTime":"08:00:00.0000000","Date":"2001-01-23","IsOnline":true,"Note":"string","Month":1,"IsBook":false,"$type":"Slot"}],"MentorId":"52e915dd-d176-46fb-b09e-6f79a20af21e","$type":"MentorSlotCreated"}
+2024-10-15 17:14:19.191 +07:00 [WRN] Connection Failed: "rabbitmq://localhost/phucnghi"
+RabbitMQ.Client.Exceptions.BrokerUnreachableException: None of the specified endpoints were reachable
+ ---> System.AggregateException: One or more errors occurred. (Connection failed)
+ ---> RabbitMQ.Client.Exceptions.ConnectFailureException: Connection failed
+ ---> System.Net.Sockets.SocketException (61): Connection refused
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Threading.Tasks.ValueTask.ValueTaskSourceAsTask.<>c.<.cctor>b__4_0(Object state)
+--- End of stack trace from previous location ---
+   at RabbitMQ.Client.TcpClientAdapter.ConnectAsync(String host, Int32 port)
+   at RabbitMQ.Client.Impl.TaskExtensions.TimeoutAfter(Task task, TimeSpan timeout)
+   at RabbitMQ.Client.Impl.SocketFrameHandler.ConnectOrFail(ITcpClient socket, AmqpTcpEndpoint endpoint, TimeSpan timeout)
+   --- End of inner exception stack trace ---
+   at RabbitMQ.Client.Impl.SocketFrameHandler.ConnectOrFail(ITcpClient socket, AmqpTcpEndpoint endpoint, TimeSpan timeout)
+   at RabbitMQ.Client.Impl.SocketFrameHandler.ConnectUsingAddressFamily(AmqpTcpEndpoint endpoint, Func`2 socketFactory, TimeSpan timeout, AddressFamily family)
+   at RabbitMQ.Client.Impl.SocketFrameHandler.ConnectUsingIPv4(AmqpTcpEndpoint endpoint, Func`2 socketFactory, TimeSpan timeout)
+   at RabbitMQ.Client.Impl.SocketFrameHandler..ctor(AmqpTcpEndpoint endpoint, Func`2 socketFactory, TimeSpan connectionTimeout, TimeSpan readTimeout, TimeSpan writeTimeout)
+   at RabbitMQ.Client.Framing.Impl.IProtocolExtensions.CreateFrameHandler(IProtocol protocol, AmqpTcpEndpoint endpoint, ArrayPool`1 pool, Func`2 socketFactory, TimeSpan connectionTimeout, TimeSpan readTimeout, TimeSpan writeTimeout)
+   at RabbitMQ.Client.ConnectionFactory.CreateFrameHandler(AmqpTcpEndpoint endpoint)
+   at RabbitMQ.Client.EndpointResolverExtensions.SelectOne[T](IEndpointResolver resolver, Func`2 selector)
+   --- End of inner exception stack trace ---
+   at RabbitMQ.Client.EndpointResolverExtensions.SelectOne[T](IEndpointResolver resolver, Func`2 selector)
+   at RabbitMQ.Client.ConnectionFactory.CreateConnection(IEndpointResolver endpointResolver, String clientProvidedName)
+   --- End of inner exception stack trace ---
+   at RabbitMQ.Client.ConnectionFactory.CreateConnection(IEndpointResolver endpointResolver, String clientProvidedName)
+   at RabbitMQ.Client.ConnectionFactory.CreateConnection(IList`1 hostnames, String clientProvidedName)
+   at MassTransit.RabbitMqTransport.ConnectionContextFactory.CreateConnection(ISupervisor supervisor) in /_/src/Transports/MassTransit.RabbitMqTransport/RabbitMqTransport/ConnectionContextFactory.cs:line 85
+2024-10-15 17:14:27.033 +07:00 [WRN] Failed to stop bus: "rabbitmq://localhost/phucnghi/TansMacBookPro_MBSQUERYAPI_bus_a3doyyyejqbpj51obdqq4yqzrp?temporary=true" (Not Started)
