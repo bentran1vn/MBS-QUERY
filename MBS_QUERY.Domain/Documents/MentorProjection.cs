@@ -14,8 +14,8 @@ public class MentorProjection : Document
     public int Points { get; set; }
     public int Status { get; set; }
     public bool IsDeleted { get; set; }
-    public List<SkillProjection> MentorSkills { get; set; }
-    public IEnumerable<SlotProjection> MentorSlots { get; set; } 
+    public IEnumerable<SkillProjection> MentorSkills { get; set; } = default!;
+    public IEnumerable<SlotProjection> MentorSlots { get; set; } = default!;
 
 }
 

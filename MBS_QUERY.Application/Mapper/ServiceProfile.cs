@@ -9,15 +9,15 @@ public class ServiceProfile : Profile
 {
     public ServiceProfile()
     {
-        CreateMap<MentorProjection, Response.GetAllMentorsResponse>()
+        CreateMap<MentorProjection, Response.GetMentorResponse>()
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.DocumentId))
-            .ConstructUsing((src, context) => new Response.GetAllMentorsResponse()
+            .ConstructUsing((src, context) => new Response.GetMentorResponse()
             {
                 Email = src.Email,
                 Point = src.Points,
                 FullName = src.FullName,
                 CreatedOnUtc = src.CreatedOnUtc,
-                Skills = src.MentorSkills.Select(s => new Response.Skill()
+                Skills = src.MentorSkills == null ? [] : src.MentorSkills.Select(s => new Response.Skill()
                 {
                     SkillName = s.Name,
                     SkillDesciption = s.Description,
@@ -30,8 +30,31 @@ public class ServiceProfile : Profile
                         CetificateDesciption = c.Description,
                         CreatedOnUtc = c.CreatedOnUtc
                     }).ToList()
+                }).ToList(),
+                Slots = src.MentorSlots == null ? [] : src.MentorSlots.Select(s => new Response.Slot()
+                {
+                    Date = s.Date,
+                    Month = s.Month,
+                    Note = s.Note,
+                    EndTime = s.EndTime,
+                    IsBook = s.IsBook,
+                    IsOnline = s.IsOnline,
+                    StartTime = s.StartTime
                 }).ToList()
             });
+        
+        CreateMap<MentorProjection, Response.GetAllMentorsResponse>()
+            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.DocumentId))
+            .ConstructUsing((src, context) => new Response.GetAllMentorsResponse()
+            {
+                Email = src.Email,
+                Point = src.Points,
+                FullName = src.FullName,
+                CreatedOnUtc = src.CreatedOnUtc,
+                Skills = src.MentorSkills == null ? [] : src.MentorSkills.Select(s => s.Name).ToList()
+            });
+        
+        
 
         CreateMap<PagedResult<MentorProjection>, PagedResult<Response.GetAllMentorsResponse>>()
             .ConstructUsing((src, context) =>
