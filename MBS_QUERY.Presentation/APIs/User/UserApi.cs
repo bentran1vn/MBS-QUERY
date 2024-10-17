@@ -16,9 +16,8 @@ public class UserApi : ApiEndpoint, ICarterModule
     public void AddRoutes(IEndpointRouteBuilder app)
     {
         var gr1 = app.NewVersionedApi("Users").MapGroup(BaseUrl).HasApiVersion(1);
-        gr1.MapGet("{index}/{email}", FindUserByEmail);
+        gr1.MapGet("{index:int}/{email}", FindUserByEmail);
     }
-
     private static async Task<IResult> FindUserByEmail(ISender sender, [FromRoute] string email,int index=10)
     {
         var result = await sender.Send(new Query.FindUserByEmail(email, index));

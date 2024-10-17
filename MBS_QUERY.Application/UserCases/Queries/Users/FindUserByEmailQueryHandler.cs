@@ -17,6 +17,7 @@ public class FindUserByEmailQueryHandler(IRepositoryBase<User, Guid> userReposit
         var users = userRepository.FindAll(x => x.Email.StartsWith(request.Email)).Take(request.Index);
         var response = await users.Select(x => new Reponse.Member
         {
+            UserId = x.Id,
             Email = x.Email,
             FullName = x.FullName
         }).ToListAsync(cancellationToken: cancellationToken);
