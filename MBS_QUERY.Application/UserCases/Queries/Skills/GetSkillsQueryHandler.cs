@@ -3,7 +3,6 @@ using MBS_QUERY.Contract.Abstractions.Messages;
 using MBS_QUERY.Contract.Abstractions.Shared;
 using MBS_QUERY.Domain.Abstractions.Repositories;
 using MBS_QUERY.Domain.Entities;
-using MBS_QUERY.Persistence.Repositories;
 
 using Query = MBS_QUERY.Contract.Services.Skills.Query;
 using Response = MBS_QUERY.Contract.Services.Skills.Response;

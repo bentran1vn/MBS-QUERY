@@ -2,6 +2,7 @@ using Carter;
 using MBS_QUERY.API.DependencyInjection.Extensions;
 using MBS_QUERY.API.Middlewares;
 using MBS_QUERY.Application.DependencyInjection.Extensions;
+using MBS_QUERY.Domain.Abstractions.Repositories;
 using MBS_QUERY.Infrastructure.DependencyInjection.Extensions;
 using MBS_QUERY.Persistence.DependencyInjection.Extensions;
 using MBS_QUERY.Persistence.DependencyInjection.Options;
@@ -58,7 +59,8 @@ builder.Services.AddMasstransitRabbitMqInfrastructure(builder.Configuration);
 builder.Services.AddJwtAuthenticationAPI(builder.Configuration);
 
 builder.Services.AddTransient<ExceptionHandlingMiddleware>();
-
+builder.Services.AddTransient<ICurrentUserService,CurrentUserService>();
+builder.Services.AddHttpContextAccessor();
 var app = builder.Build();
 
 // Using middleware
