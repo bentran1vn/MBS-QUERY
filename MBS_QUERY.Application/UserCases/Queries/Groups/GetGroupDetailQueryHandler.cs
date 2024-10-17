@@ -16,7 +16,11 @@ public class GetGroupDetailQueryHandler(IRepositoryBase<Group, Guid> groupReposi
         var name = group.Mentor?.FullName ?? "Has No Mentor Yet";
         var leaderFullName = group.Leader?.FullName ?? "Has No Leader Yet";
         var ProjectName = group.Project?.Name ?? "Has No Project Yet";
-        Dictionary<string,string>? Members = group.Members.ToDictionary(x => x.Student.Email, x => x.Student.FullName) ?? [];
+        var Members = group.Members.Select(x => new Reponse.Member
+        {
+            Email = x.Student.Email,
+            FullName = x.Student.FullName
+        }).ToList();
         var response = new Reponse.GroupDetailResponse
         {
             name = group.Name,

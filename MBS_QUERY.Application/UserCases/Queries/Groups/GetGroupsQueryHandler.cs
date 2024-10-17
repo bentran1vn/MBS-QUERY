@@ -25,9 +25,9 @@ public sealed class GetGroupsQueryHandler(
         {
             GroupId = x.Id,
             name = x.Name,
-            mentorName = x.Mentor.FullName,
+            mentorName = x.Mentor.FullName?? "Has No Mentor Yet",
             leaderName = x.Leader.FullName,
-            projectName = x.Project.Name
+            projectName = x.Project.Name?? "Has No Project Yet"
         }).ToListAsync(cancellationToken);
         return Result.Success(x);
     }

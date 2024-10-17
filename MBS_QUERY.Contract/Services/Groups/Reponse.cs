@@ -9,7 +9,13 @@ public static class Reponse
         public string mentorName { get; set; }
         public string leaderName { get; set; }
         public string projectName { get; set; }
-        public Dictionary<string, string> Members { get; set; }
+        public IReadOnlyCollection<Member> Members { get; set; }
+    }
+
+    public record Member
+    {
+        public string Email { get; set; }
+        public string FullName { get; set; }
     }
 
     public record GroupResponse
