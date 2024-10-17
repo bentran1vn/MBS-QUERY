@@ -2,6 +2,7 @@ using Carter;
 using MBS_QUERY.Contract.Extensions;
 using MBS_QUERY.Contract.Services.Mentors;
 using MBS_QUERY.Presentation.Abstractions;
+using MBS_QUERY.Presentation.Constrants;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
@@ -18,8 +19,8 @@ public class MentorApi: ApiEndpoint, ICarterModule
         var group1 = app.NewVersionedApi("Mentors")
             .MapGroup(BaseUrl).HasApiVersion(1);
         
-        group1.MapGet(string.Empty, GetAllMentors);
-        group1.MapGet("{mentorId}", GetMentorsById);
+        group1.MapGet(string.Empty, GetAllMentors).RequireAuthorization(RoleNames.Student);
+        group1.MapGet("{mentorId}", GetMentorsById).RequireAuthorization(RoleNames.Student);
     }
     
     public static async Task<IResult> GetMentorsById(ISender sender,
