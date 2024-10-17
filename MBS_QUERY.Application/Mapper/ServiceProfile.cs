@@ -68,6 +68,10 @@ public class ServiceProfile : Profile
                 var mappedItems = src.Items.Select(item => context.Mapper.Map<Response.GetAllMentorsResponse>(item)).ToList();
                 return new PagedResult<Response.GetAllMentorsResponse>(mappedItems, src.PageIndex, src.PageSize, src.TotalCount);
             });
+
+        CreateMap<Subject, Contract.Services.Subjects.Response.GetSubjectsQuery>().ReverseMap();
+        CreateMap<PagedResult<Subject>, PagedResult<Contract.Services.Subjects.Response.GetSubjectsQuery>>()
+            .ForMember(dest=>dest.Items, opt=>opt.MapFrom(src=>src.Items));
     }
     
 }
