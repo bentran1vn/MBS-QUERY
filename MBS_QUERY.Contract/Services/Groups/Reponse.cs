@@ -19,6 +19,14 @@ public static class Reponse
         public string FullName { get; set; }
     }
 
+
+    public record MemberDetail
+    {
+        public string Email { get; set; }
+        public string FullName { get; set; }
+        public int Points { get; set; }
+    }
+
     public record GroupResponse
     {
         public Guid GroupId { get; set; }

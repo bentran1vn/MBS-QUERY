@@ -7,4 +7,6 @@ namespace MBS_QUERY.Contract.Services.Users;
 public static class Query
 {
     public record FindUserByEmail(string Email, int Index = 10) : IQuery<List<Reponse.Member>>;
+    
+    public record FindUserById(Guid Id) : IQuery<Reponse.MemberDetail>;
 }
