@@ -18,6 +18,7 @@ public class GetGroupDetailQueryHandler(IRepositoryBase<Group, Guid> groupReposi
         var ProjectName = group.Project?.Name ?? "Has No Project Yet";
         var Members = group.Members.Select(x => new Reponse.Member
         {
+            UserId = x.Student.Id,
             Email = x.Student.Email,
             FullName = x.Student.FullName
         }).ToList();
