@@ -7,9 +7,17 @@ public static class Reponse
         public string name { get; set; }
         public string Stack { get; set; }
         public string mentorName { get; set; }
+        public string mentorEmail { get; set; }
         public string leaderName { get; set; }
         public string projectName { get; set; }
+        public string projectDescription { get; set; }
         public IReadOnlyCollection<Member> Members { get; set; }
+    }
+    
+    public class Mentor
+    {
+        
+        
     }
 
     public record Member

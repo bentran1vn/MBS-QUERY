@@ -14,7 +14,8 @@ public class FindUserByEmailQueryHandler(IRepositoryBase<User, Guid> userReposit
     public async Task<Result<List<Reponse.Member>>> Handle(Query.FindUserByEmail request,
         CancellationToken cancellationToken)
     {
-        var users = userRepository.FindAll(x => x.Email.StartsWith(request.Email)).Take(request.Index);
+        var users = userRepository.FindAll(x => x.Email.StartsWith(request.Email) && x.Role == request.Role)
+            .Take(request.Index);
         var response = await users.Select(x => new Reponse.Member
         {
             UserId = x.Id,

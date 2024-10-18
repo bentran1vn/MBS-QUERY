@@ -16,18 +16,20 @@ public class UserApi : ApiEndpoint, ICarterModule
     public void AddRoutes(IEndpointRouteBuilder app)
     {
         var gr1 = app.NewVersionedApi("Users").MapGroup(BaseUrl).HasApiVersion(1);
-        gr1.MapGet("{index:int}/{email}", FindUserByEmail);
+        gr1.MapGet("{index:int}/{email}/{role:int}", FindUserByEmail);
         gr1.MapGet("{id:guid}", FindUserById);
     }
-    private static async Task<IResult> FindUserByEmail(ISender sender, [FromRoute] string email,int index=10)
+
+    private static async Task<IResult> FindUserByEmail(ISender sender, [FromRoute] string email, int role = 3,
+        int index = 10)
     {
-        var result = await sender.Send(new Query.FindUserByEmail(email, index));
+        var result = await sender.Send(new Query.FindUserByEmail(email, role, index));
         return result.IsSuccess ? Results.Ok(result) : Results.NotFound();
     }
+
     private static async Task<IResult> FindUserById(ISender sender, [FromRoute] Guid id)
     {
         var result = await sender.Send(new Query.FindUserById(id));
         return result.IsSuccess ? Results.Ok(result) : Results.NotFound();
     }
-    
 }
