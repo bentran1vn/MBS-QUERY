@@ -8,7 +8,6 @@
 
     <ItemGroup>
       <Folder Include="Services\MentorSkills\Validators\" />
-      <Folder Include="Services\Slots\" />
     </ItemGroup>
 
     <ItemGroup>

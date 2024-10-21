@@ -1,7 +1,6 @@
 using MBS_QUERY.Contract.Attributes;
 using MBS_QUERY.Domain.Abstractions.Entities;
 using MBS_QUERY.Domain.Constrants;
-using MongoDB.Bson.Serialization.Attributes;
 
 namespace MBS_QUERY.Domain.Documents;
 
@@ -15,21 +14,10 @@ public class MentorProjection : Document
     public int Status { get; set; }
     public bool IsDeleted { get; set; }
     public IEnumerable<SkillProjection> MentorSkills { get; set; } = default!;
-    public IEnumerable<SlotProjection> MentorSlots { get; set; } = default!;
 
 }
 
-public class SlotProjection : Document
-{
-    public Guid? MentorId { get; set; }
-    public TimeOnly StartTime { get; set; }
-    public TimeOnly EndTime { get; set; }
-    public DateOnly Date { get; set; }
-    public bool IsOnline { get; set; }
-    public string? Note { get; set; }
-    public short? Month { get; set; }
-    public bool IsBook { get; set; }
-}
+
 
 public class SkillProjection : Document
 {

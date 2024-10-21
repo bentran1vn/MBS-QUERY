@@ -22,7 +22,6 @@ public class MentorCreatedEventHandler(IMongoRepository<MentorProjection> mentor
             Status = request.Status,
             IsDeleted = request.IsDeleted,
             MentorSkills = [],
-            MentorSlots = []
         };
 
         await mentorRepository.InsertOneAsync(mentor);

@@ -39,16 +39,6 @@ public class ServiceProfile : Profile
                         CreatedOnUtc = c.CreatedOnUtc
                     }).ToList()
                 }).ToList(),
-                Slots = src.MentorSlots == null ? [] : src.MentorSlots.Select(s => new Response.Slot()
-                {
-                    Date = s.Date,
-                    Month = s.Month,
-                    Note = s.Note,
-                    EndTime = s.EndTime,
-                    IsBook = s.IsBook,
-                    IsOnline = s.IsOnline,
-                    StartTime = s.StartTime
-                }).ToList()
             });
         
         CreateMap<MentorProjection, Response.GetAllMentorsResponse>()
