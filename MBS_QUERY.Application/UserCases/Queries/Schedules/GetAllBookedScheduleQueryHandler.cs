@@ -8,54 +8,63 @@ using Microsoft.EntityFrameworkCore;
 
 
 namespace MBS_QUERY.Application.UserCases.Queries.Schedules;
-
 public class
-    GetAllBookedScheduleQueryHandler : IQueryHandler<Query.GetAllBookedScheduleQuery, List<Response.ScheduleResponse>>
-{
-    private readonly IRepositoryBase<Schedule, Guid> _scheduleRepository;
-    private readonly ICurrentUserService _currentUserService;
-    private readonly IRepositoryBase<Feedback, Guid> _feedbackRepository;
-    private readonly IRepositoryBase<Group, Guid> _groupRepository;
-
-    public GetAllBookedScheduleQueryHandler(IRepositoryBase<Schedule, Guid> scheduleRepository,
-        ICurrentUserService currentUserService, IRepositoryBase<Feedback, Guid> feedbackRepository,
+    GetAllBookedScheduleQueryHandler(
+        IRepositoryBase<Schedule, Guid> scheduleRepository,
+        ICurrentUserService currentUserService,
+        IRepositoryBase<Feedback, Guid> feedbackRepository,
         IRepositoryBase<Group, Guid> groupRepository)
-    {
-        _scheduleRepository = scheduleRepository;
-        _currentUserService = currentUserService;
-        _feedbackRepository = feedbackRepository;
-        _groupRepository = groupRepository;
-    }
-
+    : IQueryHandler<Query.GetAllBookedScheduleQuery, List<Response.ScheduleResponse>>
+{
     public async Task<Result<List<Response.ScheduleResponse>>> Handle(Query.GetAllBookedScheduleQuery request,
         CancellationToken cancellationToken)
     {
-        var userId = Guid.Parse(_currentUserService.UserId!);
-    
-        // Fetch all groups the user is a part of
-        var groups = await _groupRepository.FindAll(x => x.Members.Any(m => m.StudentId == userId))
+        var userId = Guid.Parse(currentUserService.UserId!);
+
+        // Default to today's date if DateOnly parsing fails
+        var dateOnly = DateOnly.TryParse(request.DateOnly, out var parsedDateOnly)
+            ? parsedDateOnly
+            : DateOnly.FromDateTime(DateTime.Now);
+
+        // Fetch all groups the user is a part of asynchronously
+        var groupsTask = groupRepository
+            .FindAll(x => x.Members != null && x.Members.Any(m => m.StudentId == userId))
             .Include(g => g.Project) // Include related Project data to avoid N+1 query
             .ToListAsync(cancellationToken);
 
+        // Execute the groups query first and get group IDs
+        var groups = await groupsTask;
         var groupIds = groups.Select(g => g.Id).ToList();
-    
-        // Fetch all schedules for these groups
-        var schedules = await _scheduleRepository.FindAll(s => groupIds.Contains(s.GroupId))
+
+        if (groupIds.Count == 0)
+            return Result.Success(new List<Response.ScheduleResponse>()); // Early return if no groups found
+
+        // Fetch all schedules for these groups in parallel
+        var schedulesTask = scheduleRepository
+            .FindAll(s => groupIds.Contains(s.GroupId) && s.Date == dateOnly)
             .ToListAsync(cancellationToken);
 
+        var schedules = await schedulesTask;
+        if (schedules.Count == 0)
+            return Result.Success(new List<Response.ScheduleResponse>()); // Early return if no schedules found
+
         var scheduleIds = schedules.Select(s => s.Id).ToList();
-    
-        // Fetch all feedback for these schedules in one go
-        var feedbackScheduleIds = await _feedbackRepository.FindAll(f => scheduleIds.Contains((Guid)f.ScheduleId))
+
+        // Fetch all feedback for these schedules asynchronously
+        var feedbackScheduleIdsTask = feedbackRepository
+            .FindAll(f => scheduleIds.Contains((Guid)f.ScheduleId!))
             .Select(f => f.ScheduleId)
             .ToListAsync(cancellationToken);
 
-        // Build the response
-        var res = schedules.Select(s => {
+        var feedbackScheduleIds = await feedbackScheduleIdsTask;
+
+        // Build the response asynchronously
+        var res = schedules.Select(s =>
+        {
             var group = groups.First(gr => gr.Id == s.GroupId);
             var isFeedback = feedbackScheduleIds.Contains(s.Id);
             var projectName = group.Project?.Name ?? "No Project";
-        
+
             return new Response.ScheduleResponse
             {
                 GroupName = $"{group.Name} - {projectName}",
@@ -68,5 +77,4 @@ public class
 
         return Result.Success(res);
     }
-
 }
