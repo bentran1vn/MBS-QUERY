@@ -15,7 +15,7 @@ public class ScheduleApi : ApiEndpoint, ICarterModule
     public void AddRoutes(IEndpointRouteBuilder app)
     {
         var gr1 = app.NewVersionedApi("Schedules").MapGroup(BaseUrl).HasApiVersion(1);
-        gr1.MapGet("get-all-booked/{date}", GetAllSchedules).WithSummary("must be dd/MM/yyyy format").RequireAuthorization();
+        gr1.MapGet("get-all-booked", GetAllSchedules).WithSummary("must be MM-DD-YYYY format").RequireAuthorization();
     }
 
     private static async Task<IResult> GetAllSchedules(ISender sender, string date)
