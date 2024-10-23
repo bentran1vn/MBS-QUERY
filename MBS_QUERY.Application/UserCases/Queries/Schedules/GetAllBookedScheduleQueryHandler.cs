@@ -22,7 +22,7 @@ public class
         var userId = Guid.Parse(currentUserService.UserId!);
 
         // Default to today's date if DateOnly parsing fails
-        var dateOnly = DateOnly.TryParse(request.DateOnly, out var parsedDateOnly)
+        var dateOnly = DateOnly.TryParse(request.SearchTerm, out var parsedDateOnly)
             ? parsedDateOnly
             : DateOnly.FromDateTime(DateTime.Now);
 

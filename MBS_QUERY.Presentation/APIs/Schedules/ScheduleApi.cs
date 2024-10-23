@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 
 namespace MBS_QUERY.Presentation.APIs.Schedules;
-
 public class ScheduleApi : ApiEndpoint, ICarterModule
 {
     private const string BaseUrl = "/api/v{version:apiVersion}/schedules";
@@ -15,12 +14,12 @@ public class ScheduleApi : ApiEndpoint, ICarterModule
     public void AddRoutes(IEndpointRouteBuilder app)
     {
         var gr1 = app.NewVersionedApi("Schedules").MapGroup(BaseUrl).HasApiVersion(1);
-        gr1.MapGet("get-all-booked", GetAllSchedules).WithSummary("must be MM-DD-YYYY format").RequireAuthorization();
+        gr1.MapGet(string.Empty, GetAllSchedules).WithSummary("must be MM-DD-YYYY format").RequireAuthorization();
     }
 
-    private static async Task<IResult> GetAllSchedules(ISender sender, string date)
+    private static async Task<IResult> GetAllSchedules(ISender sender, string? SearchTerm = null)
     {
-        var result = await sender.Send(new Query.GetAllBookedScheduleQuery(date));
+        var result = await sender.Send(new Query.GetAllBookedScheduleQuery(SearchTerm));
 
         return result.IsFailure ? HandlerFailure(result) : Results.Ok(result);
     }
