@@ -46,7 +46,7 @@ public class GetMentorsQueryHandler : IQueryHandler<Query.GetMentorsQuery, Paged
         => request.SortColumn?.ToLower() switch
         {
             "joinDate" => mentor => mentor.CreatedOnUtc,
-            _ => mentor => mentor.DocumentId
+            _ => mentor => mentor.CreatedOnUtc
             //_ => mentor => mentor.DocumentId // Default Sort Descending on CreatedDate column
         };
 }

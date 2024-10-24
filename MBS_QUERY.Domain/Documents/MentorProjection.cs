@@ -14,7 +14,6 @@ public class MentorProjection : Document
     public int Status { get; set; }
     public bool IsDeleted { get; set; }
     public IEnumerable<SkillProjection> MentorSkills { get; set; } = default!;
-
 }
 
 

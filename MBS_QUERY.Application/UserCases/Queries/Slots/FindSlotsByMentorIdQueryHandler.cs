@@ -7,29 +7,18 @@ using MBS_QUERY.Domain.Documents;
 
 namespace MBS_QUERY.Application.UserCases.Queries.Slots;
 public class FindSlotsByMentorIdQueryHandler(IMongoRepository<SlotProjection> slotRepository)
-    : IQueryHandler<Query.FindSlotsByMentorId, List<Response.SlotGroupResponse>>
+    : IQueryHandler<Query.FindSlotsByMentorId, List<Response.SlotResponse>>
 {
-    public async Task<Result<List<Response.SlotGroupResponse>>> Handle(Query.FindSlotsByMentorId request,
+    public async Task<Result<List<Response.SlotResponse>>> Handle(Query.FindSlotsByMentorId request,
         CancellationToken cancellationToken)
     {
-        var mentorId = request.MentorId.ToString();
-        DateOnly? startDate = null;
-        DateOnly? endDate = null;
+        var slots =
+            request.Date != null && DateOnly.TryParse(request.Date, out var parsedDateOnly)
+                ? slotRepository.FilterBy(x => x.MentorId.Equals(request.MentorId) && x.Date == parsedDateOnly)
+                    .ToAsyncEnumerable()
+                : slotRepository.FilterBy(x => x.MentorId.Equals(request.MentorId)).ToAsyncEnumerable();
 
-        if (DateOnly.TryParse(request.Date, out var parsedDateOnly))
-        {
-            var dateRange = ExtensionMethod.GetWeekDates.Get(parsedDateOnly);
-            startDate = dateRange[0];
-            endDate = dateRange[6];
-        }
-
-        // Simplified filter expression
-        Expression<Func<SlotProjection, bool>> filter = x =>
-            (string.IsNullOrEmpty(mentorId) || x.MentorId.Equals(request.MentorId)) &&
-            (!startDate.HasValue || (x.Date >= startDate && x.Date <= endDate));
-
-        // Assuming the repository supports async querying
-        var result = slotRepository.FilterBy(filter)
+        var result = await slots
             .Select(x => new Response.SlotResponse
             {
                 SlotId = x.SlotId,
@@ -40,14 +29,7 @@ public class FindSlotsByMentorIdQueryHandler(IMongoRepository<SlotProjection> sl
                 Note = x.Note,
                 Month = x.Month,
                 IsBook = x.IsBook
-            })
-            .GroupBy(x => x.Date)
-            .Select(g => new Response.SlotGroupResponse
-            {
-                Date = g.Key,
-                Slots = g.ToList()
-            })
-            .ToList();
+            }).ToListAsync(cancellationToken);;
 
 
         return Result.Success(result);
