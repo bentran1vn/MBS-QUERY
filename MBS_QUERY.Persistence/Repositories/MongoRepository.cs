@@ -17,10 +17,10 @@ public class MongoRepository<TDocument> : IMongoRepository<TDocument>
     public MongoRepository(IMongoDbSettings settings)
     {
         var database = new MongoClient(settings.ConnectionString).GetDatabase(settings.DatabaseName);
-        _collection = database.GetCollection<TDocument>(GetCollectionName(typeof(TDocument)));
+        _collection = database.GetCollection<TDocument>(MongoRepository<TDocument>.GetCollectionName(typeof(TDocument)));
     }
 
-    private protected string GetCollectionName(Type documentType)
+    private static string GetCollectionName(Type documentType)
     {
         return ((BsonCollectionAttribute)documentType.GetCustomAttributes(
                 typeof(BsonCollectionAttribute), true)
@@ -29,9 +29,7 @@ public class MongoRepository<TDocument> : IMongoRepository<TDocument>
 
     public virtual IMongoQueryable<TDocument> AsQueryable(Expression<Func<TDocument, bool>>? filterExpression = null)
     {
-        if (filterExpression is not null)
-            return _collection.AsQueryable().Where(filterExpression);
-        return _collection.AsQueryable();
+        return filterExpression is not null ? _collection.AsQueryable().Where(filterExpression) : _collection.AsQueryable();
     }
 
     public virtual IEnumerable<TDocument> FilterBy(
