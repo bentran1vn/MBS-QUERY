@@ -13,7 +13,13 @@ public class FindSlotsByMentorIdQueryHandler(IMongoRepository<SlotProjection> sl
     public async Task<Result<List<Response.SlotResponse>>> Handle(Query.FindSlotsByMentorId request,
         CancellationToken cancellationToken)
     {
-        var slots = slotRepository.FilterBy(x => x.MentorId.Equals(request.MentorId)).ToAsyncEnumerable();
+        var slots =
+            request.Date != null && DateOnly.TryParse(request.Date, out var parsedDateOnly)
+                ? slotRepository.FilterBy(x => x.MentorId.Equals(request.MentorId) && x.Date == parsedDateOnly)
+                    .ToAsyncEnumerable()
+                : slotRepository.FilterBy(x => x.MentorId.Equals(request.MentorId)).ToAsyncEnumerable();
+
+
         var result = await slots
             .Select(x => new Response.SlotResponse
             {
