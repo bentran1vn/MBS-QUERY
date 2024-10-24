@@ -13,6 +13,7 @@ public class MentorSlotCreatedEventHandler(IMongoRepository<SlotProjection> mong
     {
         var slotProjection = request.Slots.Select(x => new SlotProjection()
         {
+            SlotId = x.SlotId,
             DocumentId = x.Id,
             MentorId = x.MentorId,
             Date = x.Date,

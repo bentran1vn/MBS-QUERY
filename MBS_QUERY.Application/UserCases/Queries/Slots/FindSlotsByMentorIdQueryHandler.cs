@@ -23,6 +23,7 @@ public class FindSlotsByMentorIdQueryHandler(IMongoRepository<SlotProjection> sl
         var result = await slots
             .Select(x => new Response.SlotResponse
             {
+                SlotId = x.SlotId,
                 StartTime = x.StartTime,
                 EndTime = x.EndTime,
                 Date = x.Date,

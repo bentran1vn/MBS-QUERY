@@ -6,6 +6,7 @@ namespace MBS_QUERY.Domain.Documents;
 [BsonCollection(TableNames.Slot)]
 public class SlotProjection : Document
 {
+    public Guid SlotId { get; set; }
     public Guid? MentorId { get; set; }
     public TimeOnly StartTime { get; set; }
     public TimeOnly EndTime { get; set; }
