@@ -20,11 +20,7 @@ public class
         CancellationToken cancellationToken)
     {
         var userId = Guid.Parse(currentUserService.UserId!);
-
-        // Default to today's date if DateOnly parsing fails
-        var dateOnly = DateOnly.TryParse(request.SearchTerm, out var parsedDateOnly)
-            ? parsedDateOnly
-            : DateOnly.FromDateTime(DateTime.Now);
+        
 
         // Fetch all groups the user is a part of asynchronously
         var groupsTask = groupRepository
@@ -41,7 +37,7 @@ public class
 
         // Fetch all schedules for these groups in parallel
         var schedulesTask = scheduleRepository
-            .FindAll(s => groupIds.Contains(s.GroupId) && s.Date == dateOnly)
+            .FindAll(s => groupIds.Contains(s.GroupId))
             .ToListAsync(cancellationToken);
 
         var schedules = await schedulesTask;

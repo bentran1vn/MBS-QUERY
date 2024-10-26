@@ -4,5 +4,5 @@ namespace MBS_QUERY.Contract.Services.Schedule;
 
 public static class Query
 {
-    public record GetAllBookedScheduleQuery(string? SearchTerm) : IQuery<List<Response.ScheduleResponse>>;
+    public record GetAllBookedScheduleQuery : IQuery<List<Response.ScheduleResponse>>;
 }
