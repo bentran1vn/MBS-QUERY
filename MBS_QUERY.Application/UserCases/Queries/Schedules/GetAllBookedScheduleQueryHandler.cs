@@ -20,7 +20,7 @@ public class
         CancellationToken cancellationToken)
     {
         var userId = Guid.Parse(currentUserService.UserId!);
-        
+
 
         // Fetch all groups the user is a part of asynchronously
         var groupsTask = groupRepository
@@ -63,6 +63,8 @@ public class
 
             return new Response.ScheduleResponse
             {
+                Id = s.Id,
+                GroupId = group.Id,
                 GroupName = $"{group.Name} - {projectName}",
                 StartTime = s.StartTime,
                 EndTime = s.EndTime,
