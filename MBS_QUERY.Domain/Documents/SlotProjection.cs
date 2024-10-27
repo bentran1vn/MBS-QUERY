@@ -15,4 +15,5 @@ public class SlotProjection : Document
     public string? Note { get; set; }
     public short? Month { get; set; }
     public bool IsBook { get; set; }
+    public bool IsDeleted { get; set; }
 }

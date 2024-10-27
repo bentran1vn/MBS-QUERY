@@ -6,21 +6,15 @@ using MBS_QUERY.Domain.Documents;
 
 
 namespace MBS_QUERY.Application.UserCases.Events.Schedule;
-public class ChangeStatusIntoBookedEventHandler : ICommandHandler<DomainEvent.ChangeSlotStatusInToBooked>
+public class ChangeStatusIntoBookedEventHandler(IMongoRepository<SlotProjection> mongoRepository)
+    : ICommandHandler<DomainEvent.ChangeSlotStatusInToBooked>
 {
-    private readonly IMongoRepository<SlotProjection> _mongoRepository;
-
-    public ChangeStatusIntoBookedEventHandler(IMongoRepository<SlotProjection> mongoRepository)
-    {
-        _mongoRepository = mongoRepository;
-    }
-
     public async Task<Result> Handle(DomainEvent.ChangeSlotStatusInToBooked request,
         CancellationToken cancellationToken)
     {
-        var slot = await _mongoRepository.FindOneAsync(x => x.SlotId == request.SlotId);
+        var slot = await mongoRepository.FindOneAsync(x => x.SlotId == request.SlotId);
         slot.IsBook = true;
-        await _mongoRepository.ReplaceOneAsync(slot);
+        await mongoRepository.ReplaceOneAsync(slot);
         return Result.Success();
     }
 }

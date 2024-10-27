@@ -23,6 +23,7 @@ public class MentorSlotCreatedEventHandler(IMongoRepository<SlotProjection> mong
             Note = x.Note,
             Month = x.Month,
             IsBook = x.IsBook,
+            IsDeleted = x.IsDeleted,
         }).ToList();
         await mongoRepository.InsertManyAsync(slotProjection);
         return Success();

@@ -14,9 +14,10 @@ public class FindSlotsByMentorIdQueryHandler(IMongoRepository<SlotProjection> sl
     {
         var slots =
             request.Date != null && DateOnly.TryParse(request.Date, out var parsedDateOnly)
-                ? slotRepository.FilterBy(x => x.MentorId.Equals(request.MentorId) && x.Date == parsedDateOnly)
+                ? slotRepository.FilterBy(x =>
+                        x.MentorId.Equals(request.MentorId) && x.Date == parsedDateOnly && !x.IsDeleted)
                     .ToAsyncEnumerable()
-                : slotRepository.FilterBy(x => x.MentorId.Equals(request.MentorId)).ToAsyncEnumerable();
+                : slotRepository.FilterBy(x => x.MentorId.Equals(request.MentorId) && !x.IsDeleted).ToAsyncEnumerable();
 
         var result = await slots
             .Select(x => new Response.SlotResponse
@@ -29,7 +30,8 @@ public class FindSlotsByMentorIdQueryHandler(IMongoRepository<SlotProjection> sl
                 Note = x.Note,
                 Month = x.Month,
                 IsBook = x.IsBook
-            }).ToListAsync(cancellationToken);;
+            }).ToListAsync(cancellationToken);
+        ;
 
 
         return Result.Success(result);
