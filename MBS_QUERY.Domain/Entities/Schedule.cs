@@ -1,7 +1,6 @@
 ﻿using MBS_QUERY.Domain.Abstractions.Entities;
 
 namespace MBS_QUERY.Domain.Entities;
-
 public class Schedule : Entity<Guid>, IAuditableEntity
 {
     public Guid MentorId { get; set; }
@@ -14,6 +13,7 @@ public class Schedule : Entity<Guid>, IAuditableEntity
     public TimeOnly EndTime { get; set; }
     public DateOnly Date { get; set; }
     public Guid SubjectId { get; set; }
+    public bool IsAccepted { get; set; }
     public virtual Subject? Subject { get; set; }
     public DateTimeOffset CreatedOnUtc { get; set; }
     public DateTimeOffset? ModifiedOnUtc { get; set; }

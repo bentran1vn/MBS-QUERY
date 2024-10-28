@@ -69,7 +69,8 @@ public class
                 StartTime = s.StartTime,
                 EndTime = s.EndTime,
                 Date = s.Date,
-                IsFeedback = isFeedback
+                IsFeedback = isFeedback,
+                IsAccepted = s.IsAccepted
             };
         }).ToList();
 
