@@ -7,6 +7,7 @@ public static class Reponse
         public string name { get; set; }
         public string Stack { get; set; }
         public string mentorName { get; set; }
+        public Guid mentorId { get; set; }
         public string mentorEmail { get; set; }
         public string leaderName { get; set; }
         public string projectName { get; set; }

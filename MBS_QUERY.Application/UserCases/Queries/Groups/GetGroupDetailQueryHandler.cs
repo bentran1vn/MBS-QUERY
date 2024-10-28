@@ -14,6 +14,7 @@ public class GetGroupDetailQueryHandler(IRepositoryBase<Group, Guid> groupReposi
     {
         var group = await groupRepository.FindByIdAsync(request.GroupId, cancellationToken);
         var name = group.Mentor?.FullName ?? "Has No Mentor Yet";
+        var mentorId = group.Mentor?.Id ?? Guid.Empty;
         var mentorEmail = group.Mentor?.Email ?? "Has No Mentor Yet";
         var leaderFullName = group.Leader?.FullName ?? "Has No Leader Yet";
         var ProjectName = group.Project?.Name ?? "Has No Project Yet";
@@ -29,6 +30,7 @@ public class GetGroupDetailQueryHandler(IRepositoryBase<Group, Guid> groupReposi
             name = group.Name,
             mentorName = name,
             mentorEmail = mentorEmail,
+            mentorId = mentorId,
             leaderName = leaderFullName,
             projectName = ProjectName,
             projectDescription = ProjectDescription,
