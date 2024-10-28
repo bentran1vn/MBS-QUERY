@@ -15,11 +15,19 @@ public class ScheduleApi : ApiEndpoint, ICarterModule
     {
         var gr1 = app.NewVersionedApi("Schedules").MapGroup(BaseUrl).HasApiVersion(1);
         gr1.MapGet(string.Empty, GetAllSchedules).RequireAuthorization();
+        gr1.MapGet("mentor", GetAllSchedulesOfMentor).RequireAuthorization();
     }
 
     private static async Task<IResult> GetAllSchedules(ISender sender)
     {
         var result = await sender.Send(new Query.GetAllBookedScheduleQuery());
+
+        return result.IsFailure ? HandlerFailure(result) : Results.Ok(result);
+    }
+
+    private static async Task<IResult> GetAllSchedulesOfMentor(ISender sender)
+    {
+        var result = await sender.Send(new Query.GetAllBookedScheduleOfMentorQuery());
 
         return result.IsFailure ? HandlerFailure(result) : Results.Ok(result);
     }
