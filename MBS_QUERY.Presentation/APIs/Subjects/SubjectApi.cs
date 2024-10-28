@@ -17,12 +17,9 @@ public class SubjectApi : ApiEndpoint,ICarterModule
         gr1.MapGet(string.Empty, GetAllSubjects);
     }
     
-    private static async Task<IResult> GetAllSubjects(ISender sender,
-        int pageIndex = 1,
-        int pageSize = 5)
+    private static async Task<IResult> GetAllSubjects(ISender sender)
     {
-        var result = await sender.Send(new Query.GetSubjectsQuery(
-            pageIndex, pageSize));
+        var result = await sender.Send(new Query.GetSubjectsQuery());
         
         return result.IsFailure ? HandlerFailure(result) : Results.Ok(result);
     }
