@@ -19,8 +19,8 @@ public class MentorApi: ApiEndpoint, ICarterModule
         var group1 = app.NewVersionedApi("Mentors")
             .MapGroup(BaseUrl).HasApiVersion(1);
         
-        group1.MapGet(string.Empty, GetAllMentors).RequireAuthorization(RoleNames.Student);
-        group1.MapGet("{mentorId}", GetMentorsById).RequireAuthorization(RoleNames.Student);
+        group1.MapGet(string.Empty, GetAllMentors).RequireAuthorization();
+        group1.MapGet("{mentorId}", GetMentorsById).RequireAuthorization();
     }
     
     public static async Task<IResult> GetMentorsById(ISender sender,
