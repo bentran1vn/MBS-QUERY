@@ -10,6 +10,6 @@ public static class Response
         public TimeOnly EndTime { get; set; }
         public DateOnly Date { get; set; }
         public bool IsFeedback { get; set; }
-        public bool IsAccepted { get; set; }
+        public int IsAccepted { get; set; }
     }
 }
