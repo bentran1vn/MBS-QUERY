@@ -44,6 +44,8 @@ public class
                 EndTime = x.EndTime,
                 Date = x.Date,
                 IsFeedback = isFeedback,
+                IsAccepted = x.IsAccepted
+                
             };
         }).ToList();
         return Result.Success(result);
