@@ -3,7 +3,7 @@
 namespace MBS_QUERY.Contract.Services.Sumaries;
 public static class Query
 {
-    public record GetSumariesQuery : IQuery<List<Response.GetSumariesQuery>>;
+    public record GetSumariesQuery : IQuery<Response.GetSumariesQuery>;
 }
 
 public static class Response

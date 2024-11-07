@@ -6,7 +6,7 @@ using MBS_QUERY.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace MBS_QUERY.Application.UserCases.Queries.Sumaries;
-public class GetSumariesQueryHandler : IQueryHandler<Query.GetSumariesQuery, List<Response.GetSumariesQuery>>
+public class GetSumariesQueryHandler : IQueryHandler<Query.GetSumariesQuery, Response.GetSumariesQuery>
 {
     private readonly IRepositoryBase<Group, Guid> _groupRepository;
     private readonly IRepositoryBase<User, Guid> _userRepository;
@@ -18,7 +18,7 @@ public class GetSumariesQueryHandler : IQueryHandler<Query.GetSumariesQuery, Lis
         _groupRepository = groupRepository;
     }
 
-    public async Task<Result<List<Response.GetSumariesQuery>>> Handle(Query.GetSumariesQuery request,
+    public async Task<Result<Response.GetSumariesQuery>> Handle(Query.GetSumariesQuery request,
         CancellationToken cancellationToken)
     {
         // Materialize queries to avoid concurrent DbContext access
@@ -27,10 +27,8 @@ public class GetSumariesQueryHandler : IQueryHandler<Query.GetSumariesQuery, Lis
         var totalStudentActive =
             await _userRepository.FindAll(x => x.Role == 2 && x.Status == 1).CountAsync(cancellationToken);
         var totalGroupActive = await _groupRepository.FindAll().CountAsync(cancellationToken);
+        return Result.Success(new Response.GetSumariesQuery(totalMentorActive, totalStudentActive, totalGroupActive));
 
-        return Result.Success(new List<Response.GetSumariesQuery>
-        {
-            new(totalMentorActive, totalStudentActive, totalGroupActive)
-        });
+
     }
 }
