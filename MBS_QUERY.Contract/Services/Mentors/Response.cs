@@ -64,5 +64,6 @@ public static class Response
     {
         public Guid Id { get; set; }
         public string FullName { get; set; }
+        public DateTimeOffset CreatedAtUtc { get; set; }
     }
 }

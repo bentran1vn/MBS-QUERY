@@ -18,7 +18,8 @@ public class
             new Response.ShowListMentorResponse
             {
                 Id = x.Id,
-                FullName = x.FullName
+                FullName = x.FullName,
+                CreatedAtUtc = x.CreatedOnUtc
             }).ToListAsync(cancellationToken);
 
         return Result.Success(mentors);
