@@ -19,7 +19,8 @@ public class
             {
                 Id = x.Id,
                 Email = x.Email,
-                CreatedAtUtc = x.CreatedOnUtc
+                CreatedAtUtc = x.CreatedOnUtc,
+                FullName =  x.FullName,
             }).ToListAsync(cancellationToken);
 
         return Result.Success(mentors);
