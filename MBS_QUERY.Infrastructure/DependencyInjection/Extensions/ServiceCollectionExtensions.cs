@@ -1,10 +1,14 @@
 using System.Reflection;
+using HealthChecks.UI.Client;
 using MassTransit;
 using MBS_QUERY.Application.Abstractions;
 using MBS_QUERY.Contract.JsonConverters;
 using MBS_QUERY.Infrastructure.Caching;
 using MBS_QUERY.Infrastructure.DependencyInjection.Options;
 using MBS_QUERY.Infrastructure.PipeObservers;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
@@ -101,5 +105,37 @@ public static class ServiceCollectionExtensions
     {
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(AssemblyReference.Assembly));
         // services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Application.AssemblyReference.Assembly));
+    }
+
+    public static IServiceCollection ConfigureHealthChecks(this IServiceCollection services,
+        IConfiguration Configuration)
+    {
+        var hc = services.AddHealthChecks();
+        hc.AddMongoDb(
+            mongodbConnectionString: Configuration.GetSection("MongoDbSettings").GetValue<string>("ConnectionString"),
+            name: "MongoDbConnection",
+            tags: ["database", "MongoDb"]
+        );
+        services.AddHealthChecksUI(setup =>
+        {
+            setup.AddHealthCheckEndpoint("MBS_QUERY", "/hc");
+            setup.SetEvaluationTimeInSeconds(60); // Configures the UI to poll for updates every 60 seconds
+        }).AddInMemoryStorage(); // Adds in-memory storage for the UI data
+        return services;
+    }
+    public static IEndpointRouteBuilder MapDefaultHealthChecks(this IEndpointRouteBuilder endpoints)
+    {
+        endpoints.MapHealthChecks("/hc", new HealthCheckOptions
+        {
+            Predicate = _ => true,
+            ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+        });
+        return endpoints;
+    }
+
+    public static IEndpointRouteBuilder MapDefaultHealthChecksUI(this IEndpointRouteBuilder endpoints)
+    {
+        endpoints.MapHealthChecksUI(settings => settings.UIPath = "/hc-ui");
+        return endpoints;
     }
 }

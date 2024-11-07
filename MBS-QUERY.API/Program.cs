@@ -56,7 +56,7 @@ builder.Services.AddServicesInfrastructure();
 builder.Services.AddRedisInfrastructure(builder.Configuration);
 builder.Services.AddMediatRInfrastructure();
 builder.Services.AddMasstransitRabbitMqInfrastructure(builder.Configuration);
-
+builder.Services.ConfigureHealthChecks(builder.Configuration);
 builder.Services.AddJwtAuthenticationAPI(builder.Configuration);
 
 builder.Services.AddTransient<ExceptionHandlingMiddleware>();
@@ -74,12 +74,13 @@ app.UseSwaggerAPI(); // => After MapCarter => Show Version
 app.UseCors("CorsPolicy");
 
 // app.UseHttpsRedirection();
-
+app.UseRouting();
 app.UseAuthentication(); // Need to be before app.UseAuthorization();
 app.UseAuthorization();
+app.MapDefaultHealthChecks();
+app.MapDefaultHealthChecksUI();
 
-
-// Add API Endpoint with carter module
+// 7. Map Carter endpoints
 app.MapCarter();
 
 try
