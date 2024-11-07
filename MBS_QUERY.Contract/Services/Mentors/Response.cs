@@ -63,7 +63,7 @@ public static class Response
     public record ShowListMentorResponse
     {
         public Guid Id { get; set; }
-        public string FullName { get; set; }
+        public string Email { get; set; }
         public DateTimeOffset CreatedAtUtc { get; set; }
     }
 }

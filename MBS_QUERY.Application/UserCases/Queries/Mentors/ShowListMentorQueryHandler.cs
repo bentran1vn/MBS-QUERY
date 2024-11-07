@@ -18,7 +18,7 @@ public class
             new Response.ShowListMentorResponse
             {
                 Id = x.Id,
-                FullName = x.FullName,
+                Email = x.Email,
                 CreatedAtUtc = x.CreatedOnUtc
             }).ToListAsync(cancellationToken);
 
