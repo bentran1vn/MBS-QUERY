@@ -8,7 +8,6 @@ using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 
 namespace MBS_QUERY.Persistence.Repositories;
-
 public class MongoRepository<TDocument> : IMongoRepository<TDocument>
     where TDocument : IDocument
 {
@@ -17,19 +16,14 @@ public class MongoRepository<TDocument> : IMongoRepository<TDocument>
     public MongoRepository(IMongoDbSettings settings)
     {
         var database = new MongoClient(settings.ConnectionString).GetDatabase(settings.DatabaseName);
-        _collection = database.GetCollection<TDocument>(MongoRepository<TDocument>.GetCollectionName(typeof(TDocument)));
-    }
-
-    private static string GetCollectionName(Type documentType)
-    {
-        return ((BsonCollectionAttribute)documentType.GetCustomAttributes(
-                typeof(BsonCollectionAttribute), true)
-            .FirstOrDefault())?.CollectionName;
+        _collection = database.GetCollection<TDocument>(GetCollectionName(typeof(TDocument)));
     }
 
     public virtual IMongoQueryable<TDocument> AsQueryable(Expression<Func<TDocument, bool>>? filterExpression = null)
     {
-        return filterExpression is not null ? _collection.AsQueryable().Where(filterExpression) : _collection.AsQueryable();
+        return filterExpression is not null
+            ? _collection.AsQueryable().Where(filterExpression)
+            : _collection.AsQueryable();
     }
 
     public virtual IEnumerable<TDocument> FilterBy(
@@ -141,5 +135,12 @@ public class MongoRepository<TDocument> : IMongoRepository<TDocument>
     public Task DeleteManyAsync(Expression<Func<TDocument, bool>> filterExpression)
     {
         return Task.Run(() => _collection.DeleteManyAsync(filterExpression));
+    }
+
+    private static string GetCollectionName(Type documentType)
+    {
+        return ((BsonCollectionAttribute)documentType.GetCustomAttributes(
+                typeof(BsonCollectionAttribute), true)
+            .FirstOrDefault())?.CollectionName;
     }
 }

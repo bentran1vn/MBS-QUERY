@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 
 namespace MBS_QUERY.API.DependencyInjection.Extensions;
-
 public static class JwtExtensions
 {
     public static void AddJwtAuthenticationAPI(this IServiceCollection services, IConfiguration configuration)
@@ -16,8 +15,8 @@ public static class JwtExtensions
             options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
         }).AddJwtBearer(o =>
-        { 
-            JwtOption jwtOption = new JwtOption();
+        {
+            var jwtOption = new JwtOption();
             configuration.GetSection(nameof(JwtOption)).Bind(jwtOption);
 
             /**
@@ -49,9 +48,7 @@ public static class JwtExtensions
                 OnAuthenticationFailed = context =>
                 {
                     if (context.Exception.GetType() == typeof(SecurityTokenExpiredException))
-                    {
                         context.Response.Headers.Add("IS-TOKEN-EXPIRED", "true");
-                    }
                     return Task.CompletedTask;
                 }
             };
@@ -65,6 +62,6 @@ public static class JwtExtensions
             opts.AddPolicy(RoleNames.Mentor, policy => policy.RequireRole("1"));
             opts.AddPolicy(RoleNames.Admin, policy => policy.RequireRole("2"));
         });
-       // services.AddScoped<CustomJwtBearerEvents>();
+        // services.AddScoped<CustomJwtBearerEvents>();
     }
 }

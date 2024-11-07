@@ -3,13 +3,12 @@ using MediatR;
 using Microsoft.Extensions.Logging;
 
 namespace MBS_QUERY.Application.Behaviors;
-
 public class PerformancePipelineBehavior<TRequest, TResponse> :
     IPipelineBehavior<TRequest, TResponse>
     where TRequest : IRequest<TResponse>
 {
-    private readonly Stopwatch _timer;
     private readonly ILogger<TRequest> _logger;
+    private readonly Stopwatch _timer;
 
     public PerformancePipelineBehavior(ILogger<TRequest> logger)
     {
@@ -17,7 +16,8 @@ public class PerformancePipelineBehavior<TRequest, TResponse> :
         _logger = logger;
     }
 
-    public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
+    public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next,
+        CancellationToken cancellationToken)
     {
         _timer.Start();
         var response = await next();
@@ -29,7 +29,8 @@ public class PerformancePipelineBehavior<TRequest, TResponse> :
             return response;
 
         var requestName = typeof(TRequest).Name;
-        _logger.LogWarning("Long Time Running - Request Details: {Name} ({ElapsedMilliseconds} milliseconds) {@Request}",
+        _logger.LogWarning(
+            "Long Time Running - Request Details: {Name} ({ElapsedMilliseconds} milliseconds) {@Request}",
             requestName, elapsedMilliseconds, request);
 
         return response;

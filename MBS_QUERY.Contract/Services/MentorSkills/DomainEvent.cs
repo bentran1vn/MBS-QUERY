@@ -1,12 +1,15 @@
 using MBS_QUERY.Contract.Abstractions.Messages;
 
 namespace MBS_QUERY.Contract.Services.MentorSkills;
-
 public class DomainEvent
 {
-    public record MentorSkillsCreated(Guid IdEvent, Guid Id, Guid MentorId,
-        Skill skill, IReadOnlyCollection<Certificate> Certificates) : IDomainEvent, ICommand;
-    
+    public record MentorSkillsCreated(
+        Guid IdEvent,
+        Guid Id,
+        Guid MentorId,
+        Skill skill,
+        IReadOnlyCollection<Certificate> Certificates) : IDomainEvent, ICommand;
+
     public class Skill
     {
         public string Name { get; set; }

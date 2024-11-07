@@ -1,5 +1,4 @@
 namespace MBS_QUERY.Infrastructure.DependencyInjection.Options;
-
 public class JwtOption
 {
     public string Issuer { get; set; }

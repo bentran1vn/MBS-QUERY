@@ -45,7 +45,8 @@ builder.Services.AddMediatRApplication();
 builder.Services.AddAutoMapperApplication();
 
 // Persistence Layer
-builder.Services.ConfigureSqlServerRetryOptionsPersistence(builder.Configuration.GetSection(nameof(SqlServerRetryOptions)));
+builder.Services.ConfigureSqlServerRetryOptionsPersistence(
+    builder.Configuration.GetSection(nameof(SqlServerRetryOptions)));
 builder.Services.AddSqlServerPersistence();
 builder.Services.AddRepositoryPersistence();
 builder.Services.ConfigureServicesInfrastructure(builder.Configuration);
@@ -59,7 +60,7 @@ builder.Services.AddMasstransitRabbitMqInfrastructure(builder.Configuration);
 builder.Services.AddJwtAuthenticationAPI(builder.Configuration);
 
 builder.Services.AddTransient<ExceptionHandlingMiddleware>();
-builder.Services.AddTransient<ICurrentUserService,CurrentUserService>();
+builder.Services.AddTransient<ICurrentUserService, CurrentUserService>();
 builder.Services.AddHttpContextAccessor();
 var app = builder.Build();
 
@@ -97,4 +98,6 @@ finally
     await app.DisposeAsync();
 }
 
-public partial class Program { }
+public partial class Program
+{
+}

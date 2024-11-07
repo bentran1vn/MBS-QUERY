@@ -2,16 +2,12 @@ using MBS_QUERY.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace MBS_QUERY.Persistence;
-
 public class ApplicationDbContext : DbContext
 {
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options)
     {
     }
-
-    protected override void OnModelCreating(ModelBuilder builder) =>
-        builder.ApplyConfigurationsFromAssembly(AssemblyReference.Assembly);
 
     public virtual DbSet<Category> Categories { get; set; }
     public virtual DbSet<Certificate> Certificates { get; set; }
@@ -28,4 +24,9 @@ public class ApplicationDbContext : DbContext
     public virtual DbSet<Transaction> Transactions { get; set; }
     public virtual DbSet<User> Users { get; set; }
     public virtual DbSet<MentorSkills> MentorSkillses { get; set; }
+
+    protected override void OnModelCreating(ModelBuilder builder)
+    {
+        builder.ApplyConfigurationsFromAssembly(AssemblyReference.Assembly);
+    }
 }

@@ -3,7 +3,6 @@ using MBS_QUERY.Domain.Abstractions.Entities;
 using MBS_QUERY.Domain.Constrants;
 
 namespace MBS_QUERY.Domain.Documents;
-
 [BsonCollection(TableNames.Product)]
 public class ProductProjection : Document
 {

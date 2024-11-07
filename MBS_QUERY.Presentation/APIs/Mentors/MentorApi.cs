@@ -2,38 +2,44 @@ using Carter;
 using MBS_QUERY.Contract.Extensions;
 using MBS_QUERY.Contract.Services.Mentors;
 using MBS_QUERY.Presentation.Abstractions;
-using MBS_QUERY.Presentation.Constrants;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 
 namespace MBS_QUERY.Presentation.APIs.Mentors;
-
-public class MentorApi: ApiEndpoint, ICarterModule
+public class MentorApi : ApiEndpoint, ICarterModule
 {
     private const string BaseUrl = "/api/v{version:apiVersion}/mentors";
-    
+
     public void AddRoutes(IEndpointRouteBuilder app)
     {
         var group1 = app.NewVersionedApi("Mentors")
             .MapGroup(BaseUrl).HasApiVersion(1);
-        
+
         group1.MapGet(string.Empty, GetAllMentors).RequireAuthorization();
         group1.MapGet("{mentorId}", GetMentorsById).RequireAuthorization();
+        group1.MapGet("list", ShowListMentor);
     }
-    
-    public static async Task<IResult> GetMentorsById(ISender sender,
+
+    private static async Task<IResult> ShowListMentor(ISender sender)
+    {
+        var result = await sender.Send(new Query.ShowListMentorQuery());
+
+        return result.IsFailure ? HandlerFailure(result) : Results.Ok(result);
+    }
+
+    private static async Task<IResult> GetMentorsById(ISender sender,
         Guid mentorId)
     {
         var result = await sender.Send(new Query.GetMentorQuery(mentorId));
-        
+
         if (result.IsFailure)
             return HandlerFailure(result);
-        
+
         return Results.Ok(result);
     }
-    
+
     public static async Task<IResult> GetAllMentors(ISender sender,
         string? serchTerm = null,
         string? sortColumn = null,
@@ -44,10 +50,10 @@ public class MentorApi: ApiEndpoint, ICarterModule
         var result = await sender.Send(new Query.GetMentorsQuery(serchTerm,
             sortColumn, SortOrderExtension.ConvertStringToSortOrder(sortOrder),
             pageIndex, pageSize));
-        
+
         if (result.IsFailure)
             return HandlerFailure(result);
-        
+
         return Results.Ok(result);
     }
 }

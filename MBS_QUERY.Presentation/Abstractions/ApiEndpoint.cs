@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MBS_QUERY.Presentation.Abstractions;
-
 public abstract class ApiEndpoint
 {
-    protected static IResult HandlerFailure(Result result) =>
-        result switch
+    protected static IResult HandlerFailure(Result result)
+    {
+        return result switch
         {
             { IsSuccess: true } => throw new InvalidOperationException(),
             IValidationResult validationResult =>
@@ -22,9 +22,11 @@ public abstract class ApiEndpoint
                         "Bad Request", StatusCodes.Status400BadRequest,
                         result.Error))
         };
+    }
 
     private static ProblemDetails CreateProblemDetails(string title, int status, Error error, Error[]? errors = null)
-        => new()
+    {
+        return new ProblemDetails
         {
             Title = title,
             Type = error.Code,
@@ -32,4 +34,5 @@ public abstract class ApiEndpoint
             Status = status,
             Extensions = { { nameof(errors), errors } }
         };
+    }
 }

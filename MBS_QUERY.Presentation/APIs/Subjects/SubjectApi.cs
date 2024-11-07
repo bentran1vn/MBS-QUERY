@@ -7,20 +7,20 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 
 namespace MBS_QUERY.Presentation.APIs.Subjects;
-
-public class SubjectApi : ApiEndpoint,ICarterModule
+public class SubjectApi : ApiEndpoint, ICarterModule
 {
     private const string BasePath = "/api/v{version:apiVersion}/subjects";
+
     public void AddRoutes(IEndpointRouteBuilder app)
     {
         var gr1 = app.NewVersionedApi("Subjects").MapGroup(BasePath).HasApiVersion(1);
         gr1.MapGet(string.Empty, GetAllSubjects);
     }
-    
+
     private static async Task<IResult> GetAllSubjects(ISender sender)
     {
         var result = await sender.Send(new Query.GetSubjectsQuery());
-        
+
         return result.IsFailure ? HandlerFailure(result) : Results.Ok(result);
     }
 }

@@ -2,9 +2,7 @@
 using MBS_QUERY.Domain.Abstractions.Entities;
 using MongoDB.Driver.Linq;
 
-
 namespace MBS_QUERY.Domain.Abstractions.Repositories;
-
 public interface IMongoRepository<TDocument>
     where TDocument : IDocument
 {

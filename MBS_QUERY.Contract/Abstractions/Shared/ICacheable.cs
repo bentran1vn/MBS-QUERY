@@ -1,5 +1,4 @@
 namespace MBS_QUERY.Contract.Abstractions.Shared;
-
 public interface ICacheable
 {
     bool BypassCache { get; }

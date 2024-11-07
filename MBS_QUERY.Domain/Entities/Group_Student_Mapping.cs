@@ -1,5 +1,4 @@
 ﻿namespace MBS_QUERY.Domain.Entities;
-
 public class Group_Student_Mapping
 {
     public Guid GroupId { get; set; }

@@ -1,11 +1,9 @@
-﻿using System.Xml.Linq;
-using MBS_QUERY.Contract.Abstractions.Messages;
+﻿using MBS_QUERY.Contract.Abstractions.Messages;
 using MBS_QUERY.Contract.Abstractions.Shared;
 using MBS_QUERY.Contract.Services.Schedule;
 using MBS_QUERY.Domain.Abstractions.Repositories;
 using MBS_QUERY.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-
 
 namespace MBS_QUERY.Application.UserCases.Queries.Schedules;
 public class

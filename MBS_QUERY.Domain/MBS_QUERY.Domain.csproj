@@ -7,11 +7,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\MBS_QUERY.Contract\MBS_QUERY.Contract.csproj" />
+        <ProjectReference Include="..\MBS_QUERY.Contract\MBS_QUERY.Contract.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="MongoDB.Driver" Version="2.29.0" />
+        <PackageReference Include="MongoDB.Driver" Version="2.29.0"/>
     </ItemGroup>
 
 </Project>

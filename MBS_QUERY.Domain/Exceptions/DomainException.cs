@@ -1,10 +1,11 @@
 ﻿namespace MBS_QUERY.Domain.Exceptions;
-
 public abstract class DomainException : Exception
 {
     protected DomainException(string title, string message)
-        : base(message) =>
+        : base(message)
+    {
         Title = title;
+    }
 
     public string Title { get; }
 }

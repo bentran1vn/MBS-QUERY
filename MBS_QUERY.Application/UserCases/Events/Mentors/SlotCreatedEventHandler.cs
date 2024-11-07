@@ -1,17 +1,17 @@
-﻿using MBS_CONTRACT.SHARE.Abstractions.Shared;
+﻿using MBS_CONTRACT.SHARE.Abstractions.Messages;
+using MBS_CONTRACT.SHARE.Abstractions.Shared;
 using MBS_CONTRACT.SHARE.Services.Users;
 using MBS_QUERY.Domain.Abstractions.Repositories;
 using MBS_QUERY.Domain.Documents;
-using MongoDB.Bson;
 using static MBS_CONTRACT.SHARE.Abstractions.Shared.Result;
 
 namespace MBS_QUERY.Application.UserCases.Events.Mentors;
 public class MentorSlotCreatedEventHandler(IMongoRepository<SlotProjection> mongoRepository)
-    : MBS_CONTRACT.SHARE.Abstractions.Messages.ICommandHandler<DomainEvent.MentorSlotCreated>
+    : ICommandHandler<DomainEvent.MentorSlotCreated>
 {
     public async Task<Result> Handle(DomainEvent.MentorSlotCreated request, CancellationToken cancellationToken)
     {
-        var slotProjection = request.Slots.Select(x => new SlotProjection()
+        var slotProjection = request.Slots.Select(x => new SlotProjection
         {
             SlotId = x.SlotId,
             DocumentId = x.Id,
@@ -23,7 +23,7 @@ public class MentorSlotCreatedEventHandler(IMongoRepository<SlotProjection> mong
             Note = x.Note,
             Month = x.Month,
             IsBook = x.IsBook,
-            IsDeleted = x.IsDeleted,
+            IsDeleted = x.IsDeleted
         }).ToList();
         await mongoRepository.InsertManyAsync(slotProjection);
         return Success();

@@ -1,5 +1,4 @@
-﻿using System.Linq.Expressions;
-using MBS_QUERY.Contract.Abstractions.Messages;
+﻿using MBS_QUERY.Contract.Abstractions.Messages;
 using MBS_QUERY.Contract.Abstractions.Shared;
 using MBS_QUERY.Contract.Services.Slots;
 using MBS_QUERY.Domain.Abstractions.Repositories;

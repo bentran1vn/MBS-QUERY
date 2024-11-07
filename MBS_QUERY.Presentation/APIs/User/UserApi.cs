@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 
 namespace MBS_QUERY.Presentation.APIs.User;
-
 public class UserApi : ApiEndpoint, ICarterModule
 {
     private const string BaseUrl = "/api/v{version:apiVersion}/user";

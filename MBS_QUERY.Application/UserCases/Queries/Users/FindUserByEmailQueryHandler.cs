@@ -7,7 +7,6 @@ using Microsoft.EntityFrameworkCore;
 using Query = MBS_QUERY.Contract.Services.Users.Query;
 
 namespace MBS_QUERY.Application.UserCases.Queries.Users;
-
 public class FindUserByEmailQueryHandler(IRepositoryBase<User, Guid> userRepository)
     : IQueryHandler<Query.FindUserByEmail, List<Reponse.Member>>
 {
@@ -21,7 +20,7 @@ public class FindUserByEmailQueryHandler(IRepositoryBase<User, Guid> userReposit
             UserId = x.Id,
             Email = x.Email,
             FullName = x.FullName
-        }).ToListAsync(cancellationToken: cancellationToken);
+        }).ToListAsync(cancellationToken);
         return Result.Success(response);
     }
 }

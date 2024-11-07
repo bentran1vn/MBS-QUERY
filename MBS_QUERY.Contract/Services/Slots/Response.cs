@@ -12,6 +12,7 @@ public static class Response
         public short? Month { get; set; }
         public bool IsBook { get; set; }
     }
+
     public record SlotGroupResponse
     {
         public DateOnly Date { get; set; }

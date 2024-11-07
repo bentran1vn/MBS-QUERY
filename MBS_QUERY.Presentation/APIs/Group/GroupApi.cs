@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 
 namespace MBS_QUERY.Presentation.APIs.Group;
-
 public class GroupApi : ApiEndpoint, ICarterModule
 {
     private const string BaseUrl = "/api/v{version:apiVersion}/groups";
@@ -16,7 +15,7 @@ public class GroupApi : ApiEndpoint, ICarterModule
     public void AddRoutes(IEndpointRouteBuilder app)
     {
         var gr1 = app.NewVersionedApi("Groups").MapGroup(BaseUrl).HasApiVersion(1);
-        gr1.MapGet(String.Empty, GetGroup).RequireAuthorization();
+        gr1.MapGet(string.Empty, GetGroup).RequireAuthorization();
         gr1.MapGet("{groupId}", GroupDetail);
     }
 
@@ -25,6 +24,7 @@ public class GroupApi : ApiEndpoint, ICarterModule
         var result = await sender.Send(new Query.GetGroupsQuery());
         return result.IsFailure ? HandlerFailure(result) : Results.Ok(result);
     }
+
     private static async Task<IResult> GroupDetail(ISender sender, [FromRoute] Guid groupId)
     {
         var result = await sender.Send(new Query.GetGroupDetail(groupId));

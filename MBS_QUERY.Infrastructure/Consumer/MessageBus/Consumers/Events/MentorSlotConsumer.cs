@@ -5,7 +5,6 @@ using MBS_QUERY.Infrastructure.Consumer.Abstractions.Messages;
 using MediatR;
 
 namespace MBS_QUERY.Infrastructure.Consumer.MessageBus.Consumers.Events;
-
 public static class MentorSlotConsumer
 {
     public class MentorSlotCreatedConsumer(ISender sender, IMongoRepository<EventProjection> repository)

@@ -5,7 +5,6 @@ using MBS_QUERY.Domain.Abstractions.Repositories;
 using MBS_QUERY.Domain.Entities;
 
 namespace MBS_QUERY.Application.UserCases.Queries.Groups;
-
 public class GetGroupDetailQueryHandler(IRepositoryBase<Group, Guid> groupRepository)
     : IQueryHandler<Query.GetGroupDetail, Reponse.GroupDetailResponse>
 {
@@ -36,6 +35,7 @@ public class GetGroupDetailQueryHandler(IRepositoryBase<Group, Guid> groupReposi
             projectDescription = ProjectDescription,
             Stack = group.Stack,
             Members = Members,
+            BookingPoints = group.BookingPoints
         };
         return Result.Success(response);
     }

@@ -11,8 +11,8 @@ public class
     List<Response.ScheduleResponse>>
 {
     private readonly ICurrentUserService _currentUserService;
-    private readonly IRepositoryBase<Schedule, Guid> _scheduleRepository;
     private readonly IRepositoryBase<Feedback, Guid> _feedbackRepository;
+    private readonly IRepositoryBase<Schedule, Guid> _scheduleRepository;
 
     public GetAllBookedScheduleOfMentorQueryHandler(ICurrentUserService currentUserService,
         IRepositoryBase<Schedule, Guid> scheduleRepository, IRepositoryBase<Feedback, Guid> feedbackRepository)
@@ -27,7 +27,7 @@ public class
     {
         var UserId = Guid.Parse(_currentUserService.UserId!);
         var schedules = await _scheduleRepository.FindAll(x => x.MentorId == UserId)
-            .ToListAsync(cancellationToken: cancellationToken);
+            .ToListAsync(cancellationToken);
         var feedbackIds = await _feedbackRepository
             .FindAll(x => schedules.Select(x => x.Id).Contains((Guid)x.ScheduleId))
             .Select(x => x.ScheduleId).ToListAsync(cancellationToken);
@@ -45,7 +45,6 @@ public class
                 Date = x.Date,
                 IsFeedback = isFeedback,
                 IsAccepted = x.IsAccepted
-                
             };
         }).ToList();
         return Result.Success(result);

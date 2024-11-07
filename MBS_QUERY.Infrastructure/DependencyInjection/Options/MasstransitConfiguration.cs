@@ -1,5 +1,4 @@
 namespace MBS_QUERY.Infrastructure.DependencyInjection.Options;
-
 public class MasstransitConfiguration
 {
     public string Host { get; set; }

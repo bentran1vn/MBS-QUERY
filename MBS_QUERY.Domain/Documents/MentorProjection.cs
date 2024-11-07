@@ -3,7 +3,6 @@ using MBS_QUERY.Domain.Abstractions.Entities;
 using MBS_QUERY.Domain.Constrants;
 
 namespace MBS_QUERY.Domain.Documents;
-
 [BsonCollection(TableNames.Mentor)]
 public class MentorProjection : Document
 {
@@ -15,8 +14,6 @@ public class MentorProjection : Document
     public bool IsDeleted { get; set; }
     public IEnumerable<SkillProjection> MentorSkills { get; set; } = default!;
 }
-
-
 
 public class SkillProjection : Document
 {
@@ -35,5 +32,4 @@ public class CertificateProjection : Document
     public string Name { get; set; }
     public string Description { get; set; }
     public string ImageUrl { get; set; }
-
 }

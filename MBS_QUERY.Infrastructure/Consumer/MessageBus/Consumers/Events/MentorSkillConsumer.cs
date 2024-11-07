@@ -5,7 +5,6 @@ using MediatR;
 using DomainEventShared = MBS_CONTRACT.SHARE.Services.MentorSkills.DomainEvent;
 
 namespace MBS_QUERY.Infrastructure.Consumer.MessageBus.Consumers.Events;
-
 public class MentorSkillConsumer
 {
     public class MentorSkillsCreatedConsumer(ISender sender, IMongoRepository<EventProjection> repository)

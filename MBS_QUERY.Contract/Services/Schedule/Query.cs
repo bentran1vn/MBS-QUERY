@@ -5,5 +5,5 @@ public static class Query
 {
     public record GetAllBookedScheduleQuery : IQuery<List<Response.ScheduleResponse>>;
 
-    public record GetAllBookedScheduleOfMentorQuery: IQuery<List<Response.ScheduleResponse>>;
+    public record GetAllBookedScheduleOfMentorQuery : IQuery<List<Response.ScheduleResponse>>;
 }

@@ -1,7 +1,6 @@
 ﻿using MBS_QUERY.Domain.Abstractions.Entities;
 
 namespace MBS_QUERY.Domain.Entities;
-
 public class Semester : Entity<Guid>, IAuditableEntity
 {
     public string Name { get; set; }

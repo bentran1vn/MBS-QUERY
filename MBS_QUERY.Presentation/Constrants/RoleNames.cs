@@ -1,5 +1,4 @@
 namespace MBS_QUERY.Presentation.Constrants;
-
 public class RoleNames
 {
     public const string Student = nameof(Student);

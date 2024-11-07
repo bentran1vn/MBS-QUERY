@@ -1,5 +1,4 @@
 ﻿namespace MBS_QUERY.Domain.Exceptions;
-
 public abstract class NotFoundException : DomainException
 {
     protected NotFoundException(string message)

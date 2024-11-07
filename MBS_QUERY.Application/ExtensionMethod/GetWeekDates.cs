@@ -6,10 +6,7 @@ public static class GetWeekDates
         var dates = new List<DateOnly>();
         var dayOfWeek = (int)dateOnly.DayOfWeek;
         var startOfWeek = dateOnly.AddDays(-dayOfWeek);
-        for (var i = 0; i < 7; i++)
-        {
-            dates.Add(startOfWeek.AddDays(i));
-        }
+        for (var i = 0; i < 7; i++) dates.Add(startOfWeek.AddDays(i));
 
         return dates;
     }

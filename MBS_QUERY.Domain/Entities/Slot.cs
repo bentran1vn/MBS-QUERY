@@ -1,7 +1,6 @@
 ﻿using MBS_QUERY.Domain.Abstractions.Entities;
 
 namespace MBS_QUERY.Domain.Entities;
-
 public class Slot : Entity<Guid>, IAuditableEntity
 {
     public Guid? MentorId { get; set; }

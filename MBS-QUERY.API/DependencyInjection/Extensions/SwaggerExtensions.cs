@@ -7,14 +7,13 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 using Swashbuckle.AspNetCore.SwaggerUI;
 
 namespace MBS_QUERY.API.DependencyInjection.Extensions;
-
 public static class SwaggerExtensions
 {
     public static void AddSwaggerAPI(this IServiceCollection services)
     {
         services.AddSwaggerGen(c =>
         {
-            c.AddSecurityDefinition(JwtBearerDefaults.AuthenticationScheme, new OpenApiSecurityScheme()
+            c.AddSecurityDefinition(JwtBearerDefaults.AuthenticationScheme, new OpenApiSecurityScheme
             {
                 Description = @"JWT Authorization header using the Bearer scheme. 
 
@@ -26,8 +25,8 @@ Example: 'Bearer 12345abcdef'",
                 Type = SecuritySchemeType.ApiKey,
                 Scheme = JwtBearerDefaults.AuthenticationScheme
             });
-            
-            c.AddSecurityRequirement(new OpenApiSecurityRequirement()
+
+            c.AddSecurityRequirement(new OpenApiSecurityRequirement
             {
                 {
                     new OpenApiSecurityScheme
@@ -39,46 +38,17 @@ Example: 'Bearer 12345abcdef'",
                         },
                         Scheme = "oauth2",
                         Name = JwtBearerDefaults.AuthenticationScheme,
-                        In = ParameterLocation.Header,
+                        In = ParameterLocation.Header
                     },
                     new List<string>()
                 }
             });
-            
+
             c.OperationFilter<SwaggerFormDataOperationFilter>();
-            
+
             c.EnableAnnotations();
-            
         });
         services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
-    }
-    
-    public class SwaggerFormDataOperationFilter : IOperationFilter
-    {
-        public void Apply(OpenApiOperation operation, OperationFilterContext context)
-        {
-            var formParameters = context.MethodInfo
-                .GetParameters()
-                .Where(p => p.GetCustomAttributes(true)
-                    .Any(attr => attr.GetType() == typeof(FromFormAttribute)))
-                .ToList();
-
-            if (formParameters.Any())
-            {
-                foreach (var param in formParameters)
-                {
-                    operation.RequestBody = new OpenApiRequestBody
-                    {
-                        Content = {
-                            ["multipart/form-data"] = new OpenApiMediaType
-                            {
-                                Schema = context.SchemaGenerator.GenerateSchema(param.ParameterType, context.SchemaRepository)
-                            }
-                        }
-                    };
-                }
-            }
-        }
     }
 
     public static void UseSwaggerAPI(this WebApplication app)
@@ -96,5 +66,31 @@ Example: 'Bearer 12345abcdef'",
 
         app.MapGet("/", () => Results.Redirect("/swagger/index.html"))
             .WithTags(string.Empty);
+    }
+
+    public class SwaggerFormDataOperationFilter : IOperationFilter
+    {
+        public void Apply(OpenApiOperation operation, OperationFilterContext context)
+        {
+            var formParameters = context.MethodInfo
+                .GetParameters()
+                .Where(p => p.GetCustomAttributes(true)
+                    .Any(attr => attr.GetType() == typeof(FromFormAttribute)))
+                .ToList();
+
+            if (formParameters.Any())
+                foreach (var param in formParameters)
+                    operation.RequestBody = new OpenApiRequestBody
+                    {
+                        Content =
+                        {
+                            ["multipart/form-data"] = new OpenApiMediaType
+                            {
+                                Schema = context.SchemaGenerator.GenerateSchema(param.ParameterType,
+                                    context.SchemaRepository)
+                            }
+                        }
+                    };
+        }
     }
 }

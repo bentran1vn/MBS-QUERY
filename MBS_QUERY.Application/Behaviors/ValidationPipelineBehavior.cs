@@ -3,27 +3,25 @@ using MBS_QUERY.Contract.Abstractions.Shared;
 using MediatR;
 
 namespace MBS_QUERY.Application.Behaviors;
-
 public class ValidationPipelineBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     where TRequest : IRequest<TResponse>
     where TResponse : Result
 {
     private readonly IEnumerable<IValidator<TRequest>> _validators;
 
-    public ValidationPipelineBehavior(IEnumerable<IValidator<TRequest>> validators) =>
+    public ValidationPipelineBehavior(IEnumerable<IValidator<TRequest>> validators)
+    {
         _validators = validators;
+    }
 
     public async Task<TResponse> Handle(
         TRequest request,
         RequestHandlerDelegate<TResponse> next,
         CancellationToken cancellationToken)
     {
-        if (!_validators.Any())
-        {
-            return await next();
-        }
+        if (!_validators.Any()) return await next();
 
-        Error[] errors = _validators
+        var errors = _validators
             .Select(validator => validator.Validate(request))
             .SelectMany(validationResult => validationResult.Errors)
             .Where(validationFailure => validationFailure is not null)
@@ -33,10 +31,7 @@ public class ValidationPipelineBehavior<TRequest, TResponse> : IPipelineBehavior
             .Distinct()
             .ToArray();
 
-        if (errors.Any())
-        {
-            return CreateValidationResult<TResponse>(errors);
-        }
+        if (errors.Any()) return CreateValidationResult<TResponse>(errors);
 
         return await next();
     }
@@ -44,12 +39,9 @@ public class ValidationPipelineBehavior<TRequest, TResponse> : IPipelineBehavior
     private static TResult CreateValidationResult<TResult>(Error[] errors)
         where TResult : Result
     {
-        if (typeof(TResult) == typeof(Result))
-        {
-            return (ValidationResult.WithErrors(errors) as TResult)!;
-        }
+        if (typeof(TResult) == typeof(Result)) return (ValidationResult.WithErrors(errors) as TResult)!;
 
-        object validationResult = typeof(ValidationResult<>)
+        var validationResult = typeof(ValidationResult<>)
             .GetGenericTypeDefinition()
             .MakeGenericType(typeof(TResult).GenericTypeArguments[0])
             .GetMethod(nameof(ValidationResult.WithErrors))!

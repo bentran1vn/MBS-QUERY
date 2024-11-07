@@ -1,5 +1,4 @@
 ﻿namespace MBS_QUERY.Contract.Services.Groups;
-
 public static class Reponse
 {
     public record GroupDetailResponse
@@ -12,13 +11,12 @@ public static class Reponse
         public string leaderName { get; set; }
         public string projectName { get; set; }
         public string projectDescription { get; set; }
+        public double? BookingPoints { get; set; }
         public IReadOnlyCollection<Member> Members { get; set; }
     }
-    
+
     public class Mentor
     {
-        
-        
     }
 
     public record Member
@@ -33,7 +31,7 @@ public static class Reponse
     {
         public string Email { get; set; }
         public string FullName { get; set; }
-        public int Points { get; set; }
+        public double Points { get; set; }
     }
 
     public record GroupResponse

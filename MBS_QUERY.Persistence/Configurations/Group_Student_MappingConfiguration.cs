@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace MBS_QUERY.Persistence.Configurations;
-
 public class Group_Student_MappingConfiguration : IEntityTypeConfiguration<Group_Student_Mapping>
 {
     public void Configure(EntityTypeBuilder<Group_Student_Mapping> builder)

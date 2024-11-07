@@ -6,16 +6,15 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 
 namespace MBS_QUERY.Presentation.APIs.Test;
-
-public class TestApi: ApiEndpoint, ICarterModule
+public class TestApi : ApiEndpoint, ICarterModule
 {
     private const string BaseUrl = "/api/v{version:apiVersion}/tests";
-    
+
     public void AddRoutes(IEndpointRouteBuilder app)
     {
         var group1 = app.NewVersionedApi("Tests")
             .MapGroup(BaseUrl).HasApiVersion(1);
-        
+
         group1.MapGet("kakak", Test);
     }
 
@@ -24,7 +23,7 @@ public class TestApi: ApiEndpoint, ICarterModule
     public static async Task<IResult> Test()
     {
         var result = Result.Success("Xin chào Tôi là Query");
-        
+
         if (result.IsFailure)
             return HandlerFailure(result);
 

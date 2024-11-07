@@ -4,7 +4,6 @@ using MBS_CONTRACT.SHARE.Services.Slots;
 using MBS_QUERY.Domain.Abstractions.Repositories;
 using MBS_QUERY.Domain.Documents;
 
-
 namespace MBS_QUERY.Application.UserCases.Events.Schedule;
 public class ChangeStatusIntoBookedEventHandler(IMongoRepository<SlotProjection> mongoRepository)
     : ICommandHandler<DomainEvent.ChangeSlotStatusInToBooked>

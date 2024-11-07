@@ -9,5 +9,4 @@ public static class ScheduleConsumer
 {
     public class ChangeStatusIntoBookedConsumer(ISender sender, IMongoRepository<EventProjection> _mongoRepository)
         : Consumer<DomainEvent.ChangeSlotStatusInToBooked>(sender, _mongoRepository);
-
 }

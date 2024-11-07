@@ -1,5 +1,4 @@
 ﻿namespace MBS_QUERY.Persistence.DependencyInjection.Options;
-
 public interface IMongoDbSettings
 {
     string DatabaseName { get; set; }
