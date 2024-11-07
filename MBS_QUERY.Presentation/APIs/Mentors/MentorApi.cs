@@ -19,7 +19,7 @@ public class MentorApi : ApiEndpoint, ICarterModule
 
         group1.MapGet(string.Empty, GetAllMentors).RequireAuthorization();
         group1.MapGet("{mentorId}", GetMentorsById).RequireAuthorization();
-        group1.MapGet("list", ShowListMentor);
+        group1.MapGet("approve", ShowListMentor);
     }
 
     private static async Task<IResult> ShowListMentor(ISender sender)
@@ -34,13 +34,10 @@ public class MentorApi : ApiEndpoint, ICarterModule
     {
         var result = await sender.Send(new Query.GetMentorQuery(mentorId));
 
-        if (result.IsFailure)
-            return HandlerFailure(result);
-
-        return Results.Ok(result);
+        return result.IsFailure ? HandlerFailure(result) : Results.Ok(result);
     }
 
-    public static async Task<IResult> GetAllMentors(ISender sender,
+    private static async Task<IResult> GetAllMentors(ISender sender,
         string? serchTerm = null,
         string? sortColumn = null,
         string? sortOrder = null,
@@ -51,9 +48,6 @@ public class MentorApi : ApiEndpoint, ICarterModule
             sortColumn, SortOrderExtension.ConvertStringToSortOrder(sortOrder),
             pageIndex, pageSize));
 
-        if (result.IsFailure)
-            return HandlerFailure(result);
-
-        return Results.Ok(result);
+        return result.IsFailure ? HandlerFailure(result) : Results.Ok(result);
     }
 }

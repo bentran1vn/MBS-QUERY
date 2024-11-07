@@ -14,7 +14,7 @@ public class
     public async Task<Result<List<Response.ShowListMentorResponse>>> Handle(Query.ShowListMentorQuery request,
         CancellationToken cancellationToken)
     {
-        var mentors = await userRepository.FindAll(x => x.Role == 1 && x.Status == 1).Select(x =>
+        var mentors = await userRepository.FindAll(x => x.Role == 1 && x.Status == 0).Select(x =>
             new Response.ShowListMentorResponse
             {
                 Id = x.Id,
