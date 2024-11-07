@@ -25,7 +25,7 @@ public class GetSumariesQueryHandler : IQueryHandler<Query.GetSumariesQuery, Res
         var totalMentorActive =
             await _userRepository.FindAll(x => x.Role == 1 && x.Status == 1).CountAsync(cancellationToken);
         var totalStudentActive =
-            await _userRepository.FindAll(x => x.Role == 2 && x.Status == 1).CountAsync(cancellationToken);
+            await _userRepository.FindAll(x => x.Role == 0 && x.Status == 1).CountAsync(cancellationToken);
         var totalGroupActive = await _groupRepository.FindAll().CountAsync(cancellationToken);
         return Result.Success(new Response.GetSumariesQuery(totalMentorActive, totalStudentActive, totalGroupActive));
 
