@@ -58,13 +58,11 @@ public class MentorSkillsCreatedHandler : ICommandHandler<DomainEvent.MentorSkil
         else
         {
             // If skill exists, merge the new certificates with existing ones
-            var newCertificates = newSkill.SkillCetificates
-                .Where(newCert => !existingSkill.SkillCetificates.Any(existingCert => existingCert.Name.Equals(newCert.Name)))
-                .ToList();
-
-            existingSkill.SkillCetificates.AddRange(newCertificates);
+            var newCerList = new List<CertificateProjection>();
+            newCerList.AddRange(existingSkill.SkillCetificates);
+            newCerList.AddRange(newSkill.SkillCetificates);
+            existingSkill.SkillCetificates = newCerList;
         }
-
         existMentor.MentorSkills = skillList;
         await _mentorRepository.ReplaceOneAsync(existMentor);
 
