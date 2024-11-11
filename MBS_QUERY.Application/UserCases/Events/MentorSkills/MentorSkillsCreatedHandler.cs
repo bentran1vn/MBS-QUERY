@@ -51,7 +51,15 @@ public class MentorSkillsCreatedHandler : ICommandHandler<DomainEvent.MentorSkil
         else
             skillList = existMentor.MentorSkills.ToList();
 
-        skillList.Add(skills);
+        if (!skillList.Any(x => x.DocumentId.Equals(skills.DocumentId)))
+        {
+            skillList.Add(skills);
+        }
+        else
+        {
+            var existingSkill = skillList.FirstOrDefault(x => x.DocumentId.Equals(skills.DocumentId));
+            existingSkill!.SkillCetificates.AddRange(skills.SkillCetificates);
+        }
 
         var mentor = new MentorProjection
         {
