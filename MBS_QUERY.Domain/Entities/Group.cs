@@ -10,8 +10,8 @@ public class Group : Entity<Guid>, IAuditableEntity
     public virtual User? Leader { get; set; }
     public string Stack { get; set; }
     public Guid? ProjectId { get; set; }
-    public Guid? ScheduleId { get; set; }
-    public virtual Schedule? Schedule { get; set; }
+    public Guid? SubjectId { get; set; }
+    public virtual Subject? Subject { get; set; }
     public double? BookingPoints { get; set; }
     public virtual Project? Project { get; set; }
     public virtual ICollection<Group_Student_Mapping>? Members { get; set; } = [];
