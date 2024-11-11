@@ -27,7 +27,7 @@ public class MentorSkillsCreatedHandler : ICommandHandler<DomainEvent.MentorSkil
 
         if (existMentor is null) return AbsrationShared.Result.Success();
 
-        var skills = new SkillProjection
+        var newSkill = new SkillProjection
         {
             DocumentId = request.Id,
             SkillCetificates = request.Certificates.Select(x => new CertificateProjection
@@ -44,37 +44,29 @@ public class MentorSkillsCreatedHandler : ICommandHandler<DomainEvent.MentorSkil
             CreatedOnUtc = request.skill.CreatedOnUtc.DateTime
         };
 
-        List<SkillProjection> skillList;
+        // Initialize skill list if MentorSkills is empty
+        var skillList = existMentor.MentorSkills?.ToList() ?? new List<SkillProjection>();
 
-        if (!existMentor.MentorSkills.Any())
-            skillList = new List<SkillProjection>();
-        else
-            skillList = existMentor.MentorSkills.ToList();
+        // Try to find an existing skill with the same DocumentId
+        var existingSkill = skillList.FirstOrDefault(x => x.DocumentId.Equals(newSkill.DocumentId));
 
-        if (!skillList.Any(x => x.DocumentId.Equals(skills.DocumentId)))
+        if (existingSkill == null)
         {
-            skillList.Add(skills);
+            // If skill does not exist, add it to the list
+            skillList.Add(newSkill);
         }
         else
         {
-            var existingSkill = skillList.FirstOrDefault(x => x.DocumentId.Equals(skills.DocumentId));
-            existingSkill!.SkillCetificates.AddRange(skills.SkillCetificates);
+            // If skill exists, merge the new certificates with existing ones
+            var newCertificates = newSkill.SkillCetificates
+                .Where(newCert => !existingSkill.SkillCetificates.Any(existingCert => existingCert.DocumentId == newCert.DocumentId))
+                .ToList();
+
+            existingSkill.SkillCetificates.AddRange(newCertificates);
         }
 
-        var mentor = new MentorProjection
-        {
-            Id = existMentor.Id,
-            DocumentId = existMentor.DocumentId,
-            Email = existMentor.Email,
-            FullName = existMentor.FullName,
-            Points = existMentor.Points,
-            Role = existMentor.Role,
-            Status = existMentor.Status,
-            IsDeleted = existMentor.IsDeleted,
-            MentorSkills = skillList
-        };
-
-        await _mentorRepository.ReplaceOneAsync(mentor);
+        existMentor.MentorSkills = skillList;
+        await _mentorRepository.ReplaceOneAsync(existMentor);
 
         await _cacheService.RemoveByPrefixAsync($"{nameof(Query.GetMentorsQuery)}", cancellationToken);
 
