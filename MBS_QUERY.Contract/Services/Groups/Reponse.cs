@@ -32,6 +32,7 @@ public static class Reponse
         public string Email { get; set; }
         public string FullName { get; set; }
         public double Points { get; set; }
+        public int? Role { get; set; }
     }
 
     public record GroupResponse

@@ -24,7 +24,8 @@ public class FindUserByIdQueryHandler : IQueryHandler<Query.FindUserById, Repons
         {
             Email = user.Email,
             FullName = user.FullName,
-            Points = user.Points
+            Points = user.Points,
+            Role = user.Role
         });
     }
 }
