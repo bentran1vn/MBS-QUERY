@@ -35,7 +35,9 @@ public class GetGroupDetailQueryHandler(IRepositoryBase<Group, Guid> groupReposi
             projectDescription = ProjectDescription,
             Stack = group.Stack,
             Members = Members,
-            BookingPoints = group.BookingPoints
+            Subject = group.Subject.Name,
+            BookingPoints = group.BookingPoints,
+            
         };
         return Result.Success(response);
     }

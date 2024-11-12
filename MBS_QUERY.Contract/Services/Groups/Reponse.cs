@@ -11,6 +11,7 @@ public static class Reponse
         public string leaderName { get; set; }
         public string projectName { get; set; }
         public string projectDescription { get; set; }
+        public string Subject { get; set; }
         public double? BookingPoints { get; set; }
         public IReadOnlyCollection<Member> Members { get; set; }
     }
